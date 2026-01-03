@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# E-commerce Project
 
-## Getting Started
+Proyecto de e-commerce full-stack construido con Next.js, PostgreSQL y Prisma.
 
-First, run the development server:
+## Stack Tecnológico
 
+- **Frontend/Backend**: Next.js 16 (App Router)
+- **Base de Datos**: PostgreSQL
+- **ORM**: Prisma
+- **Estilos**: Tailwind CSS
+- **Lenguaje**: TypeScript
+
+## Configuración Inicial
+
+### 1. Instalar dependencias
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Configurar base de datos
+Edita el archivo `.env` con tus credenciales de PostgreSQL:
+```
+DATABASE_URL="postgresql://ecommerce_user:tu_password_seguro@localhost:5432/ecommerce"
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Crear la base de datos
+```bash
+# Accede a PostgreSQL
+sudo -u postgres psql
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Crea el usuario y base de datos
+CREATE USER ecommerce_user WITH PASSWORD 'tu_password_seguro';
+CREATE DATABASE ecommerce;
+GRANT ALL PRIVILEGES ON DATABASE ecommerce TO ecommerce_user;
+\q
+```
 
-## Learn More
+### 4. Ejecutar migraciones
+```bash
+yarn prisma:migrate
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 5. Generar el cliente de Prisma
+```bash
+yarn prisma:generate
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 6. Iniciar servidor de desarrollo
+```bash
+yarn dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+La aplicación estará disponible en `http://localhost:3000`
 
-## Deploy on Vercel
+## Scripts Disponibles
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `yarn dev` - Inicia el servidor de desarrollo
+- `yarn build` - Construye la aplicación para producción
+- `yarn start` - Inicia el servidor de producción
+- `yarn lint` - Ejecuta el linter
+- `yarn prisma:generate` - Genera el cliente de Prisma
+- `yarn prisma:migrate` - Ejecuta migraciones de base de datos
+- `yarn prisma:studio` - Abre Prisma Studio (interfaz visual para la DB)
+- `yarn prisma:seed` - Ejecuta el seed de datos iniciales
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Estructura del Proyecto
+
+```
+ecommerce/
+├── app/                  # App Router de Next.js
+│   ├── generated/       # Cliente de Prisma generado
+│   ├── api/            # API Routes
+│   └── ...             # Páginas y layouts
+├── lib/                # Utilidades y configuración
+│   └── prisma.ts       # Cliente de Prisma singleton
+├── prisma/             # Schema y migraciones de Prisma
+│   └── schema.prisma   # Definición del modelo de datos
+├── public/             # Archivos estáticos
+└── .env               # Variables de entorno
+```
+
+## Próximos Pasos
+
+- [ ] Definir modelos de base de datos (User, Product, Order)
+- [ ] Configurar autenticación
+- [ ] Crear API endpoints
+- [ ] Diseñar UI del catálogo
+- [ ] Implementar carrito de compras
+- [ ] Integrar pagos con Stripe
+- [ ] Configurar Cloudinary para imágenes
+
+---
+
+## Recursos de Next.js
+
+- [Next.js Documentation](https://nextjs.org/docs)
+- [Learn Next.js](https://nextjs.org/learn)
+- [Next.js GitHub repository](https://github.com/vercel/next.js)
