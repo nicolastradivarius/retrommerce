@@ -13,9 +13,12 @@
     "prisma:seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^7.2.0",
     "@prisma/client": "^7.2.0",
+    "@prisma/config": "^7.2.0",
     "@react95/core": "^9.6.2",
     "@react95/icons": "^2.2.0",
+    "dotenv": "^17.2.3",
     "next": "16.1.1",
     "prisma": "^7.2.0",
     "react": "19.2.3",
