@@ -20,7 +20,6 @@ model Category {
   @@map("categories")
 }
 
-// Productos retro (computadoras, componentes, periféricos)
 model Product {
   id              String        @id @default(cuid())
   name            String
@@ -43,6 +42,7 @@ model Product {
   orderItems      OrderItem[]
   cartItems       CartItem[]
   reviews         Review[]
+  favorites 	   Favorite[] // lista de usuarios que marcaron el producto como favorito
   
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
@@ -60,13 +60,14 @@ model User {
   name          String?
   password      String    // Hasheada
   avatar        String?
-  role          UserRole  @default(CUSTOMER)
+  role          UserRole  @default(USER)
   
   // Relaciones
   addresses     Address[]
   orders        Order[]
   cart          Cart?
   reviews       Review[]
+  favorites     Favorite[] // lista de productos favoritos del usuario
   
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
@@ -75,8 +76,21 @@ model User {
 }
 
 enum UserRole {
-  CUSTOMER
+  USER
   ADMIN
+}
+
+model Favorite {
+  id        String   @id @default(cuid())
+  userId    String
+  productId String
+  createdAt DateTime @default(now())
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId])
+  @@map("favorites")
 }
 
 // Direcciones de envío
