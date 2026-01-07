@@ -1,0 +1,165 @@
+.container {
+  height: 100vh;
+  background: linear-gradient(135deg, #008080 0%, #004d4d 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+  color: #000080;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.error {
+  padding: 10px;
+  background: #ff0000;
+  color: #fff;
+  border: 2px solid #cc0000;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.label {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.input {
+  padding: 8px;
+  border: 2px inset #808080;
+  background: #fff;
+  font-size: 14px;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.button {
+  padding: 8px 20px;
+  background: #c0c0c0;
+  border: 2px outset #dfdfdf;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #d4d4d4;
+}
+
+.button:active {
+  border-style: inset;
+}
+
+.buttonPrimary {
+  padding: 8px 20px;
+  background: #000080;
+  border: 2px outset #0000b0;
+  font-weight: bold;
+  cursor: pointer;
+  color: #fff;
+}
+
+.buttonPrimary:hover {
+  background: #0000a0;
+}
+
+.buttonPrimary:active {
+  border-style: inset;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #808080;
+  margin: 10px 0;
+}
+
+.infoBox {
+  padding: 10px;
+  background: #ffffcc;
+  border: 2px solid #e6e600;
+  margin: 10px 0;
+}
+
+.infoTitle {
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0 0 5px 0;
+  color: #666;
+}
+
+.infoText {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.roleSection {
+  margin-top: 10px;
+}
+
+.roleTitle {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.roleButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.roleButton {
+  padding: 6px 12px;
+  background: #c0c0c0;
+  border: 2px outset #dfdfdf;
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
+}
+
+.roleButton:hover {
+  background: #d4d4d4;
+}
+
+.backLink {
+  display: inline-block;
+  margin-top: 15px;
+  color: #000080;
+  text-decoration: underline;
+  font-size: 14px;
+}

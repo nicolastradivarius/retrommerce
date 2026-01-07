@@ -1,0 +1,125 @@
+.container {
+  height: 100vh;
+  background: linear-gradient(135deg, #800000 0%, #4d0000 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px groove #c0c0c0;
+}
+
+.logoutRow {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+  color: #800000;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  background: #800000;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.welcome {
+  margin-bottom: 20px;
+}
+
+.welcomeTitle {
+  margin: 0 0 10px 0;
+  font-size: 18px;
+}
+
+.welcomeText {
+  margin: 0;
+  line-height: 1.5;
+  color: #333;
+}
+
+.statsSection {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.statCard {
+  padding: 15px;
+  background: #e0e0e0;
+  border: 2px inset #808080;
+  text-align: center;
+}
+
+.statValue {
+  font-size: 24px;
+  font-weight: bold;
+  color: #800000;
+  margin: 0;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: #666;
+  margin: 5px 0 0 0;
+}
+
+.menuSection {
+  margin-top: 10px;
+}
+
+.menuTitle {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.menuList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.menuItem {
+  padding: 10px 15px;
+  background: #c0c0c0;
+  border: 2px outset #dfdfdf;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.menuItem:hover {
+  background: #d4d4d4;
+}
+
+.backLink {
+  display: inline-block;
+  margin-top: 20px;
+  color: #000080;
+  text-decoration: underline;
+  font-size: 14px;
+}
