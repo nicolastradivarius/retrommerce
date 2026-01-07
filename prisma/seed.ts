@@ -1,6 +1,7 @@
 import { PrismaClient } from '../app/generated/prisma';
 import { PrismaPg } from '@prisma/adapter-pg'
 import 'dotenv/config'
+import bcrypt from 'bcryptjs';
 
 const connectionString = `${process.env.DATABASE_URL}`
 
@@ -9,6 +10,35 @@ const prisma = new PrismaClient({ adapter })
 
 async function main() {
 	console.log('🌱 Seeding database...');
+
+	// Crear usuarios
+    const hashedPasswordUser = await bcrypt.hash('user123', 10);
+    const hashedPasswordAdmin = await bcrypt.hash('admin123', 10);
+
+	const users = await Promise.all([
+        prisma.user.upsert({
+            where: { email: 'user@retrommerce.com' },
+            update: {},
+            create: {
+                email: 'user@retrommerce.com',
+                name: 'Usuario Demo',
+                password: hashedPasswordUser,
+                role: 'USER',
+            },
+        }),
+        prisma.user.upsert({
+            where: { email: 'admin@retrommerce.com' },
+            update: {},
+            create: {
+                email: 'admin@retrommerce.com',
+                name: 'Administrador',
+                password: hashedPasswordAdmin,
+                role: 'ADMIN',
+            },
+        }),
+    ]);
+
+    console.log(`✅ Created ${users.length} users`);
 
 	// Crear categorías
 	const categories = await Promise.all([
