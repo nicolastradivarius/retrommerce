@@ -1,0 +1,237 @@
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #008080 0%, #004d4d 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.profileFrame {
+  width: 100%;
+  max-width: 500px;
+  padding: 24px;
+  background: #c0c0c0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #808080;
+}
+
+.title {
+  margin: 0;
+  font-size: 24px;
+  font-family: 'MS Sans Serif', sans-serif;
+  color: #000080;
+}
+
+.subtitle {
+  margin: 4px 0 0 0;
+  font-size: 12px;
+  color: #666;
+}
+
+/* Avatar estilo Facebook 2010 - cuadrado */
+.avatarSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+  padding: 16px;
+  background: #e0e0e0;
+  border: 2px inset #808080;
+}
+
+.avatarContainer {
+  width: 150px;
+  height: 150px;
+  border: 3px solid #000080;
+  background: white;
+  overflow: hidden;
+}
+
+.avatarImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.avatarPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #c0c0c0 0%, #a0a0a0 100%);
+}
+
+.avatarHint {
+  margin: 12px 0 0 0;
+  font-size: 11px;
+  color: #666;
+  font-family: 'MS Sans Serif', sans-serif;
+}
+
+/* Formulario */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  color: #000;
+}
+
+.inputFrame {
+  padding: 0;
+  background: white;
+  border: 2px inset #808080;
+}
+
+.input {
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 14px;
+  background: white;
+  outline: none;
+}
+
+.input:focus {
+  background: #ffffcc;
+}
+
+.inputDisabled {
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 14px;
+  background: #e0e0e0;
+  color: #666;
+  cursor: not-allowed;
+}
+
+.hint {
+  margin: 0;
+  font-size: 10px;
+  color: #666;
+  font-style: italic;
+}
+
+/* Mensajes */
+.message {
+  padding: 10px 14px;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 12px;
+  border: 2px solid;
+}
+
+.success {
+  background: #c0ffc0;
+  border-color: #008000;
+  color: #006000;
+}
+
+.error {
+  background: #ffc0c0;
+  border-color: #800000;
+  color: #600000;
+}
+
+/* Acciones */
+.actions {
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
+  border-top: 2px solid #808080;
+}
+
+.saveButton {
+  padding: 10px 32px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.saveButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Navegacion */
+.navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 2px solid #808080;
+}
+
+.navLink {
+  color: #000080;
+  text-decoration: underline;
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.navLink:hover {
+  color: #0000ff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .main {
+    padding: 12px;
+  }
+
+  .profileFrame {
+    padding: 16px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .avatarContainer {
+    width: 120px;
+    height: 120px;
+  }
+
+  .input,
+  .inputDisabled {
+    font-size: 16px; /* Previene zoom en iOS */
+  }
+}
+
+@media (max-width: 400px) {
+  .avatarContainer {
+    width: 100px;
+    height: 100px;
+  }
+}

@@ -1,17 +1,13 @@
-import { Frame, List } from '@react95/core';
-import { Computer } from '@react95/icons';
+import { Frame } from '@react95/core';
+import { Computer, Star } from '@react95/icons';
 import Link from 'next/link';
-import { PrismaClient } from '@/app/generated/prisma';
-import { PrismaPg } from '@prisma/adapter-pg';
-import { getCurrentUser } from '@/lib/auth';
+import { prisma } from '@/lib/prisma';
+import { ITEMS_PER_PAGE } from '@/lib/constants';
+import { getCurrentUserWithAvatar } from '@/lib/auth';
 import TopBar from './components/TopBar';
+import ProductCard from './components/ProductCard';
+import FeaturedProductCard from './components/FeaturedProductCard';
 import styles from './page.module.css';
-
-const connectionString = process.env.DATABASE_URL!;
-const adapter = new PrismaPg({ connectionString });
-const prisma = new PrismaClient({ adapter });
-
-const ITEMS_PER_PAGE = 20;
 
 export default async function HomePage({
   searchParams,
@@ -22,16 +18,30 @@ export default async function HomePage({
   const page = parseInt(params.page || '1');
   const skip = (page - 1) * ITEMS_PER_PAGE;
 
-  const user = await getCurrentUser();
+  const user = await getCurrentUserWithAvatar();
 
+  // Obtener productos destacados (siempre se muestran)
+  const featuredProducts = await prisma.product.findMany({
+    where: { featured: true },
+    orderBy: { createdAt: 'desc' },
+    select: {
+      id: true,
+      name: true,
+      slug: true,
+      price: true,
+      originalPrice: true,
+      manufacturer: true,
+      images: true,
+    },
+  });
+
+  // Obtener productos no destacados con paginación
   const [products, totalCount] = await Promise.all([
     prisma.product.findMany({
+      where: { featured: false },
       skip,
       take: ITEMS_PER_PAGE,
-      orderBy: [
-        { featured: 'desc' },
-        { createdAt: 'desc' },
-      ],
+      orderBy: { createdAt: 'desc' },
       select: {
         id: true,
         name: true,
@@ -46,14 +56,14 @@ export default async function HomePage({
         featured: true,
       },
     }),
-    prisma.product.count(),
+    prisma.product.count({ where: { featured: false } }),
   ]);
 
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
 
   return (
     <div className={styles.container}>
-      <TopBar user={user ? { name: user.name, email: user.email } : null} />
+      <TopBar user={user ? { name: user.name, email: user.email, avatar: user.avatar } : null} />
       
       <div className={styles.main}>
         <div className={styles.header}>
@@ -66,44 +76,30 @@ export default async function HomePage({
           </div>
         </div>
 
+        {/* Panel de productos destacados */}
+        {featuredProducts.length > 0 && (
+          <Frame className={styles.featuredFrame}>
+            <div className={styles.featuredHeader}>
+              <Star variant="16x16_4" />
+              <h2 className={styles.featuredTitle}>Productos Destacados</h2>
+            </div>
+            <div className={styles.featuredScroll}>
+              <div className={styles.featuredGrid}>
+                {featuredProducts.map((product) => (
+                  <FeaturedProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            </div>
+          </Frame>
+        )}
+
+        {/* Grid de productos con paginación */}
         <Frame className={styles.productsFrame}>
-          <h2 className={styles.sectionTitle}>Productos Destacados</h2>
+          <h2 className={styles.sectionTitle}>Todos los Productos</h2>
           
           <div className={styles.productGrid}>
             {products.map((product) => (
-              <Link 
-                key={product.id} 
-                href={`/products/${product.slug}`}
-                className={styles.productLink}
-              >
-                <Frame className={styles.productCard}>
-                  <div className={styles.productImagePlaceholder}>
-                    {product.name}
-                  </div>
-                  <div className={styles.productInfo}>
-                    <h3 className={styles.productName}>{product.name}</h3>
-                    {product.manufacturer && (
-                      <p className={styles.manufacturer}>{product.manufacturer}</p>
-                    )}
-                    {product.year && (
-                      <p className={styles.year}>Año: {product.year}</p>
-                    )}
-                    <div className={styles.priceSection}>
-                      <span className={styles.price}>${product.price.toString()}</span>
-                      {product.originalPrice.toString() !== product.price.toString() && (
-                        <span className={styles.originalPrice}>
-                          ${product.originalPrice.toString()}
-                        </span>
-                      )}
-                    </div>
-                    <p className={styles.stock}>
-                      {product.stock > 0 
-                        ? `Stock: ${product.stock} unidades` 
-                        : 'Sin stock'}
-                    </p>
-                  </div>
-                </Frame>
-              </Link>
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
 
@@ -111,15 +107,29 @@ export default async function HomePage({
             <div className={styles.pagination}>
               {page > 1 && (
                 <Link href={`/?page=${page - 1}`} className={styles.pageButton}>
-                  Anterior
+                  ← Anterior
                 </Link>
               )}
+              
+              <div className={styles.pageNumbers}>
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+                  <Link
+                    key={pageNum}
+                    href={`/?page=${pageNum}`}
+                    className={`${styles.pageNumber} ${pageNum === page ? styles.pageNumberActive : ''}`}
+                  >
+                    {pageNum}
+                  </Link>
+                ))}
+              </div>
+              
               <span className={styles.pageInfo}>
-                Pagina {page} de {totalPages}
+                Página {page} de {totalPages}
               </span>
+              
               {page < totalPages && (
                 <Link href={`/?page=${page + 1}`} className={styles.pageButton}>
-                  Siguiente
+                  Siguiente →
                 </Link>
               )}
             </div>

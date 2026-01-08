@@ -68,3 +68,56 @@
 .dotActive {
   background: #000080;
 }
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .carouselContainer {
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+
+  .imageWrapper {
+    margin-bottom: 12px;
+  }
+
+  .imagePlaceholder {
+    height: 200px;
+    font-size: 13px;
+    padding: 12px;
+  }
+
+  .controls {
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .navButton {
+    min-width: 36px;
+  }
+
+  .indicator {
+    font-size: 12px;
+    min-width: 50px;
+  }
+
+  .dots {
+    gap: 6px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .carouselContainer {
+    padding: 8px;
+  }
+
+  .imagePlaceholder {
+    height: 160px;
+    font-size: 11px;
+    padding: 8px;
+  }
+}

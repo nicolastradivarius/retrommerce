@@ -1,98 +1,230 @@
 .container {
-  height: 100vh;
-  background: linear-gradient(135deg, #008080 0%, #004d4d 100%);
+  min-height: 100vh;
+  background: #008080;
   display: flex;
   flex-direction: column;
 }
 
 .main {
   flex: 1;
-  padding: 20px;
-  overflow: auto;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 16px;
+  max-width: 1000px;
+  width: 100%;
+}
+
+/* Ventanas estilo Windows 95 */
+.window {
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  box-shadow: 2px 2px 0px #000;
+}
+
+.windowContent {
+  padding: 8px;
+  background: #c0c0c0;
+}
+
+/* Perfil */
+.profileHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 16px 8px;
+}
+
+.avatarContainer {
+  width: 64px;
+  height: 64px;
+  border: 2px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  background: white;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.avatarImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.avatarPlaceholder {
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #c0c0c0;
 }
 
-.header {
+.userDetails {
   display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 20px;
-  padding-bottom: 15px;
-  border-bottom: 2px groove #c0c0c0;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.logoutRow {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 10px;
-}
-
-.title {
+.userName {
   margin: 0;
-  font-size: 24px;
-  color: #000080;
+  font-size: 12px;
+  font-family: 'MS Sans Serif', Tahoma, sans-serif;
+  font-weight: bold;
+  color: #000;
+}
+
+.userEmail {
+  margin: 0;
+  font-size: 11px;
+  font-family: 'MS Sans Serif', Tahoma, sans-serif;
+  color: #000;
 }
 
 .badge {
   display: inline-block;
-  padding: 2px 8px;
-  background: #008000;
+  padding: 2px 6px;
+  background: #000080;
   color: #fff;
-  font-size: 12px;
+  font-size: 10px;
+  font-family: 'MS Sans Serif', Tahoma, sans-serif;
   font-weight: bold;
+  margin-top: 6px;
 }
 
-.welcome {
-  margin-bottom: 20px;
+.separator {
+  height: 2px;
+  margin: 8px 0;
+  border-top: 1px solid #808080;
+  border-bottom: 1px solid #ffffff;
 }
 
-.welcomeTitle {
-  margin: 0 0 10px 0;
-  font-size: 18px;
-}
-
-.welcomeText {
-  margin: 0;
-  line-height: 1.5;
-  color: #333;
-}
-
-.menuSection {
-  margin-top: 20px;
-}
-
-.menuTitle {
-  font-size: 14px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.menuList {
+.profileActions {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
+  padding: 4px;
 }
 
-.menuItem {
-  padding: 10px 15px;
-  background: #c0c0c0;
-  border: 2px outset #dfdfdf;
-  cursor: pointer;
+.editProfileLink {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
+  padding: 4px 8px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  text-decoration: none;
+  color: #000;
+  font-family: 'MS Sans Serif', Tahoma, sans-serif;
+  font-size: 11px;
+  cursor: pointer;
 }
 
-.menuItem:hover {
+.editProfileLink:hover {
   background: #d4d4d4;
 }
 
-.backLink {
-  display: inline-block;
-  margin-top: 20px;
-  color: #000080;
-  text-decoration: underline;
-  font-size: 14px;
+.editProfileLink:active {
+  border-color: #808080 #ffffff #ffffff #808080;
+}
+
+/* Grid de iconos estilo escritorio */
+.menuGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 16px;
+  min-height: 120px;
+}
+
+.menuLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.desktopIcon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.desktopIcon:hover {
+  background: #000080;
+  border: 1px dotted #fff;
+}
+
+.desktopIcon:hover span {
+  background: #000080;
+  color: #fff;
+}
+
+.desktopIcon span {
+  font-size: 11px;
+  font-family: 'MS Sans Serif', Tahoma, sans-serif;
+  text-align: center;
+  padding: 1px 2px;
+  max-width: 70px;
+  word-wrap: break-word;
+}
+
+/* Barra de estado */
+.statusBar {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  background: #c0c0c0;
+}
+
+.statusItem {
+  padding: 2px 8px;
+  font-size: 11px;
+  font-family: 'MS Sans Serif', Tahoma, sans-serif;
+  border: 1px solid;
+  border-color: #808080 #ffffff #ffffff #808080;
+  flex: 1;
+}
+
+.statusItem:first-child {
+  flex: 2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .menuGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .main {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menuGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+    padding: 8px;
+  }
+
+  .desktopIcon span {
+    font-size: 10px;
+  }
 }

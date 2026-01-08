@@ -1,56 +1,119 @@
-import { Frame, TaskBar, List } from '@react95/core';
-import { User, Computer, FolderOpen } from '@react95/icons';
+import { Frame, TitleBar } from '@react95/core';
+import { User, Computer, FolderOpen, Notepad, Folder, Awfxcg321303 } from '@react95/icons';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
+import { getCurrentUserWithAvatar } from '@/lib/auth';
 import LogoutButton from '../components/LogoutButton';
+import TopBar from '../components/TopBar';
 import styles from './page.module.css';
 
-export default function UserPage() {
+export default async function UserPage() {
+  const user = await getCurrentUserWithAvatar();
+
+  if (!user) {
+    redirect('/login');
+  }
+
   return (
     <div className={styles.container}>
+      <TopBar user={{ name: user.name, email: user.email, avatar: user.avatar }} />
+      
       <div className={styles.main}>
-        <Frame width="450px" height="auto" padding={25} boxShadow="in">
-          <div className={styles.header}>
-            <User variant="32x32_4" />
-            <div>
-              <h1 className={styles.title}>Panel de Usuario</h1>
-              <span className={styles.badge}>USUARIO</span>
-            </div>
-          </div>
-
-          <div className={styles.logoutRow}>
-            <LogoutButton />
-          </div>
-
-          <div className={styles.welcome}>
-            <h2 className={styles.welcomeTitle}>¡Bienvenido, Usuario!</h2>
-            <p className={styles.welcomeText}>
-              Desde aquí puedes explorar nuestro catálogo de tecnología vintage,
-              gestionar tus pedidos y ver tus favoritos.
-            </p>
-          </div>
-
-          <div className={styles.menuSection}>
-            <p className={styles.menuTitle}>Menú de opciones:</p>
-            <div className={styles.menuList}>
-              <div className={styles.menuItem}>
-                <FolderOpen variant="16x16_4" />
-                <span>Ver Catálogo de Productos</span>
+        <div className={styles.layout}>
+          {/* Ventana de Perfil */}
+          <div className={styles.window}>
+            <TitleBar 
+              active 
+              icon={<User variant="16x16_4" />}
+              title="Mi Perfil"
+            />
+            <Frame className={styles.windowContent}>
+              <div className={styles.profileHeader}>
+                <div className={styles.avatarContainer}>
+                  {user.avatar ? (
+                    <img 
+                      src={user.avatar} 
+                      alt="Foto de perfil" 
+                      className={styles.avatarImage}
+                    />
+                  ) : (
+                    <div className={styles.avatarPlaceholder}>
+                      <Awfxcg321303 variant="32x32_4" />
+                    </div>
+                  )}
+                </div>
+                <div className={styles.userDetails}>
+                  <p className={styles.userName}>{user.name || 'Usuario'}</p>
+                  <p className={styles.userEmail}>{user.email}</p>
+                  <span className={styles.badge}>
+                    {user.role === 'ADMIN' ? 'ADMIN' : 'USER'}
+                  </span>
+                </div>
               </div>
-              <div className={styles.menuItem}>
-                <FolderOpen variant="16x16_4" />
-                <span>Mis Favoritos</span>
+              
+              <div className={styles.separator} />
+              
+              <div className={styles.profileActions}>
+                <Link href="/user/profile" className={styles.editProfileLink}>
+                  <Notepad variant="16x16_4" />
+                  Editar perfil
+                </Link>
+                <LogoutButton />
               </div>
-              <div className={styles.menuItem}>
-                <Computer variant="16x16_4" />
-                <span>Mis Pedidos</span>
-              </div>
-            </div>
+            </Frame>
           </div>
 
-          <Link href="/" className={styles.backLink}>
-            ← Volver al inicio
-          </Link>
-        </Frame>
+          {/* Ventana de Panel de Control */}
+          <div className={styles.window}>
+            <TitleBar 
+              active 
+              icon={<Computer variant="16x16_4" />}
+              title="Panel de Control"
+            />
+            <Frame className={styles.windowContent}>
+              <div className={styles.menuGrid}>
+                <Link href="/" className={styles.menuLink}>
+                  <div className={styles.desktopIcon}>
+                    <Folder variant="32x32_4" />
+                    <span>Catálogo</span>
+                  </div>
+                </Link>
+
+                <Link href="/user/profile" className={styles.menuLink}>
+                  <div className={styles.desktopIcon}>
+                    <Notepad variant="32x32_4" />
+                    <span>Mi Perfil</span>
+                  </div>
+                </Link>
+
+                <Link href="/user/favorites" className={styles.menuLink}>
+                  <div className={styles.desktopIcon}>
+                    <FolderOpen variant="32x32_4" />
+                    <span>Favoritos</span>
+                  </div>
+                </Link>
+
+                <Link href="/user/orders" className={styles.menuLink}>
+                  <div className={styles.desktopIcon}>
+                    <Computer variant="32x32_4" />
+                    <span>Mis Pedidos</span>
+                  </div>
+                </Link>
+              </div>
+              
+              <div className={styles.separator} />
+              
+              <div className={styles.statusBar}>
+                <Frame className={styles.statusItem}>
+                  4 objeto(s)
+                </Frame>
+                <Frame className={styles.statusItem}>
+                  Usuario conectado
+                </Frame>
+              </div>
+            </Frame>
+          </div>
+        </div>
       </div>
     </div>
   );

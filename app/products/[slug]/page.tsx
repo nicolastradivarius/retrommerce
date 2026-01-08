@@ -2,16 +2,12 @@ import { Frame, Button, List } from '@react95/core';
 import { Computer, Back } from '@react95/icons';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { PrismaClient } from '@/app/generated/prisma';
-import { PrismaPg } from '@prisma/adapter-pg';
-import { getCurrentUser } from '@/lib/auth';
+import { prisma } from '@/lib/prisma';
+import { formatPrice, hasDiscount } from '@/lib/utils';
+import { getCurrentUserWithAvatar } from '@/lib/auth';
 import TopBar from '@/app/components/TopBar';
 import ImageCarousel from '@/app/components/ImageCarousel';
 import styles from './page.module.css';
-
-const connectionString = process.env.DATABASE_URL!;
-const adapter = new PrismaPg({ connectionString });
-const prisma = new PrismaClient({ adapter });
 
 export default async function ProductDetailPage({
   params,
@@ -19,7 +15,7 @@ export default async function ProductDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const user = await getCurrentUser();
+  const user = await getCurrentUserWithAvatar();
 
   const product = await prisma.product.findUnique({
     where: { slug },
@@ -37,7 +33,7 @@ export default async function ProductDetailPage({
 
   return (
     <div className={styles.container}>
-      <TopBar user={user ? { name: user.name, email: user.email } : null} />
+      <TopBar user={user ? { name: user.name, email: user.email, avatar: user.avatar } : null} />
       
       <div className={styles.main}>
         <Link href="/" className={styles.backLink}>
@@ -82,10 +78,10 @@ export default async function ProductDetailPage({
                 <div className={styles.section}>
                   <h2 className={styles.sectionTitle}>Precio</h2>
                   <div className={styles.priceSection}>
-                    <span className={styles.price}>${product.price.toString()}</span>
-                    {product.originalPrice.toString() !== product.price.toString() && (
+                    <span className={styles.price}>{formatPrice(product.price)}</span>
+                    {hasDiscount(product.price, product.originalPrice) && (
                       <span className={styles.originalPrice}>
-                        ${product.originalPrice.toString()}
+                        {formatPrice(product.originalPrice)}
                       </span>
                     )}
                   </div>

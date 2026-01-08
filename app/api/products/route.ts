@@ -1,12 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@/app/generated/prisma';
-import { PrismaPg } from '@prisma/adapter-pg';
-
-const connectionString = process.env.DATABASE_URL!;
-const adapter = new PrismaPg({ connectionString });
-const prisma = new PrismaClient({ adapter });
-
-const ITEMS_PER_PAGE = 20;
+import { prisma } from '@/lib/prisma';
+import { ITEMS_PER_PAGE } from '@/lib/constants';
 
 export async function GET(request: NextRequest) {
   try {

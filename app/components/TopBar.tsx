@@ -1,5 +1,3 @@
-'use client';
-
 import { Frame, Button } from '@react95/core';
 import { User } from '@react95/icons';
 import Link from 'next/link';
@@ -9,6 +7,7 @@ interface TopBarProps {
   user: {
     name: string;
     email: string;
+    avatar?: string | null;
   } | null;
 }
 
@@ -23,10 +22,24 @@ export default function TopBar({ user }: TopBarProps) {
           
           <div className={styles.userSection}>
             {user ? (
-              <div className={styles.userInfo}>
-                <User variant="32x32_4" />
-                <span className={styles.welcomeText}>Hola {user.name}</span>
-              </div>
+              <Link href="/user" className={styles.userLink}>
+                <div className={styles.userInfo}>
+                  {user.avatar ? (
+                    <div className={styles.avatarContainer}>
+                      <img 
+                        src={user.avatar} 
+                        alt="Foto de perfil" 
+                        className={styles.avatarImage}
+                      />
+                    </div>
+                  ) : (
+                    <div className={styles.avatarPlaceholder}>
+                      <User variant="16x16_4" />
+                    </div>
+                  )}
+                  <span className={styles.welcomeText}>Hola {user.name}</span>
+                </div>
+              </Link>
             ) : (
               <Link href="/login">
                 <Button>Log-in</Button>
