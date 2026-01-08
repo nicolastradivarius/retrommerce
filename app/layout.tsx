@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "@react95/core/GlobalStyle";
 
 export const metadata: Metadata = {
-  title: "RetrOmmerce - Tienda Retro de Tecnología",
+  title: "Retrommerce - Tienda Retro de Tecnología",
   description: "Tu tienda de componentes y computadoras vintage de los 90s y 2000s",
 };
 
