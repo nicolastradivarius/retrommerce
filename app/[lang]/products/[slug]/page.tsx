@@ -1,12 +1,11 @@
-import { Frame, Button, List } from '@react95/core';
+import { Frame, Button } from '@react95/core';
 import { Computer, Back } from '@react95/icons';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { prisma } from '@/lib/prisma';
 import { formatPrice, hasDiscount } from '@/lib/utils';
-import { getCurrentUserWithAvatar } from '@/lib/auth';
-import TopBar from '@/app/components/TopBar';
-import ImageCarousel from '@/app/components/ImageCarousel';
+import TopBar from '@/app/[lang]/components/TopBar';
+import ImageCarousel from '@/app/[lang]/components/ImageCarousel';
 import styles from './page.module.css';
 
 export default async function ProductDetailPage({
@@ -15,7 +14,6 @@ export default async function ProductDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const user = await getCurrentUserWithAvatar();
 
   const product = await prisma.product.findUnique({
     where: { slug },
@@ -33,10 +31,10 @@ export default async function ProductDetailPage({
 
   return (
     <div className={styles.container}>
-      <TopBar user={user ? { name: user.name, email: user.email, avatar: user.avatar } : null} />
+      <TopBar />
       
       <div className={styles.main}>
-        <Link href="/" className={styles.backLink}>
+        <Link href="/products" className={styles.backLink}>
           <Button>
             <Back variant="16x16_4" />
             Volver a productos

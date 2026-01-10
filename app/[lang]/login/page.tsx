@@ -26,7 +26,7 @@ export default async function LoginPage() {
 
           <hr className={styles.divider} />
 
-          <Link href="/" className={styles.backLink}>
+          <Link href="/products" className={styles.backLink}>
             ← Volver al catálogo
           </Link>
         </Frame>

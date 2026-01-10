@@ -51,6 +51,7 @@
   background: white;
   overflow: hidden;
   margin-bottom: 12px;
+  position: relative;
 }
 
 .avatarImage {

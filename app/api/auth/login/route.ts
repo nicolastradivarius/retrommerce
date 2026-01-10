@@ -53,7 +53,12 @@ export async function POST(request: NextRequest) {
     }
 
     // Return user data (excluding password)
-    const { password: _, ...userWithoutPassword } = user;
+    const userWithoutPassword = {
+      id: user.id,
+      email: user.email,
+      name: user.name,
+      role: user.role,
+    };
 
     const token = jwt.sign(
       {

@@ -34,7 +34,7 @@ export default function NotFound() {
           <div className={styles.separator} />
           
           <div className={styles.actions}>
-            <Link href="/">
+            <Link href="/products">
               <Button>Volver al inicio</Button>
             </Link>
           </div>

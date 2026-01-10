@@ -1,4 +1,4 @@
-import { Frame, TaskBar, List } from '@react95/core';
+import { Frame } from '@react95/core';
 import { Settings, Computer, FolderOpen, User } from '@react95/icons';
 import Link from 'next/link';
 import LogoutButton from '../components/LogoutButton';
@@ -65,7 +65,7 @@ export default function AdminPage() {
             </div>
           </div>
 
-          <Link href="/" className={styles.backLink}>
+          <Link href="/products" className={styles.backLink}>
             ← Volver al inicio
           </Link>
         </Frame>

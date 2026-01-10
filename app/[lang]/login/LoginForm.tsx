@@ -35,9 +35,9 @@ export default function LoginForm() {
       if (data.user.role === 'ADMIN') {
         router.push('/admin');
       } else {
-        router.push('/user');
+        router.push('/');
       }
-    } catch (err) {
+    } catch {
       setError('Error de conexión');
       setLoading(false);
     }
@@ -52,7 +52,7 @@ export default function LoginForm() {
         <input 
           type="email" 
           className={styles.input} 
-          placeholder="user@retrommerce.com"
+          placeholder="Ingresa tu email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required

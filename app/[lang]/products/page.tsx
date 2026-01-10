@@ -3,11 +3,27 @@ import { Computer, Star } from '@react95/icons';
 import Link from 'next/link';
 import { prisma } from '@/lib/prisma';
 import { ITEMS_PER_PAGE } from '@/lib/constants';
-import { getCurrentUserWithAvatar } from '@/lib/auth';
-import TopBar from './components/TopBar';
-import ProductCard from './components/ProductCard';
-import FeaturedProductCard from './components/FeaturedProductCard';
+import type { Prisma } from '@/app/generated/prisma';
+import TopBar from '../components/TopBar';
+import ProductCard from '../components/ProductCard';
+import FeaturedProductCard from '../components/FeaturedProductCard';
 import styles from './page.module.css';
+
+type ProductListItem = Prisma.ProductGetPayload<{
+  select: {
+    id: true;
+    name: true;
+    slug: true;
+    description: true;
+    price: true;
+    originalPrice: true;
+    year: true;
+    manufacturer: true;
+    stock: true;
+    images: true;
+    featured: true;
+  };
+}>;
 
 export default async function HomePage({
   searchParams,
@@ -18,22 +34,23 @@ export default async function HomePage({
   const page = parseInt(params.page || '1');
   const skip = (page - 1) * ITEMS_PER_PAGE;
 
-  const user = await getCurrentUserWithAvatar();
-
   // Obtener productos destacados (siempre se muestran)
-  const featuredProducts = await prisma.product.findMany({
-    where: { featured: true },
-    orderBy: { createdAt: 'desc' },
-    select: {
-      id: true,
-      name: true,
-      slug: true,
-      price: true,
-      originalPrice: true,
-      manufacturer: true,
-      images: true,
-    },
-  });
+const featuredProducts: ProductListItem[] = await prisma.product.findMany({
+  where: { featured: true },
+  select: {
+    id: true,
+    name: true,
+    slug: true,
+    description: true,
+    price: true,
+    originalPrice: true,
+    year: true,
+    manufacturer: true,
+    stock: true,
+    images: true,
+    featured: true,
+  },
+});
 
   // Obtener productos no destacados con paginación
   const [products, totalCount] = await Promise.all([
@@ -57,13 +74,13 @@ export default async function HomePage({
       },
     }),
     prisma.product.count({ where: { featured: false } }),
-  ]);
+  ]) as [ProductListItem[], number];
 
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
 
   return (
     <div className={styles.container}>
-      <TopBar user={user ? { name: user.name, email: user.email, avatar: user.avatar } : null} />
+      <TopBar />
       
       <div className={styles.main}>
         <div className={styles.header}>

@@ -59,6 +59,7 @@
   border: 3px solid #000080;
   background: white;
   overflow: hidden;
+  position: relative;
 }
 
 .avatarImage {

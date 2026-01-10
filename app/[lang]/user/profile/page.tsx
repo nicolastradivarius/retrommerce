@@ -3,8 +3,9 @@
 import { useState, useEffect } from 'react';
 import { Frame, Button } from '@react95/core';
 import { User, Notepad } from '@react95/icons';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import Image from 'next/image';
 import styles from './page.module.css';
 
 interface UserProfile {
@@ -24,33 +25,49 @@ export default function ProfilePage() {
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
   
   const [name, setName] = useState('');
-  const [avatarUrl, setAvatarUrl] = useState('');
+  const [avatarFile, setAvatarFile] = useState<File | null>(null);
+  const [avatarPreviewUrl, setAvatarPreviewUrl] = useState<string | null>(null);
 
   useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await fetch('/api/user/profile');
+
+        if (response.status === 401) {
+          router.push('/login');
+          return;
+        }
+
+        if (response.ok) {
+          const data = await response.json();
+          setUser(data.user);
+          setName(data.user.name || '');
+          setAvatarFile(null);
+          setAvatarPreviewUrl(null);
+        }
+      } catch (error) {
+        console.error('Error fetching profile:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchProfile();
-  }, []);
+  }, [router]);
 
-  const fetchProfile = async () => {
-    try {
-      const response = await fetch('/api/user/profile');
-      
-      if (response.status === 401) {
-        router.push('/login');
-        return;
-      }
-
-      if (response.ok) {
-        const data = await response.json();
-        setUser(data.user);
-        setName(data.user.name || '');
-        setAvatarUrl(data.user.avatar || '');
-      }
-    } catch (error) {
-      console.error('Error fetching profile:', error);
-    } finally {
-      setLoading(false);
+  useEffect(() => {
+    if (!avatarFile) {
+      setAvatarPreviewUrl(null);
+      return;
     }
-  };
+
+    const objectUrl = URL.createObjectURL(avatarFile);
+    setAvatarPreviewUrl(objectUrl);
+
+    return () => {
+      URL.revokeObjectURL(objectUrl);
+    };
+  }, [avatarFile]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,25 +75,26 @@ export default function ProfilePage() {
     setMessage(null);
 
     try {
+      const formData = new FormData();
+      formData.set('name', name);
+      if (avatarFile) {
+        formData.set('avatar', avatarFile);
+      }
+
       const response = await fetch('/api/user/profile', {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: name.trim() || null,
-          avatar: avatarUrl.trim() || null,
-        }),
+        body: formData,
       });
 
       if (response.ok) {
         const data = await response.json();
-        setUser(data.user);
+        setAvatarFile(null);
+        setAvatarPreviewUrl(null);
         setMessage({ type: 'success', text: 'Perfil actualizado correctamente' });
       } else {
         setMessage({ type: 'error', text: 'Error al actualizar el perfil' });
       }
-    } catch (error) {
+    } catch {
       setMessage({ type: 'error', text: 'Error de conexion' });
     } finally {
       setSaving(false);
@@ -124,10 +142,20 @@ export default function ProfilePage() {
 
           <div className={styles.avatarSection}>
             <div className={styles.avatarContainer}>
-              {avatarUrl ? (
-                <img 
-                  src={avatarUrl} 
-                  alt="Foto de perfil" 
+              {avatarPreviewUrl ? (
+                <Image
+                  src={avatarPreviewUrl}
+                  alt="Vista previa"
+                  fill
+                  sizes="150px"
+                  className={styles.avatarImage}
+                />
+              ) : user.avatar ? (
+                <Image
+                  src={user.avatar}
+                  alt="Foto de perfil"
+                  fill
+                  sizes="150px"
                   className={styles.avatarImage}
                 />
               ) : (
@@ -136,7 +164,7 @@ export default function ProfilePage() {
                 </div>
               )}
             </div>
-            <p className={styles.avatarHint}>Foto de perfil (estilo clasico)</p>
+            <p className={styles.avatarHint}>Foto de perfil</p>
           </div>
 
           <form onSubmit={handleSubmit} className={styles.form}>
@@ -167,29 +195,16 @@ export default function ProfilePage() {
             </div>
 
             <div className={styles.formGroup}>
-              <label className={styles.label}>URL de foto de perfil</label>
+              <label className={styles.label}>Foto de perfil</label>
               <Frame className={styles.inputFrame}>
                 <input
-                  type="url"
-                  value={avatarUrl}
-                  onChange={(e) => setAvatarUrl(e.target.value)}
-                  placeholder="https://ejemplo.com/mi-foto.jpg"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => setAvatarFile(e.target.files?.[0] ?? null)}
                   className={styles.input}
                 />
               </Frame>
-              <p className={styles.hint}>Ingresa la URL de una imagen cuadrada</p>
-            </div>
-
-            <div className={styles.formGroup}>
-              <label className={styles.label}>Rol</label>
-              <Frame className={styles.inputFrame}>
-                <input
-                  type="text"
-                  value={user.role === 'ADMIN' ? 'Administrador' : 'Usuario'}
-                  disabled
-                  className={styles.inputDisabled}
-                />
-              </Frame>
+              <p className={styles.hint}>Sube una imagen; la optimizamos y la guardamos en Cloudinary</p>
             </div>
 
             <div className={styles.formGroup}>
@@ -225,7 +240,7 @@ export default function ProfilePage() {
             <Link href="/user" className={styles.navLink}>
               Volver al panel de usuario
             </Link>
-            <Link href="/" className={styles.navLink}>
+            <Link href="/products" className={styles.navLink}>
               Volver al inicio
             </Link>
           </div>

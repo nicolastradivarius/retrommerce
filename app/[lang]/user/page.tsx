@@ -1,5 +1,6 @@
 import { Frame, TitleBar } from '@react95/core';
 import { User, Computer, FolderOpen, Notepad, Folder, Awfxcg321303 } from '@react95/icons';
+import Image from 'next/image';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { getCurrentUserWithAvatar } from '@/lib/auth';
@@ -16,7 +17,7 @@ export default async function UserPage() {
 
   return (
     <div className={styles.container}>
-      <TopBar user={{ name: user.name, email: user.email, avatar: user.avatar }} />
+      <TopBar />
       
       <div className={styles.main}>
         <div className={styles.layout}>
@@ -31,9 +32,11 @@ export default async function UserPage() {
               <div className={styles.profileHeader}>
                 <div className={styles.avatarContainer}>
                   {user.avatar ? (
-                    <img 
-                      src={user.avatar} 
-                      alt="Foto de perfil" 
+                    <Image
+                      src={user.avatar}
+                      alt="Foto de perfil"
+                      fill
+                      sizes="64px"
                       className={styles.avatarImage}
                     />
                   ) : (
@@ -72,7 +75,7 @@ export default async function UserPage() {
             />
             <Frame className={styles.windowContent}>
               <div className={styles.menuGrid}>
-                <Link href="/" className={styles.menuLink}>
+                <Link href="/products" className={styles.menuLink}>
                   <div className={styles.desktopIcon}>
                     <Folder variant="32x32_4" />
                     <span>Catálogo</span>

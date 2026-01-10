@@ -1,22 +1,18 @@
 import { Frame, Button } from '@react95/core';
 import { User } from '@react95/icons';
+import Image from 'next/image';
 import Link from 'next/link';
+import { getCurrentUserWithAvatar } from '@/lib/auth';
 import styles from './TopBar.module.css';
 
-interface TopBarProps {
-  user: {
-    name: string;
-    email: string;
-    avatar?: string | null;
-  } | null;
-}
+export default async function TopBar() {
+  const user = await getCurrentUserWithAvatar();
 
-export default function TopBar({ user }: TopBarProps) {
   return (
     <div className={styles.topBar}>
       <Frame className={styles.frame}>
         <div className={styles.content}>
-          <Link href="/" className={styles.logo}>
+          <Link href="/products" className={styles.logo}>
             <h2 className={styles.logoText}>Retrommerce</h2>
           </Link>
           
@@ -26,9 +22,11 @@ export default function TopBar({ user }: TopBarProps) {
                 <div className={styles.userInfo}>
                   {user.avatar ? (
                     <div className={styles.avatarContainer}>
-                      <img 
-                        src={user.avatar} 
-                        alt="Foto de perfil" 
+                      <Image
+                        src={user.avatar}
+                        alt="Foto de perfil"
+                        fill
+                        sizes="(max-width: 400px) 24px, (max-width: 768px) 28px, 32px"
                         className={styles.avatarImage}
                       />
                     </div>

@@ -20,7 +20,7 @@ export default function LogoutButton({ className }: Props) {
       if (!res.ok) throw new Error('No se pudo cerrar sesión');
       router.push('/login');
       router.refresh();
-    } catch (err) {
+    } catch {
       setError('No se pudo cerrar sesión');
       setLoading(false);
     }

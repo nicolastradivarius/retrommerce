@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getCurrentUser } from '@/lib/auth';
+import sharp from 'sharp';
+import { uploadAvatarToCloudinary } from '@/lib/cloudinary';
+
+export const runtime = 'nodejs';
 
 export async function GET() {
   try {
@@ -53,8 +57,59 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    const body = await request.json();
-    const { name, avatar } = body;
+    const contentType = request.headers.get('content-type') || '';
+
+    let name: string | null | undefined;
+    let avatar: string | null | undefined;
+
+    if (contentType.includes('multipart/form-data')) {
+      const formData = await request.formData();
+
+      const rawName = formData.get('name');
+      if (typeof rawName === 'string') {
+        const trimmed = rawName.trim();
+        name = trimmed.length > 0 ? trimmed : null;
+      }
+
+      const avatarFile = formData.get('avatar');
+      if (avatarFile instanceof File) {
+        if (!avatarFile.type.startsWith('image/')) {
+          return NextResponse.json(
+            { error: 'El archivo debe ser una imagen' },
+            { status: 400 }
+          );
+        }
+
+        // 5MB safety limit
+        const maxBytes = 5 * 1024 * 1024;
+        if (avatarFile.size > maxBytes) {
+          return NextResponse.json(
+            { error: 'La imagen es demasiado grande (máx 5MB)' },
+            { status: 400 }
+          );
+        }
+
+        const arrayBuffer = await avatarFile.arrayBuffer();
+        const inputBuffer = Buffer.from(arrayBuffer);
+
+        const optimizedBuffer = await sharp(inputBuffer)
+          .rotate()
+          .resize(256, 256, { fit: 'cover' })
+          .webp({ quality: 80 })
+          .toBuffer();
+
+        const upload = await uploadAvatarToCloudinary({
+          buffer: optimizedBuffer,
+          userId: userPayload.sub,
+        });
+
+        avatar = upload.url;
+      }
+    } else {
+      const body = await request.json();
+      name = body?.name;
+      avatar = body?.avatar;
+    }
 
     const updatedUser = await prisma.user.update({
       where: { id: userPayload.sub },
@@ -63,11 +118,8 @@ export async function PUT(request: NextRequest) {
         ...(avatar !== undefined && { avatar }),
       },
       select: {
-        id: true,
-        email: true,
         name: true,
         avatar: true,
-        role: true,
       },
     });
 
