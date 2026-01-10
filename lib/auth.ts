@@ -33,7 +33,7 @@ export async function getCurrentUser(): Promise<UserPayload | null> {
 
     const payload = jwt.verify(token, JWT_SECRET) as UserPayload;
     return payload;
-  } catch (error) {
+  } catch {
     return null;
   }
 }
@@ -68,7 +68,7 @@ export async function getCurrentUserWithAvatar(): Promise<UserWithAvatar | null>
       name: user.name || '',
       avatar: user.avatar,
     };
-  } catch (error) {
+  } catch {
     return null;
   }
 }
