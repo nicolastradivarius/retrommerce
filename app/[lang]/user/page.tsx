@@ -2,22 +2,34 @@ import { Frame, TitleBar } from '@react95/core';
 import { User, Computer, FolderOpen, Notepad, Folder, Awfxcg321303 } from '@react95/icons';
 import Image from 'next/image';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { redirect, notFound } from 'next/navigation';
 import { getCurrentUserWithAvatar } from '@/lib/auth';
 import LogoutButton from '../components/LogoutButton';
 import TopBar from '../components/TopBar';
+import { getDictionary, hasLocale } from '../dictionaries';
 import styles from './page.module.css';
 
-export default async function UserPage() {
+export default async function UserPage({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang } = await params;
+  
+  if (!hasLocale(lang)) {
+    notFound();
+  }
+  
+  const dict = await getDictionary(lang);
   const user = await getCurrentUserWithAvatar();
 
   if (!user) {
-    redirect('/login');
+    redirect(`/${lang}/login`);
   }
 
   return (
     <div className={styles.container}>
-      <TopBar />
+      <TopBar lang={lang} dict={dict} />
       
       <div className={styles.main}>
         <div className={styles.layout}>
@@ -26,7 +38,7 @@ export default async function UserPage() {
             <TitleBar 
               active 
               icon={<User variant="16x16_4" />}
-              title="Mi Perfil"
+              title={dict.user.myProfile}
             />
             <Frame className={styles.windowContent}>
               <div className={styles.profileHeader}>
@@ -34,7 +46,7 @@ export default async function UserPage() {
                   {user.avatar ? (
                     <Image
                       src={user.avatar}
-                      alt="Foto de perfil"
+                      alt={dict.user.profilePhoto}
                       fill
                       sizes="64px"
                       className={styles.avatarImage}
@@ -57,11 +69,11 @@ export default async function UserPage() {
               <div className={styles.separator} />
               
               <div className={styles.profileActions}>
-                <Link href="/user/profile" className={styles.editProfileLink}>
+                <Link href={`/${lang}/user/profile`} className={styles.editProfileLink}>
                   <Notepad variant="16x16_4" />
-                  Editar perfil
+                  {dict.user.editProfile}
                 </Link>
-                <LogoutButton />
+                <LogoutButton lang={lang} dict={dict} />
               </div>
             </Frame>
           </div>
@@ -71,35 +83,35 @@ export default async function UserPage() {
             <TitleBar 
               active 
               icon={<Computer variant="16x16_4" />}
-              title="Panel de Control"
+              title={dict.user.controlPanel}
             />
             <Frame className={styles.windowContent}>
               <div className={styles.menuGrid}>
-                <Link href="/products" className={styles.menuLink}>
+                <Link href={`/${lang}/products`} className={styles.menuLink}>
                   <div className={styles.desktopIcon}>
                     <Folder variant="32x32_4" />
-                    <span>Catálogo</span>
+                    <span>{dict.user.catalog}</span>
                   </div>
                 </Link>
 
-                <Link href="/user/profile" className={styles.menuLink}>
+                <Link href={`/${lang}/user/profile`} className={styles.menuLink}>
                   <div className={styles.desktopIcon}>
                     <Notepad variant="32x32_4" />
-                    <span>Mi Perfil</span>
+                    <span>{dict.user.myProfile}</span>
                   </div>
                 </Link>
 
-                <Link href="/user/favorites" className={styles.menuLink}>
+                <Link href={`/${lang}/user/favorites`} className={styles.menuLink}>
                   <div className={styles.desktopIcon}>
                     <FolderOpen variant="32x32_4" />
-                    <span>Favoritos</span>
+                    <span>{dict.user.favorites}</span>
                   </div>
                 </Link>
 
-                <Link href="/user/orders" className={styles.menuLink}>
+                <Link href={`/${lang}/user/orders`} className={styles.menuLink}>
                   <div className={styles.desktopIcon}>
                     <Computer variant="32x32_4" />
-                    <span>Mis Pedidos</span>
+                    <span>{dict.user.myOrders}</span>
                   </div>
                 </Link>
               </div>
@@ -108,10 +120,10 @@ export default async function UserPage() {
               
               <div className={styles.statusBar}>
                 <Frame className={styles.statusItem}>
-                  4 objeto(s)
+                  4 {dict.common.objects}
                 </Frame>
                 <Frame className={styles.statusItem}>
-                  Usuario conectado
+                  {dict.common.userConnected}
                 </Frame>
               </div>
             </Frame>

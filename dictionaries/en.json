@@ -1,0 +1,102 @@
+{
+  "common": {
+    "backToHome": "Back to home",
+    "backToCatalog": "Back to catalog",
+    "backToProducts": "Back to products",
+    "backToUserPanel": "Back to user panel",
+    "loading": "Loading...",
+    "save": "Save changes",
+    "saving": "Saving...",
+    "cancel": "Cancel",
+    "objects": "object(s)",
+    "userConnected": "User connected"
+  },
+  "home": {
+    "title": "Retrommerce",
+    "subtitle": "Your vintage tech store from the 90s and 2000s",
+    "featuredProducts": "Featured Products",
+    "allProducts": "All Products",
+    "previous": "← Previous",
+    "next": "Next →",
+    "pageOf": "Page {page} of {total}"
+  },
+  "product": {
+    "manufacturer": "Manufacturer",
+    "year": "Release year",
+    "description": "Description",
+    "price": "Price",
+    "availability": "Availability",
+    "unitsAvailable": "{count} units available",
+    "outOfStock": "Out of stock",
+    "category": "Category",
+    "addToCart": "Add to cart",
+    "technicalSpecs": "Technical Specifications"
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "email": "Email",
+    "password": "Password",
+    "emailPlaceholder": "Enter your email",
+    "passwordPlaceholder": "Enter your password",
+    "loggingIn": "Logging in...",
+    "submit": "Login",
+    "loginError": "Login error",
+    "connectionError": "Connection error"
+  },
+  "admin": {
+    "title": "Admin Panel",
+    "badge": "ADMIN",
+    "welcome": "Welcome, Administrator",
+    "welcomeText": "Manage products, users and orders from this control panel.",
+    "products": "Products",
+    "users": "Users",
+    "orders": "Orders",
+    "sales": "Sales",
+    "quickActions": "Quick actions:",
+    "manageProducts": "Manage Products",
+    "manageUsers": "Manage Users",
+    "viewOrders": "View Orders"
+  },
+  "user": {
+    "myProfile": "My Profile",
+    "editProfile": "Edit profile",
+    "controlPanel": "Control Panel",
+    "catalog": "Catalog",
+    "favorites": "Favorites",
+    "myOrders": "My Orders",
+    "profilePhoto": "Profile photo",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "email": "Email",
+    "emailCannotChange": "Email cannot be changed",
+    "uploadImage": "Upload an image; we optimize and store it in Cloudinary",
+    "memberSince": "Member since",
+    "profileUpdated": "Profile updated successfully",
+    "profileUpdateError": "Error updating profile",
+    "loadingProfile": "Loading profile...",
+    "profileLoadError": "Could not load profile",
+    "editPersonalInfo": "Edit your personal information",
+    "preview": "Preview"
+  },
+  "topBar": {
+    "hello": "Hello"
+  },
+  "logoutButton": {
+    "logout": "Logout",
+    "loggingOut": "Logging out...",
+    "logoutError": "Could not logout"
+  },
+  "productCard": {
+    "year": "Year",
+    "stock": "Stock",
+    "units": "units",
+    "outOfStock": "Out of stock"
+  },
+  "notFound": {
+    "title": "Error 404 - Page not found",
+    "message": "The requested page cannot be found.",
+    "description": "The page you are looking for may have been removed, renamed, or is temporarily unavailable.",
+    "errorCode": "Error code: HTTP 404 - File not found"
+  }
+}

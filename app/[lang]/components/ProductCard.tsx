@@ -1,9 +1,10 @@
 import { Frame } from '@react95/core';
 import Link from 'next/link';
 import { formatPrice, hasDiscount } from '@/lib/utils';
+import type { Locale } from '../dictionaries';
 import styles from './ProductCard.module.css';
 
-interface ProductCardProps {
+export interface ProductCardProps {
   product: {
     id: string;
     name: string;
@@ -14,11 +15,20 @@ interface ProductCardProps {
     year?: number | null;
     stock: number;
   };
+  lang: Locale;
+  dict: {
+    productCard: {
+      year: string;
+      stock: string;
+      units: string;
+      outOfStock: string;
+    };
+  };
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, lang, dict }: ProductCardProps) {
   return (
-    <Link href={`/products/${product.slug}`} className={styles.productLink}>
+    <Link href={`/${lang}/products/${product.slug}`} className={styles.productLink}>
       <Frame className={styles.productCard}>
         <div className={styles.productImagePlaceholder}>
           {product.name}
@@ -29,7 +39,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             <p className={styles.manufacturer}>{product.manufacturer}</p>
           )}
           {product.year && (
-            <p className={styles.year}>Año: {product.year}</p>
+            <p className={styles.year}>{dict.productCard.year}: {product.year}</p>
           )}
           <div className={styles.priceSection}>
             <span className={styles.price}>{formatPrice(product.price)}</span>
@@ -41,8 +51,8 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
           <p className={styles.stock}>
             {product.stock > 0 
-              ? `Stock: ${product.stock} unidades` 
-              : 'Sin stock'}
+              ? `${dict.productCard.stock}: ${product.stock} ${dict.productCard.units}` 
+              : dict.productCard.outOfStock}
           </p>
         </div>
       </Frame>

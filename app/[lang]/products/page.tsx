@@ -1,6 +1,7 @@
 import { Frame } from '@react95/core';
 import { Computer, Star } from '@react95/icons';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { prisma } from '@/lib/prisma';
 import { ITEMS_PER_PAGE } from '@/lib/constants';
 import type { Prisma } from '@/app/generated/prisma';
@@ -8,6 +9,7 @@ import TopBar from '../components/TopBar';
 import ProductCard from '../components/ProductCard';
 import FeaturedProductCard from '../components/FeaturedProductCard';
 import styles from './page.module.css';
+import { getDictionary, hasLocale } from '../dictionaries';
 
 type ProductListItem = Prisma.ProductGetPayload<{
   select: {
@@ -26,12 +28,21 @@ type ProductListItem = Prisma.ProductGetPayload<{
 }>;
 
 export default async function HomePage({
+  params,
   searchParams,
 }: {
+  params: Promise<{ lang: string }>;
   searchParams: Promise<{ page?: string }>;
 }) {
-  const params = await searchParams;
-  const page = parseInt(params.page || '1');
+  const { lang } = await params;
+  
+  if (!hasLocale(lang)) {
+    notFound();
+  }
+  
+  const dict = await getDictionary(lang);
+  const searchParamsResolved = await searchParams;
+  const page = parseInt(searchParamsResolved.page || '1');
   const skip = (page - 1) * ITEMS_PER_PAGE;
 
   // Obtener productos destacados (siempre se muestran)
@@ -80,15 +91,15 @@ const featuredProducts: ProductListItem[] = await prisma.product.findMany({
 
   return (
     <div className={styles.container}>
-      <TopBar />
+      <TopBar lang={lang} dict={dict} />
       
       <div className={styles.main}>
         <div className={styles.header}>
           <Computer variant="32x32_4" />
           <div>
-            <h1 className={styles.title}>Retrommerce</h1>
+            <h1 className={styles.title}>{dict.home.title}</h1>
             <p className={styles.subtitle}>
-              Tu tienda de tecnologia vintage de los 90s y 2000s
+              {dict.home.subtitle}
             </p>
           </div>
         </div>
@@ -98,12 +109,12 @@ const featuredProducts: ProductListItem[] = await prisma.product.findMany({
           <Frame className={styles.featuredFrame}>
             <div className={styles.featuredHeader}>
               <Star variant="16x16_4" />
-              <h2 className={styles.featuredTitle}>Productos Destacados</h2>
+              <h2 className={styles.featuredTitle}>{dict.home.featuredProducts}</h2>
             </div>
             <div className={styles.featuredScroll}>
               <div className={styles.featuredGrid}>
                 {featuredProducts.map((product) => (
-                  <FeaturedProductCard key={product.id} product={product} />
+                  <FeaturedProductCard key={product.id} product={product} lang={lang} />
                 ))}
               </div>
             </div>
@@ -112,19 +123,19 @@ const featuredProducts: ProductListItem[] = await prisma.product.findMany({
 
         {/* Grid de productos con paginación */}
         <Frame className={styles.productsFrame}>
-          <h2 className={styles.sectionTitle}>Todos los Productos</h2>
+          <h2 className={styles.sectionTitle}>{dict.home.allProducts}</h2>
           
           <div className={styles.productGrid}>
             {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard key={product.id} product={product} lang={lang} dict={dict} />
             ))}
           </div>
 
           {totalPages > 1 && (
             <div className={styles.pagination}>
               {page > 1 && (
-                <Link href={`/?page=${page - 1}`} className={styles.pageButton}>
-                  ← Anterior
+                <Link href={`/${lang}/products?page=${page - 1}`} className={styles.pageButton}>
+                  {dict.home.previous}
                 </Link>
               )}
               
@@ -132,7 +143,7 @@ const featuredProducts: ProductListItem[] = await prisma.product.findMany({
                 {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
                   <Link
                     key={pageNum}
-                    href={`/?page=${pageNum}`}
+                    href={`/${lang}/products?page=${pageNum}`}
                     className={`${styles.pageNumber} ${pageNum === page ? styles.pageNumberActive : ''}`}
                   >
                     {pageNum}
@@ -141,12 +152,12 @@ const featuredProducts: ProductListItem[] = await prisma.product.findMany({
               </div>
               
               <span className={styles.pageInfo}>
-                Página {page} de {totalPages}
+                {dict.home.pageOf.replace('{page}', String(page)).replace('{total}', String(totalPages))}
               </span>
               
               {page < totalPages && (
-                <Link href={`/?page=${page + 1}`} className={styles.pageButton}>
-                  Siguiente →
+                <Link href={`/${lang}/products?page=${page + 1}`} className={styles.pageButton}>
+                  {dict.home.next}
                 </Link>
               )}
             </div>

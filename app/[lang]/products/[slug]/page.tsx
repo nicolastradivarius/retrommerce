@@ -6,14 +6,21 @@ import { prisma } from '@/lib/prisma';
 import { formatPrice, hasDiscount } from '@/lib/utils';
 import TopBar from '@/app/[lang]/components/TopBar';
 import ImageCarousel from '@/app/[lang]/components/ImageCarousel';
+import { getDictionary, hasLocale } from '../../dictionaries';
 import styles from './page.module.css';
 
 export default async function ProductDetailPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ lang: string; slug: string }>;
 }) {
-  const { slug } = await params;
+  const { lang, slug } = await params;
+
+  if (!hasLocale(lang)) {
+    notFound();
+  }
+
+  const dict = await getDictionary(lang);
 
   const product = await prisma.product.findUnique({
     where: { slug },
@@ -31,13 +38,13 @@ export default async function ProductDetailPage({
 
   return (
     <div className={styles.container}>
-      <TopBar />
+      <TopBar lang={lang} dict={dict} />
       
       <div className={styles.main}>
-        <Link href="/products" className={styles.backLink}>
+        <Link href={`/${lang}/products`} className={styles.backLink}>
           <Button>
             <Back variant="16x16_4" />
-            Volver a productos
+            {dict.common.backToProducts}
           </Button>
         </Link>
 
@@ -48,12 +55,12 @@ export default async function ProductDetailPage({
               <h1 className={styles.productTitle}>{product.name}</h1>
               {product.manufacturer && (
                 <p className={styles.manufacturer}>
-                  Fabricante: {product.manufacturer}
+                  {dict.product.manufacturer}: {product.manufacturer}
                 </p>
               )}
               {product.year && (
                 <p className={styles.year}>
-                  Año de lanzamiento: {product.year}
+                  {dict.product.year}: {product.year}
                 </p>
               )}
             </div>
@@ -65,7 +72,7 @@ export default async function ProductDetailPage({
               
               {product.description && (
                 <div className={styles.section}>
-                  <h2 className={styles.sectionTitle}>Descripcion</h2>
+                  <h2 className={styles.sectionTitle}>{dict.product.description}</h2>
                   <p className={styles.description}>{product.description}</p>
                 </div>
               )}
@@ -74,7 +81,7 @@ export default async function ProductDetailPage({
             <div className={styles.rightColumn}>
               <Frame className={styles.infoCard}>
                 <div className={styles.section}>
-                  <h2 className={styles.sectionTitle}>Precio</h2>
+                  <h2 className={styles.sectionTitle}>{dict.product.price}</h2>
                   <div className={styles.priceSection}>
                     <span className={styles.price}>{formatPrice(product.price)}</span>
                     {hasDiscount(product.price, product.originalPrice) && (
@@ -86,16 +93,16 @@ export default async function ProductDetailPage({
                 </div>
 
                 <div className={styles.section}>
-                  <h2 className={styles.sectionTitle}>Disponibilidad</h2>
+                  <h2 className={styles.sectionTitle}>{dict.product.availability}</h2>
                   <p className={styles.stock}>
                     {product.stock > 0 
-                      ? `${product.stock} unidades disponibles` 
-                      : 'Sin stock'}
+                      ? dict.product.unitsAvailable.replace('{count}', String(product.stock))
+                      : dict.product.outOfStock}
                   </p>
                 </div>
 
                 <div className={styles.section}>
-                  <h2 className={styles.sectionTitle}>Categoria</h2>
+                  <h2 className={styles.sectionTitle}>{dict.product.category}</h2>
                   <p className={styles.category}>{product.category.name}</p>
                 </div>
 
@@ -103,7 +110,7 @@ export default async function ProductDetailPage({
                   <div className={styles.cardActions}>
                     <Frame className={styles.addToCartFrame}>
                       <Button className={styles.addToCartButton}>
-                        Agregar al carrito
+                        {dict.product.addToCart}
                       </Button>
                     </Frame>
                   </div>
@@ -114,7 +121,7 @@ export default async function ProductDetailPage({
 
           {specs && Object.keys(specs).length > 0 && (
             <div className={styles.section}>
-              <h2 className={styles.sectionTitle}>Especificaciones Técnicas</h2>
+              <h2 className={styles.sectionTitle}>{dict.product.technicalSpecs}</h2>
               <Frame className={styles.specsFrame}>
                 <ul className={styles.specsList}>
                   {Object.entries(specs).map(([key, value]) => (

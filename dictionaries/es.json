@@ -1,0 +1,102 @@
+{
+  "common": {
+    "backToHome": "Volver al inicio",
+    "backToCatalog": "Volver al catálogo",
+    "backToProducts": "Volver a productos",
+    "backToUserPanel": "Volver al panel de usuario",
+    "loading": "Cargando...",
+    "save": "Guardar cambios",
+    "saving": "Guardando...",
+    "cancel": "Cancelar",
+    "objects": "objeto(s)",
+    "userConnected": "Usuario conectado"
+  },
+  "home": {
+    "title": "Retrommerce",
+    "subtitle": "Tu tienda de tecnología vintage de los 90s y 2000s",
+    "featuredProducts": "Productos Destacados",
+    "allProducts": "Todos los Productos",
+    "previous": "← Anterior",
+    "next": "Siguiente →",
+    "pageOf": "Página {page} de {total}"
+  },
+  "product": {
+    "manufacturer": "Fabricante",
+    "year": "Año de lanzamiento",
+    "description": "Descripción",
+    "price": "Precio",
+    "availability": "Disponibilidad",
+    "unitsAvailable": "{count} unidades disponibles",
+    "outOfStock": "Sin stock",
+    "category": "Categoría",
+    "addToCart": "Agregar al carrito",
+    "technicalSpecs": "Especificaciones Técnicas"
+  },
+  "auth": {
+    "login": "Iniciar Sesión",
+    "logout": "Cerrar Sesión",
+    "email": "Email",
+    "password": "Contraseña",
+    "emailPlaceholder": "Ingresa tu email",
+    "passwordPlaceholder": "Ingresa tu contraseña",
+    "loggingIn": "Ingresando...",
+    "submit": "Ingresar",
+    "loginError": "Error al iniciar sesión",
+    "connectionError": "Error de conexión"
+  },
+  "admin": {
+    "title": "Panel de Administración",
+    "badge": "ADMIN",
+    "welcome": "Bienvenido, Administrador",
+    "welcomeText": "Gestiona productos, usuarios y pedidos desde este panel de control.",
+    "products": "Productos",
+    "users": "Usuarios",
+    "orders": "Pedidos",
+    "sales": "Ventas",
+    "quickActions": "Acciones rápidas:",
+    "manageProducts": "Gestionar Productos",
+    "manageUsers": "Gestionar Usuarios",
+    "viewOrders": "Ver Pedidos"
+  },
+  "user": {
+    "myProfile": "Mi Perfil",
+    "editProfile": "Editar perfil",
+    "controlPanel": "Panel de Control",
+    "catalog": "Catálogo",
+    "favorites": "Favoritos",
+    "myOrders": "Mis Pedidos",
+    "profilePhoto": "Foto de perfil",
+    "name": "Nombre",
+    "namePlaceholder": "Tu nombre",
+    "email": "Email",
+    "emailCannotChange": "El email no se puede modificar",
+    "uploadImage": "Sube una imagen; la optimizamos y la guardamos en Cloudinary",
+    "memberSince": "Miembro desde",
+    "profileUpdated": "Perfil actualizado correctamente",
+    "profileUpdateError": "Error al actualizar el perfil",
+    "loadingProfile": "Cargando perfil...",
+    "profileLoadError": "No se pudo cargar el perfil",
+    "editPersonalInfo": "Edita tu información personal",
+    "preview": "Vista previa"
+  },
+  "topBar": {
+    "hello": "Hola"
+  },
+  "logoutButton": {
+    "logout": "Cerrar sesión",
+    "loggingOut": "Saliendo...",
+    "logoutError": "No se pudo cerrar sesión"
+  },
+  "productCard": {
+    "year": "Año",
+    "stock": "Stock",
+    "units": "unidades",
+    "outOfStock": "Sin stock"
+  },
+  "notFound": {
+    "title": "Error 404 - Página no encontrada",
+    "message": "No se puede encontrar la página solicitada.",
+    "description": "La página que busca puede haber sido eliminada, cambiado de nombre o no está disponible temporalmente.",
+    "errorCode": "Código de error: HTTP 404 - Archivo no encontrado"
+  }
+}

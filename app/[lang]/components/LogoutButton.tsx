@@ -2,12 +2,21 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import type { Locale } from '../dictionaries';
 
-type Props = {
+interface LogoutButtonProps {
   className?: string;
-};
+  lang: Locale;
+  dict: {
+    logoutButton: {
+      logout: string;
+      loggingOut: string;
+      logoutError: string;
+    };
+  };
+}
 
-export default function LogoutButton({ className }: Props) {
+export default function LogoutButton({ className, lang, dict }: LogoutButtonProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const router = useRouter();
@@ -17,11 +26,11 @@ export default function LogoutButton({ className }: Props) {
     setError('');
     try {
       const res = await fetch('/api/auth/logout', { method: 'POST' });
-      if (!res.ok) throw new Error('No se pudo cerrar sesión');
-      router.push('/login');
+      if (!res.ok) throw new Error(dict.logoutButton.logoutError);
+      router.push(`/${lang}/login`);
       router.refresh();
     } catch {
-      setError('No se pudo cerrar sesión');
+      setError(dict.logoutButton.logoutError);
       setLoading(false);
     }
   };
@@ -29,7 +38,7 @@ export default function LogoutButton({ className }: Props) {
   return (
     <div className={className}>
       <button onClick={handleLogout} disabled={loading}>
-        {loading ? 'Saliendo...' : 'Cerrar sesión'}
+        {loading ? dict.logoutButton.loggingOut : dict.logoutButton.logout}
       </button>
       {error && <p style={{ color: '#800000', margin: '6px 0 0 0', fontSize: 12 }}>{error}</p>}
     </div>

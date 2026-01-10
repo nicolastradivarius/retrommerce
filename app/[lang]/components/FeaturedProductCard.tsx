@@ -1,9 +1,10 @@
 import { Frame } from '@react95/core';
 import Link from 'next/link';
 import { formatPrice, hasDiscount } from '@/lib/utils';
+import type { Locale } from '../dictionaries';
 import styles from './FeaturedProductCard.module.css';
 
-interface FeaturedProductCardProps {
+export interface FeaturedProductCardProps {
   product: {
     id: string;
     name: string;
@@ -12,11 +13,12 @@ interface FeaturedProductCardProps {
     originalPrice: { toString(): string };
     manufacturer?: string | null;
   };
+  lang: Locale;
 }
 
-export default function FeaturedProductCard({ product }: FeaturedProductCardProps) {
+export default function FeaturedProductCard({ product, lang }: FeaturedProductCardProps) {
   return (
-    <Link href={`/products/${product.slug}`} className={styles.featuredLink}>
+    <Link href={`/${lang}/products/${product.slug}`} className={styles.featuredLink}>
       <Frame className={styles.featuredCard}>
         <div className={styles.featuredImagePlaceholder}>
           ⭐ {product.name}
