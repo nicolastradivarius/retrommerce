@@ -1,8 +1,8 @@
-import { Frame } from '@react95/core';
-import Link from 'next/link';
-import { formatPrice, hasDiscount } from '@/lib/utils';
-import type { Locale } from '../dictionaries';
-import styles from './FeaturedProductCard.module.css';
+import { Frame, Cursor } from "@react95/core";
+import Link from "next/link";
+import { formatPrice, hasDiscount } from "@/lib/utils";
+import type { Locale } from "../dictionaries";
+import styles from "./FeaturedProductCard.module.css";
 
 export interface FeaturedProductCardProps {
   product: {
@@ -16,20 +16,30 @@ export interface FeaturedProductCardProps {
   lang: Locale;
 }
 
-export default function FeaturedProductCard({ product, lang }: FeaturedProductCardProps) {
+export default function FeaturedProductCard({
+  product,
+  lang,
+}: FeaturedProductCardProps) {
   return (
-    <Link href={`/${lang}/products/${product.slug}`} className={styles.featuredLink}>
-      <Frame className={styles.featuredCard}>
-        <div className={styles.featuredImagePlaceholder}>
-          ⭐ {product.name}
-        </div>
+    <div className={Cursor.Pointer}>
+
+    <Link
+      href={`/${lang}/products/${product.slug}`}
+      className={`${styles.featuredLink} ${Cursor.Pointer}`}
+    >
+      <Frame className={`${styles.featuredCard} ${Cursor.Pointer}`}>
+        <div className={styles.featuredImagePlaceholder}>⭐ {product.name}</div>
         <div className={styles.featuredInfo}>
           <h3 className={styles.featuredName}>{product.name}</h3>
           {product.manufacturer && (
-            <p className={styles.featuredManufacturer}>{product.manufacturer}</p>
+            <p className={styles.featuredManufacturer}>
+              {product.manufacturer}
+            </p>
           )}
           <div className={styles.featuredPriceSection}>
-            <span className={styles.featuredPrice}>{formatPrice(product.price)}</span>
+            <span className={styles.featuredPrice}>
+              {formatPrice(product.price)}
+            </span>
             {hasDiscount(product.price, product.originalPrice) && (
               <span className={styles.featuredOriginalPrice}>
                 {formatPrice(product.originalPrice)}
@@ -39,5 +49,7 @@ export default function FeaturedProductCard({ product, lang }: FeaturedProductCa
         </div>
       </Frame>
     </Link>
-  );
+    </div>
+      );
+
 }

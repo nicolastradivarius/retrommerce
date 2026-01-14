@@ -1,108 +1,129 @@
 .featuredLink {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  flex-shrink: 0;
-  width: 180px;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    flex-shrink: 0;
+    width: 180px;
 }
 
 .featuredCard {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  transition: transform 0.1s ease;
-  padding: 0 !important;
-  overflow: hidden;
-  background: #c0c0c0;
-  border: 2px solid;
-  border-color: #ffffff #808080 #808080 #ffffff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: color 0.1s;
+    padding: 0 !important;
+    overflow: hidden;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
 }
 
-.featuredCard:hover {
-  transform: translateY(-2px);
-  box-shadow: 3px 3px 0px #000;
+.featuredCard:active {
+    background: #000080;
+    color: #ffffff;
+    border-color: #000080 #000040 #000040 #000080;
+}
+
+/* Keyboard focus (Link focuses, not the Frame) */
+.featuredLink:focus-visible .featuredCard {
+    outline: 1px dotted #000000;
+    outline-offset: -4px;
+}
+.featuredLink:focus-visible .featuredCard,
+.featuredLink:active .featuredCard {
+    background: #000080;
+    color: #ffffff;
+    border-color: #000080 #000040 #000040 #000080;
 }
 
 .featuredImagePlaceholder {
-  height: 80px;
-  background: linear-gradient(135deg, #ffd700 0%, #ffb347 100%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 8px;
-  font-size: 11px;
-  border-bottom: 2px solid #808080;
-  color: #333;
+    height: 80px;
+    background: linear-gradient(135deg, #ffd700 0%, #ffb347 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8px;
+    font-size: 11px;
+    border-bottom: 2px solid #808080;
+    color: #333;
+}
+
+.featuredLink:active .featuredName,
+.featuredLink:focus-visible .featuredName {
+    color: #ffffff;
+}
+.featuredLink:active .featuredManufacturer,
+.featuredLink:focus-visible .featuredManufacturer {
+    color: #e6e6e6;
 }
 
 .featuredInfo {
-  padding: 10px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+    padding: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 .featuredName {
-  margin: 0;
-  font-size: 12px;
-  font-weight: bold;
-  color: #000080;
-  line-height: 1.2;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+    margin: 0;
+    font-size: 12px;
+    font-weight: bold;
+    color: #000080;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .featuredManufacturer {
-  margin: 0;
-  font-size: 10px;
-  color: #666;
+    margin: 0;
+    font-size: 10px;
+    color: #666;
 }
 
 .featuredPriceSection {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: auto;
-  padding-top: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: 6px;
 }
 
 .featuredPrice {
-  font-size: 14px;
-  font-weight: bold;
-  color: #008000;
+    font-size: 14px;
+    font-weight: bold;
+    color: #008000;
 }
 
 .featuredOriginalPrice {
-  font-size: 10px;
-  color: #999;
-  text-decoration: line-through;
+    font-size: 10px;
+    color: #999;
+    text-decoration: line-through;
 }
 
 @media (max-width: 600px) {
-  .featuredLink {
-    width: 150px;
-  }
+    .featuredLink {
+        width: 150px;
+    }
 
-  .featuredImagePlaceholder {
-    height: 70px;
-    font-size: 10px;
-  }
+    .featuredImagePlaceholder {
+        height: 70px;
+        font-size: 10px;
+    }
 
-  .featuredInfo {
-    padding: 8px;
-  }
+    .featuredInfo {
+        padding: 8px;
+    }
 
-  .featuredName {
-    font-size: 11px;
-  }
+    .featuredName {
+        font-size: 11px;
+    }
 
-  .featuredPrice {
-    font-size: 12px;
-  }
+    .featuredPrice {
+        font-size: 12px;
+    }
 }
