@@ -1,0 +1,85 @@
+.container {
+  min-height: 100vh;
+  background: #008080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.window {
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  box-shadow: 4px 4px 0px #000;
+  max-width: 500px;
+  width: 100%;
+}
+
+.windowContent {
+  padding: 16px;
+  background: #c0c0c0;
+}
+
+.errorContent {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.iconSection {
+  flex-shrink: 0;
+  padding-top: 4px;
+}
+
+.messageSection {
+  flex: 1;
+}
+
+.errorTitle {
+  margin: 0 0 12px 0;
+  font-size: 12px;
+  font-family: 'MS Sans Serif', Tahoma, sans-serif;
+  font-weight: bold;
+  color: #000;
+}
+
+.errorMessage {
+  margin: 0 0 12px 0;
+  font-size: 11px;
+  font-family: 'MS Sans Serif', Tahoma, sans-serif;
+  color: #000;
+  line-height: 1.5;
+}
+
+.errorCode {
+  margin: 0;
+  font-size: 11px;
+  font-family: 'MS Sans Serif', Tahoma, sans-serif;
+  color: #666;
+}
+
+.separator {
+  height: 2px;
+  margin: 16px 0;
+  border-top: 1px solid #808080;
+  border-bottom: 1px solid #ffffff;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+@media (max-width: 480px) {
+  .errorContent {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .window {
+    max-width: 100%;
+  }
+}
