@@ -86,7 +86,7 @@
     "start": "Start",
     "products": "Products",
     "myProfile": "My Profile",
-    "userPanel": "User Panel",
+    "userPanel": "Control Panel",
     "login": "Login"
   },
   "logoutButton": {

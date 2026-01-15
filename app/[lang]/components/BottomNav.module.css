@@ -36,7 +36,8 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 4px 12px;
+    padding-left: 4px;
+    padding-right: 4px;
     height: 100%;
     background: #c0c0c0;
     border: 2px solid;
@@ -103,6 +104,30 @@
     border-color: #808080 #ffffff #ffffff #808080;
     background: #000080;
     color: #ffffff;
+}
+
+/* Ventana activa (presionada) */
+.windowButtonActive {
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #c0c0c0;
+    color: #000;
+    font-weight: bold;
+    font-size: 11px;
+    padding-bottom: 4px;
+}
+
+.windowButtonActive:hover {
+    background: #c0c0c0;
+}
+
+/* Ventana inactiva (oscurecida) */
+.windowButtonInactive {
+    background: #a0a0a0;
+    color: #606060;
+}
+
+.windowButtonInactive:hover {
+    background: #b0b0b0;
 }
 
 /* System Tray */
