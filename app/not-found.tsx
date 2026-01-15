@@ -1,16 +1,33 @@
-import { Frame, TitleBar, Button } from '@react95/core';
-import { Computer3, Warning } from '@react95/icons';
-import Link from 'next/link';
-import styles from './not-found.module.css';
+import { Frame, TitleBar, Button } from "@react95/core";
+import { Computer3, Warning } from "@react95/icons";
+import Link from "next/link";
+import { getCurrentUserWithAvatar } from "@/lib/auth";
+import BottomNav from "./[lang]/components/BottomNav";
+import styles from "./not-found.module.css";
 
-export default function NotFound() {
+export default async function NotFound() {
+  const user = await getCurrentUserWithAvatar();
+
   return (
     <div className={styles.container}>
+      <BottomNav
+        lang="en"
+        dict={
+          {
+            start: "Start",
+            products: "Products",
+            myProfile: "My Profile",
+            userPanel: "User Panel",
+            login: "Login",
+          }
+        }
+        user={user}
+      />
       <div className={styles.window}>
-        <TitleBar 
-          active 
+        <TitleBar
+          active
           icon={<Computer3 variant="16x16_4" />}
-          title="Error 404 - Página no encontrada"
+          title="Error 404 - Page not found"
         />
         <Frame className={styles.windowContent}>
           <div className={styles.errorContent}>
@@ -19,23 +36,23 @@ export default function NotFound() {
             </div>
             <div className={styles.messageSection}>
               <p className={styles.errorTitle}>
-                No se puede encontrar la página solicitada.
+                We cannot find the page you requested.
               </p>
               <p className={styles.errorMessage}>
-                La página que busca puede haber sido eliminada, 
-                cambiado de nombre o no está disponible temporalmente.
+                The page you are looking for might have been removed, renamed,
+                or is temporarily unavailable.
               </p>
               <p className={styles.errorCode}>
-                Código de error: HTTP 404 - Archivo no encontrado
+                Error code: HTTP 404 - File not found
               </p>
             </div>
           </div>
-          
+
           <div className={styles.separator} />
-          
+
           <div className={styles.actions}>
             <Link href="/products">
-              <Button>Volver al inicio</Button>
+              <Button>Back to home</Button>
             </Link>
           </div>
         </Frame>
