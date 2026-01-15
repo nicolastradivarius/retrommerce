@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { prisma } from '@/lib/prisma';
 import { formatPrice, hasDiscount } from '@/lib/utils';
-import TopBar from '@/app/[lang]/components/TopBar';
+import { getCurrentUserWithAvatar } from '@/lib/auth';
+import BottomNav from '@/app/[lang]/components/BottomNav';
 import ImageCarousel from '@/app/[lang]/components/ImageCarousel';
 import { getDictionary, hasLocale } from '../../dictionaries';
 import styles from './page.module.css';
@@ -21,6 +22,7 @@ export default async function ProductDetailPage({
   }
 
   const dict = await getDictionary(lang);
+  const user = await getCurrentUserWithAvatar();
 
   const product = await prisma.product.findUnique({
     where: { slug },
@@ -38,7 +40,7 @@ export default async function ProductDetailPage({
 
   return (
     <div className={styles.container}>
-      <TopBar lang={lang} dict={dict} />
+      <BottomNav lang={lang} dict={dict} user={user} />
       
       <div className={styles.main}>
         <Link href={`/${lang}/products`} className={styles.backLink}>

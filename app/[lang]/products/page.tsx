@@ -5,11 +5,12 @@ import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { ITEMS_PER_PAGE } from "@/lib/constants";
 import type { Prisma } from "@/app/generated/prisma";
-import TopBar from "../components/TopBar";
+import BottomNav from "../components/BottomNav";
 import ProductCard from "../components/ProductCard";
 import FeaturedProductCard from "../components/FeaturedProductCard";
 import styles from "./page.module.css";
 import { getDictionary, hasLocale } from "../dictionaries";
+import { getCurrentUserWithAvatar } from "@/lib/auth";
 
 type ProductListItem = Prisma.ProductGetPayload<{
   select: {
@@ -88,10 +89,11 @@ export default async function HomePage({
   ])) as [ProductListItem[], number];
 
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
+  const user = await getCurrentUserWithAvatar();
 
   return (
     <div className={styles.container}>
-      <TopBar lang={lang} dict={dict} />
+      <BottomNav lang={lang} dict={dict} user={user} />
 
       <div className={styles.main}>
         <div className={styles.header}>

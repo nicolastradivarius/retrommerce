@@ -12,7 +12,7 @@ import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
 import LogoutButton from "../components/LogoutButton";
-import TopBar from "../components/TopBar";
+import BottomNav from "../components/BottomNav";
 import { getDictionary, hasLocale } from "../dictionaries";
 import styles from "./page.module.css";
 
@@ -36,7 +36,7 @@ export default async function UserPage({
 
   return (
     <div className={styles.container}>
-      <TopBar lang={lang} dict={dict} />
+      <BottomNav lang={lang} dict={dict} user={user} />
 
       <div className={styles.main}>
         <div className={styles.layout}>

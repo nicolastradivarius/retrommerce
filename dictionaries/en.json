@@ -82,6 +82,13 @@
   "topBar": {
     "hello": "Hello"
   },
+  "navigation": {
+    "start": "Start",
+    "products": "Products",
+    "myProfile": "My Profile",
+    "userPanel": "User Panel",
+    "login": "Login"
+  },
   "logoutButton": {
     "logout": "Logout",
     "loggingOut": "Logging out...",

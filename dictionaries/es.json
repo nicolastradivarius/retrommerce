@@ -82,6 +82,13 @@
   "topBar": {
     "hello": "Hola"
   },
+  "navigation": {
+    "start": "Inicio",
+    "products": "Productos",
+    "myProfile": "Mi Perfil",
+    "userPanel": "Panel Usuario",
+    "login": "Iniciar Sesión"
+  },
   "logoutButton": {
     "logout": "Cerrar sesión",
     "loggingOut": "Saliendo...",
