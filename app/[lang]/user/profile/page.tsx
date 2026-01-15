@@ -1,6 +1,6 @@
-import { notFound } from 'next/navigation';
-import { getDictionary, hasLocale } from '../../dictionaries';
-import ProfileForm from './ProfileForm';
+import { notFound } from "next/navigation";
+import { getDictionary, hasLocale } from "../../dictionaries";
+import ProfileForm from "./ProfileForm";
 
 export default async function ProfilePage({
   params,

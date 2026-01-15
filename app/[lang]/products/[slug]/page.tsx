@@ -1,14 +1,14 @@
-import { Frame, Button } from '@react95/core';
-import { Computer, Back } from '@react95/icons';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { prisma } from '@/lib/prisma';
-import { formatPrice, hasDiscount } from '@/lib/utils';
-import { getCurrentUserWithAvatar } from '@/lib/auth';
-import BottomNav from '@/app/[lang]/components/BottomNav';
-import ImageCarousel from '@/app/[lang]/components/ImageCarousel';
-import { getDictionary, hasLocale } from '../../dictionaries';
-import styles from './page.module.css';
+import { Frame, Button } from "@react95/core";
+import { Computer, Back } from "@react95/icons";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { prisma } from "@/lib/prisma";
+import { formatPrice, hasDiscount } from "@/lib/utils";
+import { getCurrentUserWithAvatar } from "@/lib/auth";
+import BottomNav from "@/app/[lang]/components/BottomNav";
+import ImageCarousel from "@/app/[lang]/components/ImageCarousel";
+import { getDictionary, hasLocale } from "../../dictionaries";
+import styles from "./page.module.css";
 
 export default async function ProductDetailPage({
   params,
@@ -40,8 +40,8 @@ export default async function ProductDetailPage({
 
   return (
     <div className={styles.container}>
-      <BottomNav lang={lang} dict={dict} user={user} />
-      
+      <BottomNav lang={lang} dict={dict.navigation} user={user} />
+
       <div className={styles.main}>
         <Link href={`/${lang}/products`} className={styles.backLink}>
           <Button>
@@ -70,11 +70,16 @@ export default async function ProductDetailPage({
 
           <div className={styles.productLayout}>
             <div className={styles.leftColumn}>
-              <ImageCarousel images={product.images} productName={product.name} />
-              
+              <ImageCarousel
+                images={product.images}
+                productName={product.name}
+              />
+
               {product.description && (
                 <div className={styles.section}>
-                  <h2 className={styles.sectionTitle}>{dict.product.description}</h2>
+                  <h2 className={styles.sectionTitle}>
+                    {dict.product.description}
+                  </h2>
                   <p className={styles.description}>{product.description}</p>
                 </div>
               )}
@@ -85,7 +90,9 @@ export default async function ProductDetailPage({
                 <div className={styles.section}>
                   <h2 className={styles.sectionTitle}>{dict.product.price}</h2>
                   <div className={styles.priceSection}>
-                    <span className={styles.price}>{formatPrice(product.price)}</span>
+                    <span className={styles.price}>
+                      {formatPrice(product.price)}
+                    </span>
                     {hasDiscount(product.price, product.originalPrice) && (
                       <span className={styles.originalPrice}>
                         {formatPrice(product.originalPrice)}
@@ -95,16 +102,23 @@ export default async function ProductDetailPage({
                 </div>
 
                 <div className={styles.section}>
-                  <h2 className={styles.sectionTitle}>{dict.product.availability}</h2>
+                  <h2 className={styles.sectionTitle}>
+                    {dict.product.availability}
+                  </h2>
                   <p className={styles.stock}>
-                    {product.stock > 0 
-                      ? dict.product.unitsAvailable.replace('{count}', String(product.stock))
+                    {product.stock > 0
+                      ? dict.product.unitsAvailable.replace(
+                          "{count}",
+                          String(product.stock),
+                        )
                       : dict.product.outOfStock}
                   </p>
                 </div>
 
                 <div className={styles.section}>
-                  <h2 className={styles.sectionTitle}>{dict.product.category}</h2>
+                  <h2 className={styles.sectionTitle}>
+                    {dict.product.category}
+                  </h2>
                   <p className={styles.category}>{product.category.name}</p>
                 </div>
 
@@ -123,7 +137,9 @@ export default async function ProductDetailPage({
 
           {specs && Object.keys(specs).length > 0 && (
             <div className={styles.section}>
-              <h2 className={styles.sectionTitle}>{dict.product.technicalSpecs}</h2>
+              <h2 className={styles.sectionTitle}>
+                {dict.product.technicalSpecs}
+              </h2>
               <Frame className={styles.specsFrame}>
                 <ul className={styles.specsList}>
                   {Object.entries(specs).map(([key, value]) => (

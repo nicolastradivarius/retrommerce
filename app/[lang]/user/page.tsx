@@ -36,7 +36,7 @@ export default async function UserPage({
 
   return (
     <div className={styles.container}>
-      <BottomNav lang={lang} dict={dict} user={user} />
+      <BottomNav lang={lang} dict={dict.navigation} user={user} />
 
       <div className={styles.main}>
         <div className={styles.layout}>

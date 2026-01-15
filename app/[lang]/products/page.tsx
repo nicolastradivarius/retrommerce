@@ -93,7 +93,7 @@ export default async function HomePage({
 
   return (
     <div className={styles.container}>
-      <BottomNav lang={lang} dict={dict} user={user} />
+      <BottomNav lang={lang} dict={dict.navigation} user={user} />
 
       <div className={styles.main}>
         <div className={styles.header}>
