@@ -177,6 +177,11 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+    /* Adjust taskbar content for mobile */
+    .taskbarContent {
+        justify-content: space-between;
+    }
+
     /* Hide window buttons on mobile */
     .windows {
         display: none;
@@ -184,6 +189,11 @@
 
     .separator {
         display: none;
+    }
+
+    /* Position system tray on the right */
+    .systemTray {
+        margin-left: auto;
     }
 
     /* Show mobile menu */
