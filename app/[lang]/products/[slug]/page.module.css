@@ -19,24 +19,29 @@
 }
 
 .productFrame {
-  padding: 32px;
+  padding: 0;
   background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  box-shadow: 3px 3px 0px #000;
+}
+
+.titleBar {
+  font-size: 13px;
+}
+
+.frameBody {
+  padding: 24px;
 }
 
 .productHeader {
   display: flex;
   align-items: flex-start;
-  gap: 16px;
-  margin-bottom: 32px;
-  padding-bottom: 16px;
-  border-bottom: 2px solid #808080;
-}
-
-.productTitle {
-  margin: 0 0 8px 0;
-  font-size: 28px;
-  font-family: 'MS Sans Serif', sans-serif;
-  color: #000080;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  background: #dfdfdf;
+  border: 2px inset #808080;
 }
 
 .manufacturer {
@@ -49,12 +54,12 @@
 .year {
   margin: 4px 0;
   font-size: 14px;
-  color: #666;
+  color: #444;
 }
 
 .productLayout {
   display: grid;
-  grid-template-columns: 1fr 400px;
+  grid-template-columns: 1fr 380px;
   gap: 24px;
   margin-bottom: 24px;
 }
@@ -71,21 +76,21 @@
 }
 
 .infoCard {
-  padding: 24px;
+  padding: 20px;
   background: #c0c0c0;
   height: fit-content;
-  border: 3px solid;
+  border: 2px solid;
   border-color: #ffffff #808080 #808080 #ffffff;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 1px 1px 0px #ffffff;
 }
 
 .section {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .sectionTitle {
-  margin: 0 0 12px 0;
-  font-size: 18px;
+  margin: 0 0 10px 0;
+  font-size: 16px;
   font-family: 'MS Sans Serif', sans-serif;
   color: #000080;
 }
@@ -94,42 +99,46 @@
   line-height: 1.6;
   font-size: 14px;
   margin: 0;
+  padding: 8px 12px;
+  background: #ffffff;
+  border: 2px inset #808080;
 }
 
 .priceSection {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 12px;
 }
 
 .price {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
   color: #008000;
 }
 
 .originalPrice {
-  font-size: 18px;
-  color: #999;
+  font-size: 16px;
+  color: #666;
   text-decoration: line-through;
 }
 
 .stock {
   margin: 0;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: bold;
   color: #008000;
 }
 
 .category {
   margin: 0;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: bold;
 }
 
 .specsFrame {
   padding: 16px;
-  background: white;
+  background: #ffffff;
+  border: 2px inset #808080;
 }
 
 .specsList {
@@ -140,7 +149,7 @@
 
 .specItem {
   padding: 8px 0;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid #c0c0c0;
   font-size: 14px;
   display: flex;
   gap: 8px;
@@ -177,14 +186,14 @@
 .addToCartButton {
   width: 100%;
   padding: 14px 32px;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: bold;
   cursor: pointer;
   background: #c0c0c0;
-  border: 3px solid;
+  border: 2px solid;
   border-color: #ffffff #808080 #808080 #ffffff;
   font-family: 'MS Sans Serif', sans-serif;
-  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 0px #000;
 }
 
 .addToCartButton:hover {
@@ -223,18 +232,14 @@
     padding: 6px 10px;
   }
 
-  .productFrame {
+  .frameBody {
     padding: 16px;
   }
 
   .productHeader {
-    gap: 12px;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-  }
-
-  .productTitle {
-    font-size: 20px;
+    gap: 10px;
+    margin-bottom: 16px;
+    padding: 10px 12px;
   }
 
   .manufacturer {
@@ -313,12 +318,8 @@
     padding: 8px;
   }
 
-  .productFrame {
+  .frameBody {
     padding: 12px;
-  }
-
-  .productTitle {
-    font-size: 18px;
   }
 
   .price {

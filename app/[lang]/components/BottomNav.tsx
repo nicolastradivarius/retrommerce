@@ -1,10 +1,10 @@
 "use client";
 
 import { Frame, List } from "@react95/core";
-import { Logo, Mmsys113, Lock, Computer } from "@react95/icons";
+import { Logo, Mmsys113, Lock, Computer, FolderSettings } from "@react95/icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, cloneElement } from "react";
 import type { Locale } from "../dictionaries";
 import type { UserWithAvatar } from "@/lib/auth";
 import styles from "./BottomNav.module.css";
@@ -35,7 +35,7 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
     ...(user
       ? [
           {
-            icon: <Mmsys113 variant="16x16_4" />,
+            icon: <FolderSettings variant="16x16_4"/>,
             label: dict.userPanel,
             href: `/${lang}/user`,
             basePath: "user",
@@ -77,7 +77,7 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
                 {menuItems.map((item, index) => (
                   <List.Item
                     key={index}
-                    icon={item.icon}
+                    icon={cloneElement(item.icon, { variant: "32x32_4" })}
                     onClick={() => {
                       setMobileMenuOpen(false);
                       window.location.href = item.href;
