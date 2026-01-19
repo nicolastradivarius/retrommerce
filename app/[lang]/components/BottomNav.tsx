@@ -1,7 +1,7 @@
 "use client";
 
 import { Frame, List } from "@react95/core";
-import { User1, Mmsys113, Lock, Computer, FolderSettings } from "@react95/icons";
+import { User1, Mmsys113, Lock, Computer, FolderSettings, Systray300, KeyboardMouse, Fte128, Mmsys103, Mmsys110, Network2, Tree } from "@react95/icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, cloneElement } from "react";
@@ -29,7 +29,7 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
   useEffect(() => {
     const formatTime = () => {
       return new Date().toLocaleTimeString("es-AR", {
-        hour: "2-digit",
+        hour: "numeric",
         minute: "2-digit",
         hour12: true,
       }).replace(/a\.?\s?m\.?/gi, 'AM').replace(/p\.?\s?m\.?/gi, 'PM');
@@ -149,6 +149,11 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
             {/* System Tray */}
             <div className={styles.systemTray}>
               <div className={styles.trayInner}>
+                <Mmsys103 variant="16x16_4"/>
+                <Tree variant="16x16_4"/>
+                <Network2 variant="16x16_4"/>
+                <Mmsys110 variant="16x16_4"/>
+                <Systray300 variant="16x16_4"/>
                 <div className={styles.clock}>
                   {currentTime}
                 </div>
