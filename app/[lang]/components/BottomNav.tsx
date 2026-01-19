@@ -1,10 +1,10 @@
 "use client";
 
 import { Frame, List } from "@react95/core";
-import { Logo, Mmsys113, Lock, Computer, FolderSettings } from "@react95/icons";
+import { User1, Mmsys113, Lock, Computer, FolderSettings } from "@react95/icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, cloneElement } from "react";
+import { useState, useEffect, cloneElement } from "react";
 import type { Locale } from "../dictionaries";
 import type { UserWithAvatar } from "@/lib/auth";
 import styles from "./BottomNav.module.css";
@@ -23,7 +23,29 @@ interface BottomNavProps {
 
 export default function BottomNav({ lang, dict, user }: BottomNavProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [currentTime, setCurrentTime] = useState("");
   const pathname = usePathname();
+
+  useEffect(() => {
+    const formatTime = () => {
+      return new Date().toLocaleTimeString("es-AR", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      }).replace(/a\.?\s?m\.?/gi, 'AM').replace(/p\.?\s?m\.?/gi, 'PM');
+    };
+
+    // Establecer la hora inicial
+    setCurrentTime(formatTime());
+
+    // Actualizar cada segundo
+    const interval = setInterval(() => {
+      setCurrentTime(formatTime());
+    }, 1000);
+
+    // Limpiar el intervalo al desmontar
+    return () => clearInterval(interval);
+  }, []);
 
   const menuItems = [
     {
@@ -102,12 +124,10 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <div className={styles.startButtonInner}>
-                <Logo variant="32x32_4" />
+                <User1 variant="16x16_4"/>
                 <span className={styles.startText}>{dict.start}</span>
               </div>
             </button>
-
-            <div className={styles.separator} />
 
             {/* Ventanas minimizadas / Enlaces rápidos */}
             <div className={styles.windows}>
@@ -130,10 +150,7 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
             <div className={styles.systemTray}>
               <div className={styles.trayInner}>
                 <div className={styles.clock}>
-                  {new Date().toLocaleTimeString("es-AR", {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
+                  {currentTime}
                 </div>
               </div>
             </div>
