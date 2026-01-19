@@ -68,7 +68,7 @@
 
 .featuredName {
     margin: 0;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: bold;
     color: #000080;
     line-height: 1.2;
@@ -81,7 +81,7 @@
 
 .featuredManufacturer {
     margin: 0;
-    font-size: 10px;
+    font-size: 11px;
     color: #666;
 }
 
@@ -94,13 +94,13 @@
 }
 
 .featuredPrice {
-    font-size: 14px;
+    font-size: 11px;
     font-weight: bold;
     color: #008000;
 }
 
 .featuredOriginalPrice {
-    font-size: 10px;
+    font-size: 11px;
     color: #999;
     text-decoration: line-through;
 }
@@ -112,7 +112,7 @@
 
     .featuredImagePlaceholder {
         height: 70px;
-        font-size: 10px;
+        font-size: 11px;
     }
 
     .featuredInfo {
@@ -124,6 +124,6 @@
     }
 
     .featuredPrice {
-        font-size: 12px;
+        font-size: 11px;
     }
 }

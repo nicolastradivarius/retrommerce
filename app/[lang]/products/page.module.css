@@ -23,14 +23,14 @@
 
 .title {
     margin: 0;
-    font-size: 32px;
+    font-size: 11px;
     color: white;
     text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
 }
 
 .subtitle {
     margin: 4px 0 0 0;
-    font-size: 14px;
+    font-size: 11px;
     color: #c0c0c0;
 }
 
@@ -104,7 +104,7 @@
 
 .featuredName {
     margin: 0;
-    font-size: 13px;
+    font-size: 11px;
     font-family: "MS Sans Serif", sans-serif;
     font-weight: bold;
     color: #333;
@@ -126,13 +126,13 @@
 }
 
 .featuredPrice {
-    font-size: 16px;
+    font-size: 11px;
     font-weight: bold;
     color: #008000;
 }
 
 .featuredOriginalPrice {
-    font-size: 12px;
+    font-size: 11px;
     color: #999;
     text-decoration: line-through;
 }
@@ -146,7 +146,7 @@
 .sectionTitle {
     margin: 0 0 24px 0;
     font-family: "MS Sans Serif", sans-serif;
-    font-size: 20px;
+    font-size: 11px;
 }
 
 .productGrid {
@@ -197,7 +197,7 @@
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 12px;
+    font-size: 11px;
     margin-bottom: 12px;
     text-align: center;
     padding: 8px;
@@ -205,21 +205,21 @@
 
 .productName {
     margin: 0;
-    font-size: 16px;
+    font-size: 11px;
     font-family: "MS Sans Serif", sans-serif;
     font-weight: bold;
 }
 
 .manufacturer {
     margin: 0;
-    font-size: 12px;
+    font-size: 11px;
     color: #000080;
     font-weight: bold;
 }
 
 .year {
     margin: 0;
-    font-size: 12px;
+    font-size: 11px;
     color: #666;
 }
 
@@ -231,20 +231,20 @@
 }
 
 .price {
-    font-size: 18px;
+    font-size: 11px;
     font-weight: bold;
     color: #008000;
 }
 
 .originalPrice {
-    font-size: 14px;
+    font-size: 11px;
     color: #999;
     text-decoration: line-through;
 }
 
 .stock {
     margin: 0;
-    font-size: 12px;
+    font-size: 11px;
     color: #666;
 }
 
@@ -293,7 +293,7 @@
     text-decoration: none;
     color: black;
     font-family: "MS Sans Serif", sans-serif;
-    font-size: 12px;
+    font-size: 11px;
 }
 
 .pageNumber:hover {
@@ -314,7 +314,7 @@
     font-family: "MS Sans Serif", sans-serif;
     font-weight: bold;
     color: #666;
-    font-size: 12px;
+    font-size: 11px;
 }
 
 /* Responsive para móviles */
@@ -331,11 +331,11 @@
     }
 
     .title {
-        font-size: 22px;
+        font-size: 11px;
     }
 
     .subtitle {
-        font-size: 12px;
+        font-size: 11px;
     }
 
     /* Panel destacados móvil */
@@ -350,7 +350,7 @@
     }
 
     .featuredTitle {
-        font-size: 14px;
+        font-size: 11px;
     }
 
     .featuredCard {
@@ -360,7 +360,7 @@
 
     .featuredImagePlaceholder {
         height: 60px;
-        font-size: 9px;
+        font-size: 11px;
         margin-bottom: 6px;
         padding: 4px;
     }
@@ -370,15 +370,15 @@
     }
 
     .featuredManufacturer {
-        font-size: 9px;
+        font-size: 11px;
     }
 
     .featuredPrice {
-        font-size: 13px;
+        font-size: 11px;
     }
 
     .featuredOriginalPrice {
-        font-size: 10px;
+        font-size: 11px;
     }
 
     /* Grid productos móvil */
@@ -387,7 +387,7 @@
     }
 
     .sectionTitle {
-        font-size: 16px;
+        font-size: 11px;
         margin-bottom: 16px;
     }
 
@@ -403,22 +403,22 @@
 
     .productImagePlaceholder {
         height: 80px;
-        font-size: 9px;
+        font-size: 11px;
         margin-bottom: 8px;
         padding: 4px;
     }
 
     .productName {
-        font-size: 12px;
+        font-size: 11px;
         line-height: 1.2;
     }
 
     .manufacturer {
-        font-size: 10px;
+        font-size: 11px;
     }
 
     .year {
-        font-size: 10px;
+        font-size: 11px;
     }
 
     .priceSection {
@@ -427,7 +427,7 @@
     }
 
     .price {
-        font-size: 14px;
+        font-size: 11px;
     }
 
     .originalPrice {
@@ -435,7 +435,7 @@
     }
 
     .stock {
-        font-size: 10px;
+        font-size: 11px;
     }
 
     /* Paginación móvil */
@@ -446,7 +446,7 @@
 
     .pageButton {
         padding: 6px 10px;
-        font-size: 12px;
+        font-size: 11px;
     }
 
     .pageNumber {
@@ -456,7 +456,7 @@
     }
 
     .pageInfo {
-        font-size: 10px;
+        font-size: 11px;
         width: 100%;
         text-align: center;
         order: -1;
@@ -475,7 +475,7 @@
     }
 
     .title {
-        font-size: 18px;
+        font-size: 11px;
     }
 
     .featuredCard {
@@ -504,7 +504,7 @@
     }
 
     .price {
-        font-size: 13px;
+        font-size: 11px;
     }
 
     .pageNumbers {

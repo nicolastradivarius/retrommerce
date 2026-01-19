@@ -78,7 +78,7 @@
 
 .userName {
     margin: 0;
-    font-size: 12px;
+    font-size: 11px;
     font-family: "MS Sans Serif", Tahoma, sans-serif;
     font-weight: bold;
     color: #000;
@@ -96,7 +96,7 @@
     padding: 2px 6px;
     background: #000080;
     color: #fff;
-    font-size: 10px;
+    font-size: 11px;
     font-family: "MS Sans Serif", Tahoma, sans-serif;
     font-weight: bold;
     margin-top: 6px;
@@ -230,6 +230,6 @@
     }
 
     .desktopIcon span {
-        font-size: 10px;
+        font-size: 11px;
     }
 }

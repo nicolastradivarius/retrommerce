@@ -27,7 +27,7 @@
 }
 
 .titleBar {
-  font-size: 13px;
+  font-size: 11px;
 }
 
 .frameBody {
@@ -46,14 +46,14 @@
 
 .manufacturer {
   margin: 4px 0;
-  font-size: 14px;
+  font-size: 11px;
   color: #000080;
   font-weight: bold;
 }
 
 .year {
   margin: 4px 0;
-  font-size: 14px;
+  font-size: 11px;
   color: #444;
 }
 
@@ -90,14 +90,14 @@
 
 .sectionTitle {
   margin: 0 0 10px 0;
-  font-size: 16px;
+  font-size: 11px;
   font-family: 'MS Sans Serif', sans-serif;
   color: #000080;
 }
 
 .description {
   line-height: 1.6;
-  font-size: 14px;
+  font-size: 11px;
   margin: 0;
   padding: 8px 12px;
   background: #ffffff;
@@ -111,27 +111,27 @@
 }
 
 .price {
-  font-size: 22px;
+  font-size: 11px;
   font-weight: bold;
   color: #008000;
 }
 
 .originalPrice {
-  font-size: 16px;
+  font-size: 11px;
   color: #666;
   text-decoration: line-through;
 }
 
 .stock {
   margin: 0;
-  font-size: 15px;
+  font-size: 11px;
   font-weight: bold;
   color: #008000;
 }
 
 .category {
   margin: 0;
-  font-size: 15px;
+  font-size: 11px;
   font-weight: bold;
 }
 
@@ -150,7 +150,7 @@
 .specItem {
   padding: 8px 0;
   border-bottom: 1px solid #c0c0c0;
-  font-size: 14px;
+  font-size: 11px;
   display: flex;
   gap: 8px;
 }
@@ -186,7 +186,7 @@
 .addToCartButton {
   width: 100%;
   padding: 14px 32px;
-  font-size: 15px;
+  font-size: 11px;
   font-weight: bold;
   cursor: pointer;
   background: #c0c0c0;
@@ -228,7 +228,7 @@
   }
 
   .backLink button {
-    font-size: 12px;
+    font-size: 11px;
     padding: 6px 10px;
   }
 
@@ -243,11 +243,11 @@
   }
 
   .manufacturer {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .year {
-    font-size: 12px;
+    font-size: 11px;
   }
 
   .section {
@@ -255,12 +255,12 @@
   }
 
   .sectionTitle {
-    font-size: 14px;
+    font-size: 11px;
     margin-bottom: 8px;
   }
 
   .description {
-    font-size: 13px;
+    font-size: 11px;
   }
 
   .infoCard {
@@ -268,19 +268,19 @@
   }
 
   .price {
-    font-size: 20px;
+    font-size: 11px;
   }
 
   .originalPrice {
-    font-size: 14px;
+    font-size: 11px;
   }
 
   .stock {
-    font-size: 14px;
+    font-size: 11px;
   }
 
   .category {
-    font-size: 14px;
+    font-size: 11px;
   }
 
   .specsFrame {
@@ -288,7 +288,7 @@
   }
 
   .specItem {
-    font-size: 12px;
+    font-size: 11px;
     padding: 6px 0;
     flex-direction: column;
     gap: 2px;
@@ -309,7 +309,7 @@
 
   .addToCartButton {
     padding: 12px 20px;
-    font-size: 14px;
+    font-size: 11px;
   }
 }
 
@@ -323,11 +323,11 @@
   }
 
   .price {
-    font-size: 18px;
+    font-size: 11px;
   }
 
   .addToCartButton {
     padding: 10px 16px;
-    font-size: 13px;
+    font-size: 11px;
   }
 }

@@ -17,7 +17,7 @@
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 16px;
+  font-size: 11px;
   text-align: center;
   padding: 16px;
   font-family: 'MS Sans Serif', sans-serif;
@@ -82,7 +82,7 @@
 
   .imagePlaceholder {
     height: 200px;
-    font-size: 13px;
+    font-size: 11px;
     padding: 12px;
   }
 
@@ -96,7 +96,7 @@
   }
 
   .indicator {
-    font-size: 12px;
+    font-size: 11px;
     min-width: 50px;
   }
 

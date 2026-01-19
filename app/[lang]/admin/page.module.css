@@ -31,7 +31,7 @@
 
 .title {
   margin: 0;
-  font-size: 24px;
+  font-size: 11px;
   color: #800000;
 }
 
@@ -40,7 +40,7 @@
   padding: 2px 8px;
   background: #800000;
   color: #fff;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: bold;
 }
 
@@ -50,7 +50,7 @@
 
 .welcomeTitle {
   margin: 0 0 10px 0;
-  font-size: 18px;
+  font-size: 11px;
 }
 
 .welcomeText {
@@ -74,14 +74,14 @@
 }
 
 .statValue {
-  font-size: 24px;
+  font-size: 11px;
   font-weight: bold;
   color: #800000;
   margin: 0;
 }
 
 .statLabel {
-  font-size: 12px;
+  font-size: 11px;
   color: #666;
   margin: 5px 0 0 0;
 }
@@ -91,7 +91,7 @@
 }
 
 .menuTitle {
-  font-size: 14px;
+  font-size: 11px;
   font-weight: bold;
   margin-bottom: 10px;
 }
@@ -121,5 +121,5 @@
   margin-top: 20px;
   color: #000080;
   text-decoration: underline;
-  font-size: 14px;
+  font-size: 11px;
 }
