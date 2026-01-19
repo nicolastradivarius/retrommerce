@@ -43,7 +43,14 @@ export default async function HomePage({
 
 	const dict = await getDictionary(lang);
 	const searchParamsResolved = await searchParams;
-	const page = parseInt(searchParamsResolved.page || "1");
+
+	const rawPage = searchParamsResolved.page;
+	const page = rawPage ? Number(rawPage) : 1;
+
+	if (!Number.isInteger(page) || page < 1) {
+		notFound();
+	}
+
 	const skip = (page - 1) * ITEMS_PER_PAGE;
 
 	// Obtener productos destacados (siempre se muestran)
