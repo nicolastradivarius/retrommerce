@@ -18,7 +18,7 @@
 .taskbarContent {
     display: flex;
     align-items: stretch;
-    height: 32px;
+    height: 28px;
     padding: 2px;
     gap: 2px;
 }
@@ -44,7 +44,7 @@
     border-color: #ffffff #808080 #808080 #ffffff;
     font-family: "MS Sans Serif", sans-serif;
     font-weight: bold;
-    font-size: 14px;
+    font-size: 11px;
     cursor: pointer;
 }
 
@@ -87,7 +87,7 @@
     border: 2px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
     font-family: "MS Sans Serif", sans-serif;
-    font-size: 12px;
+    font-size: 11px;
     text-decoration: none;
     color: #000;
     white-space: nowrap;
@@ -153,8 +153,7 @@
 
 .clock {
     font-family: "MS Sans Serif", sans-serif;
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 11px;
     padding: 0 4px;
 }
 
@@ -211,7 +210,7 @@
     .mobileMenuContainer {
         display: block;
         position: fixed;
-        bottom: 32px;
+        bottom: 28px;
         left: 4px;
         z-index: 1001;
     }
@@ -240,7 +239,7 @@
     }
 
     .logoText {
-        font-size: 14px;
+        font-size: 11px;
     }
 
     .avatarContainer {
@@ -258,7 +257,7 @@
     }
 
     .taskbarContent {
-        height: 32px;
+        height: 28px;
     }
 
     .startText {
