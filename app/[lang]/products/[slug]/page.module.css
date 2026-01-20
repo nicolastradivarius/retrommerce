@@ -206,6 +206,12 @@
   transform: translateY(1px);
 }
 
+.favoriteRow {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+}
+
 @media (max-width: 900px) {
   .productLayout {
     grid-template-columns: 1fr;

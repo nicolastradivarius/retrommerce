@@ -1,0 +1,49 @@
+.container {
+  min-height: 100vh;
+  background: #008080;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.window {
+  width: 100%;
+  max-width: 1000px;
+  background: #c0c0c0;
+  border: 2px solid;
+  border-color: #ffffff #808080 #808080 #ffffff;
+  box-shadow: 2px 2px 0px #000;
+}
+
+.windowContent {
+  padding: 16px;
+  background: #c0c0c0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.empty {
+  margin: 0 0 16px 0;
+  font-size: 11px;
+  font-family: "MS Sans Serif", sans-serif;
+}
+
+.backLink {
+  display: inline-block;
+  margin-top: 16px;
+  color: #000080;
+  text-decoration: underline;
+  font-size: 11px;
+  font-family: "MS Sans Serif", sans-serif;
+}

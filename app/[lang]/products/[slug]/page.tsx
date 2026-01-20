@@ -7,6 +7,7 @@ import { formatPrice, hasDiscount } from "@/lib/utils";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
 import BottomNav from "@/app/[lang]/components/BottomNav";
 import ImageCarousel from "@/app/[lang]/components/ImageCarousel";
+import FavoriteButton from "@/app/[lang]/components/FavoriteButton";
 import { getDictionary, hasLocale } from "../../dictionaries";
 import styles from "./page.module.css";
 
@@ -37,6 +38,18 @@ export default async function ProductDetailPage({
 
 	// Parsear las especificaciones
 	const specs = product.specifications as Record<string, string> | null;
+
+	const isFavorite = user
+		? await prisma.favorite.findUnique({
+				where: {
+					userId_productId: {
+						userId: user.sub,
+						productId: product.id,
+					},
+				},
+				select: { id: true },
+			})
+		: null;
 
 	return (
 		<div className={styles.container}>
@@ -131,6 +144,16 @@ export default async function ProductDetailPage({
 											{dict.product.category}
 										</h2>
 										<p className={styles.category}>{product.category.name}</p>
+									</div>
+
+									<div className={styles.favoriteRow}>
+										<FavoriteButton
+											productId={product.id}
+											initialIsFavorite={Boolean(isFavorite)}
+											canFavorite={Boolean(user)}
+											lang={lang}
+											dict={dict.product}
+										/>
 									</div>
 
 									{product.stock > 0 && (

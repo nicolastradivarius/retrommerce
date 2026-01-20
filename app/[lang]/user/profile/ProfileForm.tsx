@@ -35,6 +35,7 @@ interface ProfileFormProps {
 			myProfile: string;
 			userPanel: string;
 			login: string;
+			favorites: string;
 		};
 		topBar: {
 			hello: string;

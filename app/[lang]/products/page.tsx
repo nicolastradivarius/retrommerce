@@ -98,6 +98,17 @@ export default async function HomePage({
 	const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
 	const user = await getCurrentUserWithAvatar();
 
+    const favoriteIds = user
+        ? new Set(
+                (
+                    await prisma.favorite.findMany({
+                        where: { userId: user.sub },
+                        select: { productId: true },
+                    })
+                ).map((favorite) => favorite.productId),
+            )
+        : new Set<string>();
+
 	return (
 		<div className={styles.container}>
 			<BottomNav lang={lang} dict={dict.navigation} user={user} />
@@ -161,6 +172,8 @@ export default async function HomePage({
 									product={product}
 									lang={lang}
 									dict={dict}
+									isFavorite={favoriteIds.has(product.id)}
+									canFavorite={Boolean(user)}
 								/>
 							))}
 						</div>

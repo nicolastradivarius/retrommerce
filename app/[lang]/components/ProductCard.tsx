@@ -2,6 +2,7 @@ import { Frame } from '@react95/core';
 import Link from 'next/link';
 import { formatPrice, hasDiscount } from '@/lib/utils';
 import type { Locale } from '../dictionaries';
+import FavoriteButton from './FavoriteButton';
 import styles from './ProductCard.module.css';
 
 export interface ProductCardProps {
@@ -22,11 +23,22 @@ export interface ProductCardProps {
       stock: string;
       units: string;
       outOfStock: string;
+      addToFavorites: string;
+      removeFromFavorites: string;
+      loginToFavorite: string;
     };
   };
+  isFavorite?: boolean;
+  canFavorite?: boolean;
 }
 
-export default function ProductCard({ product, lang, dict }: ProductCardProps) {
+export default function ProductCard({
+  product,
+  lang,
+  dict,
+  isFavorite = false,
+  canFavorite = false,
+}: ProductCardProps) {
   return (
     <Link href={`/${lang}/products/${product.slug}`} className={styles.productLink}>
       <Frame className={styles.productCard}>
@@ -54,6 +66,16 @@ export default function ProductCard({ product, lang, dict }: ProductCardProps) {
               ? `${dict.productCard.stock}: ${product.stock} ${dict.productCard.units}` 
               : dict.productCard.outOfStock}
           </p>
+
+          <div className={styles.actionsRow}>
+            <FavoriteButton
+              productId={product.id}
+              initialIsFavorite={isFavorite}
+              canFavorite={canFavorite}
+              lang={lang}
+              dict={dict.productCard}
+            />
+          </div>
         </div>
       </Frame>
     </Link>

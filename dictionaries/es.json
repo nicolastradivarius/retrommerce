@@ -30,7 +30,10 @@
     "outOfStock": "Sin stock",
     "category": "Categoría",
     "addToCart": "Agregar al carrito",
-    "technicalSpecs": "Especificaciones Técnicas"
+    "technicalSpecs": "Especificaciones Técnicas",
+    "addToFavorites": "Agregar a favoritos",
+    "removeFromFavorites": "Quitar de favoritos",
+    "loginToFavorite": "Inicia sesión para guardar"
   },
   "auth": {
     "login": "Iniciar Sesión",
@@ -87,7 +90,8 @@
     "products": "Productos",
     "myProfile": "Mi Perfil",
     "userPanel": "Panel de Control",
-    "login": "Iniciar Sesión"
+    "login": "Iniciar Sesión",
+    "favorites": "Favoritos"
   },
   "logoutButton": {
     "logout": "Cerrar sesión",
@@ -98,12 +102,20 @@
     "year": "Año",
     "stock": "Stock",
     "units": "unidades",
-    "outOfStock": "Sin stock"
+    "outOfStock": "Sin stock",
+    "addToFavorites": "Favorito",
+    "removeFromFavorites": "Quitar favorito",
+    "loginToFavorite": "Inicia sesión"
   },
   "notFound": {
     "title": "Error 404 - Página no encontrada",
     "message": "No se puede encontrar la página solicitada.",
     "description": "La página que busca puede haber sido eliminada, cambiado de nombre o no está disponible temporalmente.",
     "errorCode": "Código de error: HTTP 404 - Archivo no encontrado"
+  },
+  "favorites": {
+    "title": "Favoritos",
+    "empty": "Todavía no tienes productos favoritos.",
+    "backToProducts": "Volver a productos"
   }
 }

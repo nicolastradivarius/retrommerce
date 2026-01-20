@@ -1,0 +1,27 @@
+.button {
+  padding: 6px 10px;
+  font-size: 11px;
+  font-family: "MS Sans Serif", sans-serif;
+  background: #c0c0c0;
+  border: 2px outset #dfdfdf;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #d4d4d4;
+}
+
+.button:active {
+  border-style: inset;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.active {
+  background: #000080;
+  color: #fff;
+  border-color: #000080 #000040 #000040 #000080;
+}

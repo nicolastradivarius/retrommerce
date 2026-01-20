@@ -115,6 +115,12 @@
     color: #666;
 }
 
+.actionsRow {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 6px;
+}
+
 @media (max-width: 600px) {
     .productImagePlaceholder {
         height: 100px;

@@ -2,7 +2,8 @@ import { Frame } from '@react95/core';
 import { Computer } from '@react95/icons';
 import Link from 'next/link';
 import { redirect, notFound } from 'next/navigation';
-import { getCurrentUser } from '@/lib/auth';
+import { getCurrentUserWithAvatar } from '@/lib/auth';
+import BottomNav from '../components/BottomNav';
 import { getDictionary, hasLocale } from '../dictionaries';
 import styles from './page.module.css';
 import LoginForm from './LoginForm';
@@ -19,7 +20,7 @@ export default async function LoginPage({
   }
   
   const dict = await getDictionary(lang);
-  const user = await getCurrentUser();
+  const user = await getCurrentUserWithAvatar();
 
   if (user) {
     redirect(`/${lang}/products`);
@@ -27,6 +28,7 @@ export default async function LoginPage({
 
   return (
     <div className={styles.container}>
+      <BottomNav lang={lang} dict={dict.navigation} user={user} />
       <div className={styles.main}>
         <Frame width="400px" height="auto" padding={25} boxShadow="in">
           <div className={styles.header}>

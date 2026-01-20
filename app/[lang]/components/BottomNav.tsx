@@ -1,7 +1,21 @@
 "use client";
 
 import { Frame, List } from "@react95/core";
-import { User1, Mmsys113, Lock, Computer, FolderSettings, Systray300, KeyboardMouse, Fte128, Mmsys103, Mmsys110, Network2, Tree } from "@react95/icons";
+import {
+    User1,
+    Mmsys113,
+    Lock,
+    Computer,
+    FolderSettings,
+    Systray300,
+    KeyboardMouse,
+    Fte128,
+    Mmsys103,
+    Mmsys110,
+    Network2,
+    Tree,
+    FolderOpen,
+} from "@react95/icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, cloneElement } from "react";
@@ -10,15 +24,16 @@ import type { UserWithAvatar } from "@/lib/auth";
 import styles from "./BottomNav.module.css";
 
 interface BottomNavProps {
-  lang: Locale;
-  dict: {
-    start: string;
-    products: string;
-    myProfile: string;
-    userPanel: string;
-    login: string;
-  };
-  user?: UserWithAvatar | null;
+    lang: Locale;
+    dict: {
+        start: string;
+        products: string;
+        myProfile: string;
+        userPanel: string;
+        login: string;
+        favorites: string;
+    };
+    user?: UserWithAvatar | null;
 }
 
 export default function BottomNav({ lang, dict, user }: BottomNavProps) {
@@ -62,6 +77,12 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
             href: `/${lang}/user`,
             basePath: "user",
           },
+          {
+            icon: <FolderOpen variant="16x16_4" />,
+            label: dict.favorites,
+            href: `/${lang}/user/favorites`,
+            basePath: "user/favorites",
+          },
         ]
       : [
           {
@@ -78,6 +99,9 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
     if (!pathname) return false;
     // Remove the lang prefix from pathname
     const pathWithoutLang = pathname.replace(`/${lang}`, "");
+    if (basePath === "user") {
+      return pathWithoutLang === "/user";
+    }
     // Check if current path starts with the base path
     return pathWithoutLang.startsWith(`/${basePath}`);
   };
