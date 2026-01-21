@@ -87,7 +87,7 @@ export default async function UserPage({
 									<Notepad variant="16x16_4" />
 									{dict.user.editProfile}
 								</Link>
-								<LogoutButton lang={lang} dict={dict} />
+								<LogoutButton lang={lang} dict={dict.logoutButton} />
 							</div>
 						</Frame>
 					</div>
