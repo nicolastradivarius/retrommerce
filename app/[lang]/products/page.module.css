@@ -151,8 +151,8 @@
 
 .productGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+	 gap: 16px;
     margin-bottom: 24px;
 }
 
@@ -251,11 +251,18 @@
 /* Paginación */
 .pagination {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     gap: 12px;
     padding: 20px 16px;
     border-top: 2px solid #808080;
+}
+
+.paginationControls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
     flex-wrap: wrap;
 }
 
@@ -444,6 +451,10 @@
         padding: 12px 8px;
     }
 
+    .paginationControls {
+        gap: 8px;
+    }
+
     .pageButton {
         padding: 6px 10px;
         font-size: 11px;
@@ -457,9 +468,7 @@
 
     .pageInfo {
         font-size: 11px;
-        width: 100%;
         text-align: center;
-        order: -1;
     }
 }
 

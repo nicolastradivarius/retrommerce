@@ -180,43 +180,45 @@ export default async function HomePage({
 
 						{totalPages > 1 && (
 							<div className={styles.pagination}>
-								{page > 1 && (
-									<Link
-										href={`/${lang}/products?page=${page - 1}`}
-										className={styles.pageButton}
-									>
-										{dict.home.previous}
-									</Link>
-								)}
-
-								<div className={styles.pageNumbers}>
-									{Array.from({ length: totalPages }, (_, i) => i + 1).map(
-										(pageNum) => (
-											<Link
-												key={pageNum}
-												href={`/${lang}/products?page=${pageNum}`}
-												className={`${styles.pageNumber} ${pageNum === page ? styles.pageNumberActive : ""}`}
-											>
-												{pageNum}
-											</Link>
-										),
-									)}
-								</div>
-
 								<span className={styles.pageInfo}>
 									{dict.home.pageOf
 										.replace("{page}", String(page))
 										.replace("{total}", String(totalPages))}
 								</span>
 
-								{page < totalPages && (
-									<Link
-										href={`/${lang}/products?page=${page + 1}`}
-										className={styles.pageButton}
-									>
-										{dict.home.next}
-									</Link>
-								)}
+								<div className={styles.paginationControls}>
+									{page > 1 && (
+										<Link
+											href={`/${lang}/products?page=${page - 1}`}
+											className={styles.pageButton}
+										>
+											{dict.home.previous}
+										</Link>
+									)}
+
+									<div className={styles.pageNumbers}>
+										{Array.from({ length: totalPages }, (_, i) => i + 1).map(
+											(pageNum) => (
+												<Link
+													key={pageNum}
+													href={`/${lang}/products?page=${pageNum}`}
+													className={`${styles.pageNumber} ${pageNum === page ? styles.pageNumberActive : ""}`}
+												>
+													{pageNum}
+												</Link>
+											),
+										)}
+									</div>
+
+									{page < totalPages && (
+										<Link
+											href={`/${lang}/products?page=${page + 1}`}
+											className={styles.pageButton}
+										>
+											{dict.home.next}
+										</Link>
+									)}
+								</div>
 							</div>
 						)}
 					</Frame>
