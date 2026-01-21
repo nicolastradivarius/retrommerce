@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { Msrating106 } from "@react95/icons";
 import type { Locale } from "../dictionaries";
 import styles from "./FavoriteButton.module.css";
 
@@ -70,8 +71,10 @@ export default function FavoriteButton({
             onClick={handleClick}
             disabled={loading}
             aria-pressed={isFavorite}
+            aria-label={label}
+            title={label}
         >
-            {label}
+            <Msrating106 variant="16x16_4" />
         </button>
     );
 }

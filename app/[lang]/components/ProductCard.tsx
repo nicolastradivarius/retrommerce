@@ -45,6 +45,16 @@ export default function ProductCard({
         <div className={styles.productImagePlaceholder}>
           {product.name}
         </div>
+        <div className={styles.favoriteButtonContainer}>
+          <FavoriteButton
+            productId={product.id}
+            initialIsFavorite={isFavorite}
+            canFavorite={canFavorite}
+            lang={lang}
+            dict={dict.productCard}
+            className={styles.favoriteButtonIcon}
+          />
+        </div>
         <div className={styles.productInfo}>
           <h3 className={styles.productName}>{product.name}</h3>
           {product.manufacturer && (
@@ -66,16 +76,6 @@ export default function ProductCard({
               ? `${dict.productCard.stock}: ${product.stock} ${dict.productCard.units}` 
               : dict.productCard.outOfStock}
           </p>
-
-          <div className={styles.actionsRow}>
-            <FavoriteButton
-              productId={product.id}
-              initialIsFavorite={isFavorite}
-              canFavorite={canFavorite}
-              lang={lang}
-              dict={dict.productCard}
-            />
-          </div>
         </div>
       </Frame>
     </Link>

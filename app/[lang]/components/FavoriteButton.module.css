@@ -25,3 +25,7 @@
   color: #fff;
   border-color: #000080 #000040 #000040 #000080;
 }
+
+.active:hover {
+  background: #0000cd;
+}
