@@ -17,7 +17,7 @@
     display: grid;
     grid-template-columns: 280px 1fr;
     gap: 16px;
-    max-width: 1000px;
+    max-width: 60%;
     width: 100%;
 }
 
@@ -111,8 +111,8 @@
 
 .profileActions {
     display: flex;
-    flex-direction: column;
-    gap: 4px;
+    flex-direction: row;
+    gap: 8px;
     padding: 4px;
 }
 
@@ -129,6 +129,7 @@
     font-family: "MS Sans Serif", Tahoma, sans-serif;
     font-size: 11px;
     cursor: pointer;
+    flex: 1;
 }
 
 .editProfileLink:hover {
@@ -137,6 +138,35 @@
 
 .editProfileLink:active {
     border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.logoutButton {
+    flex: 1;
+}
+
+.logoutButton button {
+    width: 100%;
+    padding: 4px 8px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    color: #000;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.logoutButton button:hover {
+    background: #d4d4d4;
+}
+
+.logoutButton button:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.logoutButton button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 /* Grid de iconos estilo escritorio */

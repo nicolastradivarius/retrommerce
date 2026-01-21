@@ -15,6 +15,7 @@ import {
     Network2,
     Tree,
     FolderOpen,
+    Msrating106,
 } from "@react95/icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -78,7 +79,7 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
             basePath: "user",
           },
           {
-            icon: <FolderOpen variant="16x16_4" />,
+            icon: <Msrating106 variant="16x16_4" />,
             label: dict.favorites,
             href: `/${lang}/user/favorites`,
             basePath: "user/favorites",

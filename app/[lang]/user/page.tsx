@@ -7,6 +7,7 @@ import {
 	Notepad,
 	Folder,
 	Awfxcg321303,
+	Msrating106,
 } from "@react95/icons";
 import Image from "next/image";
 import Link from "next/link";
@@ -87,7 +88,7 @@ export default async function UserPage({
 									<Notepad variant="16x16_4" />
 									{dict.user.editProfile}
 								</Link>
-								<LogoutButton lang={lang} dict={dict.logoutButton} />
+							<LogoutButton lang={lang} dict={dict.logoutButton} className={styles.logoutButton} />
 							</div>
 						</Frame>
 					</div>
@@ -129,7 +130,7 @@ export default async function UserPage({
 									className={styles.menuLink}
 								>
 									<div className={styles.desktopIcon}>
-										<FolderOpen variant="32x32_4" />
+										<Msrating106 variant="32x32_4" />
 										<span>{dict.user.favorites}</span>
 									</div>
 								</Link>
