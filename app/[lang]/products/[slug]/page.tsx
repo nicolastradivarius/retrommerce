@@ -153,6 +153,7 @@ export default async function ProductDetailPage({
 											canFavorite={Boolean(user)}
 											lang={lang}
 											dict={dict.product}
+											showLabel={true}
 										/>
 									</div>
 

@@ -117,6 +117,7 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
         >
           <div
             className={styles.mobileMenuContainer}
+				// Prevent click events from propagating to the overlay
             onClick={(e) => e.stopPropagation()}
           >
             <Frame className={styles.mobileMenuFrame}>
@@ -124,6 +125,7 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
                 {menuItems.map((item, index) => (
                   <List.Item
                     key={index}
+						  // Clone the icon element to change the variant prop
                     icon={cloneElement(item.icon, { variant: "32x32_4" })}
                     onClick={() => {
                       setMobileMenuOpen(false);
@@ -139,7 +141,7 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
         </div>
       )}
 
-      {/* Barra de tareas estilo Windows 95 en la parte inferior */}
+      {/* Barra de tareas en la parte inferior */}
       <div className={styles.taskbar}>
         <Frame className={styles.taskbarFrame}>
           <div className={styles.taskbarContent}>

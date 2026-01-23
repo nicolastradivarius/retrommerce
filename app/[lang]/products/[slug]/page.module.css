@@ -6,7 +6,7 @@
 }
 
 .main {
-  max-width: 1200px;
+  max-width: 60%;
   margin: 0 auto;
   padding: 24px;
   width: 100%;
@@ -32,6 +32,7 @@
 
 .frameBody {
   padding: 24px;
+  overflow: hidden;
 }
 
 .productHeader {
@@ -59,7 +60,7 @@
 
 .productLayout {
   display: grid;
-  grid-template-columns: 1fr 380px;
+  grid-template-columns: 1fr minmax(200px, 380px);
   gap: 24px;
   margin-bottom: 24px;
 }
@@ -82,6 +83,8 @@
   border: 2px solid;
   border-color: #ffffff #808080 #808080 #ffffff;
   box-shadow: inset 1px 1px 0px #ffffff;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .section {
@@ -220,10 +223,12 @@
 
   .rightColumn {
     width: 100%;
+    min-width: 0;
   }
 
   .infoCard {
     width: 100%;
+    min-width: 0;
   }
 }
 
@@ -231,6 +236,7 @@
 @media (max-width: 768px) {
   .main {
     padding: 12px;
+	 max-width: 100%;
   }
 
   .backLink button {

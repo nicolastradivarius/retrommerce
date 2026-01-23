@@ -261,7 +261,11 @@
     }
 
     .startText {
-        display: none;
+        display: inline-block;
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .systemTray {

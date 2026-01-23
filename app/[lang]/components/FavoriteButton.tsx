@@ -17,6 +17,7 @@ interface FavoriteButtonProps {
         loginToFavorite: string;
     };
     className?: string;
+    showLabel?: boolean;
 }
 
 export default function FavoriteButton({
@@ -26,6 +27,7 @@ export default function FavoriteButton({
     lang,
     dict,
     className,
+    showLabel = false,
 }: FavoriteButtonProps) {
     if (!canFavorite) {
         return null;
@@ -75,6 +77,7 @@ export default function FavoriteButton({
             title={label}
         >
             <Msrating106 variant="16x16_4" />
+            {showLabel && <span className={styles.label}>{label}</span>}
         </button>
     );
 }
