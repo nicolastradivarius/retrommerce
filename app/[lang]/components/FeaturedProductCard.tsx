@@ -21,13 +21,11 @@ export default function FeaturedProductCard({
   lang,
 }: FeaturedProductCardProps) {
   return (
-    <div className={Cursor.Pointer}>
-
     <Link
       href={`/${lang}/products/${product.slug}?from=featured`}
       className={`${styles.featuredLink} ${Cursor.Pointer}`}
     >
-      <Frame className={`${styles.featuredCard} ${Cursor.Pointer}`}>
+      <Frame className={styles.featuredCard}>
         <div className={styles.featuredImagePlaceholder}>⭐ {product.name}</div>
         <div className={styles.featuredInfo}>
           <h3 className={styles.featuredName}>{product.name}</h3>
@@ -49,7 +47,5 @@ export default function FeaturedProductCard({
         </div>
       </Frame>
     </Link>
-    </div>
-      );
-
+  );
 }
