@@ -16,8 +16,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body style={{ margin: 0, padding: 0 }}>
-        <div className={Cursor.Auto}>{children}</div>
+      <body style={{ margin: 0, padding: 0 }} className={Cursor.Auto}>
+        {children}
       </body>
     </html>
   );
