@@ -2,20 +2,16 @@
 
 import { Frame, List } from "@react95/core";
 import {
-    User1,
-    Mmsys113,
-    Lock,
-    Computer,
-    FolderSettings,
-    Systray300,
-    KeyboardMouse,
-    Fte128,
-    Mmsys103,
-    Mmsys110,
-    Network2,
-    Tree,
-    FolderOpen,
-    Msrating106,
+  User1,
+  Lock,
+  Computer,
+  FolderSettings,
+  Systray300,
+  Mmsys103,
+  Mmsys110,
+  Network2,
+  Tree,
+  Msrating106,
 } from "@react95/icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -25,34 +21,43 @@ import type { UserWithAvatar } from "@/lib/auth";
 import styles from "./BottomNav.module.css";
 
 interface BottomNavProps {
-    lang: Locale;
-    dict: {
-        start: string;
-        products: string;
-        myProfile: string;
-        userPanel: string;
-        login: string;
-        favorites: string;
-    };
-    user?: UserWithAvatar | null;
+  lang: Locale;
+  dict: {
+    start: string;
+    products: string;
+    myProfile: string;
+    userPanel: string;
+    login: string;
+    favorites: string;
+  };
+  user?: UserWithAvatar | null;
 }
 
 export default function BottomNav({ lang, dict, user }: BottomNavProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [currentTime, setCurrentTime] = useState("");
+  const [currentTime, setCurrentTime] = useState(() => {
+    return new Date()
+      .toLocaleTimeString("es-AR", {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+      })
+      .replace(/a\.?\s?m\.?/gi, "AM")
+      .replace(/p\.?\s?m\.?/gi, "PM");
+  });
   const pathname = usePathname();
 
   useEffect(() => {
     const formatTime = () => {
-      return new Date().toLocaleTimeString("es-AR", {
-        hour: "numeric",
-        minute: "2-digit",
-        hour12: true,
-      }).replace(/a\.?\s?m\.?/gi, 'AM').replace(/p\.?\s?m\.?/gi, 'PM');
+      return new Date()
+        .toLocaleTimeString("es-AR", {
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true,
+        })
+        .replace(/a\.?\s?m\.?/gi, "AM")
+        .replace(/p\.?\s?m\.?/gi, "PM");
     };
-
-    // Establecer la hora inicial
-    setCurrentTime(formatTime());
 
     // Actualizar cada segundo
     const interval = setInterval(() => {
@@ -73,7 +78,7 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
     ...(user
       ? [
           {
-            icon: <FolderSettings variant="16x16_4"/>,
+            icon: <FolderSettings variant="16x16_4" />,
             label: dict.userPanel,
             href: `/${lang}/user`,
             basePath: "user",
@@ -117,7 +122,7 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
         >
           <div
             className={styles.mobileMenuContainer}
-				// Prevent click events from propagating to the overlay
+            // Prevent click events from propagating to the overlay
             onClick={(e) => e.stopPropagation()}
           >
             <Frame className={styles.mobileMenuFrame}>
@@ -125,7 +130,7 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
                 {menuItems.map((item, index) => (
                   <List.Item
                     key={index}
-						  // Clone the icon element to change the variant prop
+                    // Clone the icon element to change the variant prop
                     icon={cloneElement(item.icon, { variant: "32x32_4" })}
                     onClick={() => {
                       setMobileMenuOpen(false);
@@ -151,7 +156,7 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <div className={styles.startButtonInner}>
-                <User1 variant="16x16_4"/>
+                <User1 variant="16x16_4" />
                 <span className={styles.startText}>{dict.start}</span>
               </div>
             </button>
@@ -176,14 +181,12 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
             {/* System Tray */}
             <div className={styles.systemTray}>
               <div className={styles.trayInner}>
-                <Mmsys103 variant="16x16_4"/>
-                <Tree variant="16x16_4"/>
-                <Network2 variant="16x16_4"/>
-                <Mmsys110 variant="16x16_4"/>
-                <Systray300 variant="16x16_4"/>
-                <div className={styles.clock}>
-                  {currentTime}
-                </div>
+                <Mmsys103 variant="16x16_4" />
+                <Tree variant="16x16_4" />
+                <Network2 variant="16x16_4" />
+                <Mmsys110 variant="16x16_4" />
+                <Systray300 variant="16x16_4" />
+                <div className={styles.clock}>{currentTime}</div>
               </div>
             </div>
           </div>
