@@ -24,7 +24,7 @@ export default function FeaturedProductCard({
     <div className={Cursor.Pointer}>
 
     <Link
-      href={`/${lang}/products/${product.slug}`}
+      href={`/${lang}/products/${product.slug}?from=featured`}
       className={`${styles.featuredLink} ${Cursor.Pointer}`}
     >
       <Frame className={`${styles.featuredCard} ${Cursor.Pointer}`}>

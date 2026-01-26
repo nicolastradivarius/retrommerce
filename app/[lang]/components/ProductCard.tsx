@@ -30,6 +30,7 @@ export interface ProductCardProps {
   };
   isFavorite?: boolean;
   canFavorite?: boolean;
+  fromPage?: string;
 }
 
 export default function ProductCard({
@@ -38,9 +39,10 @@ export default function ProductCard({
   dict,
   isFavorite = false,
   canFavorite = false,
+  fromPage = 'products',
 }: ProductCardProps) {
   return (
-    <Link href={`/${lang}/products/${product.slug}`} className={styles.productLink}>
+    <Link href={`/${lang}/products/${product.slug}?from=${fromPage}`} className={styles.productLink}>
       <Frame className={styles.productCard}>
         <div className={styles.productImagePlaceholder}>
           {product.name}

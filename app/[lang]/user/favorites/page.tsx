@@ -82,6 +82,7 @@ export default async function FavoritesPage({
                                         dict={dict}
                                         isFavorite
                                         canFavorite
+                                        fromPage="favorites"
                                     />
                                 ))}
                             </div>
