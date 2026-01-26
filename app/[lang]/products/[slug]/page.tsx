@@ -13,10 +13,13 @@ import styles from "./page.module.css";
 
 export default async function ProductDetailPage({
 	params,
+	searchParams,
 }: {
 	params: Promise<{ lang: string; slug: string; }>;
+	searchParams: Promise<{ from?: string }>;
 }) {
 	const { lang, slug } = await params;
+	const { from = 'products' } = await searchParams;
 
 	if (!hasLocale(lang)) {
 		notFound();
@@ -51,12 +54,17 @@ export default async function ProductDetailPage({
 			})
 		: null;
 
+	const backUrl = 
+		from === 'favorites' ? `/${lang}/user/favorites` :
+		from === 'featured' ? `/${lang}/products` :
+		`/${lang}/products`;
+
 	return (
 		<div className={styles.container}>
 			<BottomNav lang={lang} dict={dict.navigation} user={user} />
 
 			<div className={styles.main}>
-				<Link href={`/${lang}/products`} className={styles.backLink}>
+				<Link href={backUrl} className={styles.backLink}>
 					<Button>
 						<Back variant="16x16_4" />
 						{dict.common.backToProducts}

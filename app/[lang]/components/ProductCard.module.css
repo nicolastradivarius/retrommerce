@@ -184,4 +184,10 @@
     .price {
         font-size: 11px;
     }
+
+    /* Hacer el botón de favoritos siempre visible en mobile */
+    .favoriteButtonContainer {
+        opacity: 1;
+        pointer-events: auto;
+    }
 }

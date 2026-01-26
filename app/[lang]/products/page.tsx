@@ -174,6 +174,7 @@ export default async function HomePage({
 									dict={dict}
 									isFavorite={favoriteIds.has(product.id)}
 									canFavorite={Boolean(user)}
+									fromPage="products"
 								/>
 							))}
 						</div>
