@@ -1,12 +1,12 @@
-import { Frame } from '@react95/core';
-import { Computer } from '@react95/icons';
-import Link from 'next/link';
-import { redirect, notFound } from 'next/navigation';
-import { getCurrentUserWithAvatar } from '@/lib/auth';
-import BottomNav from '../components/BottomNav';
-import { getDictionary, hasLocale } from '../dictionaries';
-import styles from './page.module.css';
-import LoginForm from './LoginForm';
+import { Frame, Cursor } from "@react95/core";
+import { Computer } from "@react95/icons";
+import Link from "next/link";
+import { redirect, notFound } from "next/navigation";
+import { getCurrentUserWithAvatar } from "@/lib/auth";
+import BottomNav from "../components/BottomNav";
+import { getDictionary, hasLocale } from "../dictionaries";
+import styles from "./page.module.css";
+import LoginForm from "./LoginForm";
 
 export default async function LoginPage({
   params,
@@ -14,11 +14,11 @@ export default async function LoginPage({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  
+
   if (!hasLocale(lang)) {
     notFound();
   }
-  
+
   const dict = await getDictionary(lang);
   const user = await getCurrentUserWithAvatar();
 
@@ -40,7 +40,10 @@ export default async function LoginPage({
 
           <hr className={styles.divider} />
 
-          <Link href={`/${lang}/products`} className={styles.backLink}>
+          <Link
+            href={`/${lang}/products`}
+            className={`${styles.backLink} ${Cursor.Pointer}`}
+          >
             ← {dict.common.backToCatalog}
           </Link>
         </Frame>

@@ -1,10 +1,10 @@
-import { Frame } from '@react95/core';
-import { Settings, Computer, FolderOpen, User } from '@react95/icons';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import LogoutButton from '../components/LogoutButton';
-import { getDictionary, hasLocale } from '../dictionaries';
-import styles from './page.module.css';
+import { Frame, Cursor } from "@react95/core";
+import { Settings, Computer, FolderOpen, User } from "@react95/icons";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import LogoutButton from "../components/LogoutButton";
+import { getDictionary, hasLocale } from "../dictionaries";
+import styles from "./page.module.css";
 
 export default async function AdminPage({
   params,
@@ -12,11 +12,11 @@ export default async function AdminPage({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  
+
   if (!hasLocale(lang)) {
     notFound();
   }
-  
+
   const dict = await getDictionary(lang);
 
   return (
@@ -32,14 +32,12 @@ export default async function AdminPage({
           </div>
 
           <div className={styles.logoutRow}>
-            <LogoutButton lang={lang} dict={dict} />
+            <LogoutButton lang={lang} dict={dict.logoutButton} />
           </div>
 
           <div className={styles.welcome}>
             <h2 className={styles.welcomeTitle}>{dict.admin.welcome}</h2>
-            <p className={styles.welcomeText}>
-              {dict.admin.welcomeText}
-            </p>
+            <p className={styles.welcomeText}>{dict.admin.welcomeText}</p>
           </div>
 
           <div className={styles.statsSection}>
@@ -79,7 +77,10 @@ export default async function AdminPage({
             </div>
           </div>
 
-          <Link href={`/${lang}/products`} className={styles.backLink}>
+          <Link
+            href={`/${lang}/products`}
+            className={`${styles.backLink} ${Cursor.Pointer}`}
+          >
             ← {dict.common.backToHome}
           </Link>
         </Frame>

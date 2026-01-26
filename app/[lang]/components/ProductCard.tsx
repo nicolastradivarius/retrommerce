@@ -1,9 +1,9 @@
-import { Frame } from '@react95/core';
-import Link from 'next/link';
-import { formatPrice, hasDiscount } from '@/lib/utils';
-import type { Locale } from '../dictionaries';
-import FavoriteButton from './FavoriteButton';
-import styles from './ProductCard.module.css';
+import { Frame, Cursor } from "@react95/core";
+import Link from "next/link";
+import { formatPrice, hasDiscount } from "@/lib/utils";
+import type { Locale } from "../dictionaries";
+import FavoriteButton from "./FavoriteButton";
+import styles from "./ProductCard.module.css";
 
 export interface ProductCardProps {
   product: {
@@ -39,14 +39,15 @@ export default function ProductCard({
   dict,
   isFavorite = false,
   canFavorite = false,
-  fromPage = 'products',
+  fromPage = "products",
 }: ProductCardProps) {
   return (
-    <Link href={`/${lang}/products/${product.slug}?from=${fromPage}`} className={styles.productLink}>
+    <Link
+      href={`/${lang}/products/${product.slug}?from=${fromPage}`}
+      className={`${styles.productLink} ${Cursor.Pointer}`}
+    >
       <Frame className={styles.productCard}>
-        <div className={styles.productImagePlaceholder}>
-          {product.name}
-        </div>
+        <div className={styles.productImagePlaceholder}>{product.name}</div>
         <div className={styles.favoriteButtonContainer}>
           <FavoriteButton
             productId={product.id}
@@ -63,7 +64,9 @@ export default function ProductCard({
             <p className={styles.manufacturer}>{product.manufacturer}</p>
           )}
           {product.year && (
-            <p className={styles.year}>{dict.productCard.year}: {product.year}</p>
+            <p className={styles.year}>
+              {dict.productCard.year}: {product.year}
+            </p>
           )}
           <div className={styles.priceSection}>
             <span className={styles.price}>{formatPrice(product.price)}</span>
@@ -74,8 +77,8 @@ export default function ProductCard({
             )}
           </div>
           <p className={styles.stock}>
-            {product.stock > 0 
-              ? `${dict.productCard.stock}: ${product.stock} ${dict.productCard.units}` 
+            {product.stock > 0
+              ? `${dict.productCard.stock}: ${product.stock} ${dict.productCard.units}`
               : dict.productCard.outOfStock}
           </p>
         </div>

@@ -136,6 +136,11 @@
     pointer-events: auto;
 }
 
+.favoriteButtonContainer button {
+    position: relative;
+    z-index: 11;
+}
+
 /* Evitar que el click en el botón active los estilos del link */
 .favoriteButtonContainer:active ~ .productCard,
 .productLink:has(.favoriteButtonContainer:active) .productCard {
@@ -167,7 +172,7 @@
     .productLink {
         width: 100%;
     }
-    
+
     .productImagePlaceholder {
         height: 80px;
         font-size: 11px;

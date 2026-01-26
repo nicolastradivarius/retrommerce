@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { Cursor } from "@react95/core";
 import { Msrating106 } from "@react95/icons";
 import type { Locale } from "../dictionaries";
 import styles from "./FavoriteButton.module.css";
@@ -38,6 +39,8 @@ export default function FavoriteButton({
     return null;
   }
 
+  const label = isFavorite ? dict.removeFromFavorites : dict.addToFavorites;
+
   const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -66,12 +69,10 @@ export default function FavoriteButton({
     }
   };
 
-  const label = isFavorite ? dict.removeFromFavorites : dict.addToFavorites;
-
   return (
     <button
       type="button"
-      className={`${styles.button} ${isFavorite ? styles.active : ""} ${className ?? ""}`}
+      className={`${styles.button} ${isFavorite ? styles.active : ""} ${className ?? ""} ${Cursor.Pointer}`}
       onClick={handleClick}
       disabled={loading}
       aria-pressed={isFavorite}

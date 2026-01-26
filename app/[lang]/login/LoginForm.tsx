@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import type { Locale } from '../dictionaries';
-import styles from '../login/page.module.css';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Cursor } from "@react95/core";
+import type { Locale } from "../dictionaries";
+import styles from "../login/page.module.css";
 
 interface LoginFormProps {
   lang: Locale;
@@ -25,21 +26,21 @@ interface LoginFormProps {
 }
 
 export default function LoginForm({ lang, dict }: LoginFormProps) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
+    setError("");
     setLoading(true);
 
     try {
-      const response = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
 
@@ -52,7 +53,7 @@ export default function LoginForm({ lang, dict }: LoginFormProps) {
       }
 
       // Redirect based on role
-      if (data.user.role === 'ADMIN') {
+      if (data.user.role === "ADMIN") {
         router.push(`/${lang}/admin`);
       } else {
         router.push(`/${lang}/products`);
@@ -66,12 +67,12 @@ export default function LoginForm({ lang, dict }: LoginFormProps) {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       {error && <div className={styles.error}>{error}</div>}
-      
+
       <div className={styles.fieldGroup}>
         <label className={styles.label}>{dict.auth.email}:</label>
-        <input 
-          type="email" 
-          className={styles.input} 
+        <input
+          type="email"
+          className={styles.input}
           placeholder={dict.auth.emailPlaceholder}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -82,9 +83,9 @@ export default function LoginForm({ lang, dict }: LoginFormProps) {
 
       <div className={styles.fieldGroup}>
         <label className={styles.label}>{dict.auth.password}:</label>
-        <input 
-          type="password" 
-          className={styles.input} 
+        <input
+          type="password"
+          className={styles.input}
           placeholder={dict.auth.passwordPlaceholder}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -94,10 +95,18 @@ export default function LoginForm({ lang, dict }: LoginFormProps) {
       </div>
 
       <div className={styles.buttonGroup}>
-        <button type="submit" className={styles.buttonPrimary} disabled={loading}>
+        <button
+          type="submit"
+          className={`${styles.buttonPrimary} ${Cursor.Pointer}`}
+          disabled={loading}
+        >
           {loading ? dict.auth.loggingIn : dict.auth.submit}
         </button>
-        <button type="button" className={styles.button} onClick={() => router.push(`/${lang}/products`)}>
+        <button
+          type="button"
+          className={`${styles.button} ${Cursor.Pointer}`}
+          onClick={() => router.push(`/${lang}/products`)}
+        >
           {dict.common.cancel}
         </button>
       </div>
