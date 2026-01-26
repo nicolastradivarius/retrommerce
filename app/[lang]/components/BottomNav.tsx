@@ -1,14 +1,16 @@
 "use client";
 
-import { Frame, List } from "@react95/core";
+import { Frame, List, Cursor } from "@react95/core";
 import {
   User1,
   Lock,
   Computer,
   FolderSettings,
-  Systray300,
+  PowerOn,
+  PowerOff,
   Mmsys103,
-  Mmsys110,
+  Sndvol32304,
+  Sndvol32303,
   Network2,
   Tree,
   Msrating106,
@@ -35,6 +37,8 @@ interface BottomNavProps {
 
 export default function BottomNav({ lang, dict, user }: BottomNavProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isSoundIconToggled, setIsSoundIconToggled] = useState(false);
+  const [isPowerToggled, setIsPowerToggled] = useState(false);
   const [currentTime, setCurrentTime] = useState(() => {
     return new Date()
       .toLocaleTimeString("es-AR", {
@@ -152,10 +156,10 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
           <div className={styles.taskbarContent}>
             {/* Botón Start */}
             <button
-              className={styles.startButton}
+              className={`${styles.startButton} ${Cursor.Pointer}`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
-              <div className={styles.startButtonInner}>
+              <div className={`${styles.startButtonInner} ${Cursor.Pointer}`}>
                 <User1 variant="16x16_4" />
                 <span className={styles.startText}>{dict.start}</span>
               </div>
@@ -169,7 +173,7 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
                   <Link
                     key={index}
                     href={item.href}
-                    className={`${styles.windowButton} ${active ? styles.windowButtonActive : styles.windowButtonInactive}`}
+                    className={`${styles.windowButton} ${active ? styles.windowButtonActive : styles.windowButtonInactive} ${Cursor.Pointer}`}
                   >
                     {item.icon}
                     <span>{item.label}</span>
@@ -184,8 +188,28 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
                 <Mmsys103 variant="16x16_4" />
                 <Tree variant="16x16_4" />
                 <Network2 variant="16x16_4" />
-                <Mmsys110 variant="16x16_4" />
-                <Systray300 variant="16x16_4" />
+                <button
+                  className={`${styles.trayIcon} ${Cursor.Auto}`}
+                  onClick={() => setIsSoundIconToggled(!isSoundIconToggled)}
+                  aria-label="Toggle sound icon"
+                >
+                  {isSoundIconToggled ? (
+                    <Sndvol32303 variant="16x16_4" />
+                  ) : (
+                    <Sndvol32304 variant="16x16_4" />
+                  )}
+                </button>
+                <button
+                  className={`${styles.trayIcon} ${Cursor.Auto}`}
+                  onClick={() => setIsPowerToggled(!isPowerToggled)}
+                  aria-label="Toggle power"
+                >
+                  {isPowerToggled ? (
+                    <PowerOff variant="16x16_4" />
+                  ) : (
+                    <PowerOn variant="16x16_4" />
+                  )}
+                </button>
                 <div className={styles.clock}>{currentTime}</div>
               </div>
             </div>
