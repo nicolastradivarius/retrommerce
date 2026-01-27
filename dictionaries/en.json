@@ -11,6 +11,22 @@
     "objects": "object(s)",
     "userConnected": "User connected"
   },
+  "landing": {
+    "welcome": "Welcome to Retrommerce",
+    "tagline": "Your vintage tech store from the 90s and 2000s",
+    "description": "Explore our collection of classic devices, retro consoles, and nostalgic technology. Travel back in time with us.",
+    "viewCatalog": "View Catalog",
+    "featuredProductsTitle": "Featured Products",
+    "features": {
+      "title": "Why choose us?",
+      "quality": "Verified Products",
+      "qualityDesc": "All our products are verified and tested before sale",
+      "shipping": "Secure Shipping",
+      "shippingDesc": "Special packaging to protect your vintage technology",
+      "support": "Dedicated Support",
+      "supportDesc": "Our team is here to help you with any questions"
+    }
+  },
   "home": {
     "title": "Retrommerce",
     "subtitle": "Your vintage tech store from the 90s and 2000s",
@@ -87,6 +103,7 @@
   },
   "navigation": {
     "start": "Start",
+    "home": "Home",
     "products": "Products",
     "myProfile": "My Profile",
     "userPanel": "Control Panel",

@@ -5,6 +5,7 @@ import {
   User1,
   Lock,
   Computer,
+  MsDos,
   FolderSettings,
   PowerOn,
   PowerOff,
@@ -26,6 +27,7 @@ interface BottomNavProps {
   lang: Locale;
   dict: {
     start: string;
+    home: string;
     products: string;
     myProfile: string;
     userPanel: string;
@@ -74,6 +76,12 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
 
   const menuItems = [
     {
+      icon: <MsDos variant="16x16_32" />,
+      label: dict.home,
+      href: `/${lang}`,
+      basePath: "",
+    },
+    {
       icon: <Computer variant="16x16_4" />,
       label: dict.products,
       href: `/${lang}/products`,
@@ -109,6 +117,9 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
     if (!pathname) return false;
     // Remove the lang prefix from pathname
     const pathWithoutLang = pathname.replace(`/${lang}`, "");
+    if (basePath === "") {
+      return pathWithoutLang === "" || pathWithoutLang === "/";
+    }
     if (basePath === "user") {
       return pathWithoutLang === "/user";
     }

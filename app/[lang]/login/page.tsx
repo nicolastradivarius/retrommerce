@@ -23,7 +23,7 @@ export default async function LoginPage({
   const user = await getCurrentUserWithAvatar();
 
   if (user) {
-    redirect(`/${lang}/products`);
+    redirect(`/${lang}`);
   }
 
   return (
@@ -41,10 +41,10 @@ export default async function LoginPage({
           <hr className={styles.divider} />
 
           <Link
-            href={`/${lang}/products`}
+            href={`/${lang}`}
             className={`${styles.backLink} ${Cursor.Pointer}`}
           >
-            ← {dict.common.backToCatalog}
+            ← {dict.common.backToHome}
           </Link>
         </Frame>
       </div>
