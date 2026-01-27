@@ -2,9 +2,14 @@ import { Frame, TitleBar, Cursor } from "@react95/core";
 import { Computer, Star } from "@react95/icons";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
 import { ITEMS_PER_PAGE } from "@/lib/constants";
-import type { Prisma } from "@/app/generated/prisma";
+import {
+  getFeaturedProducts,
+  getProducts,
+  getProductsCount,
+  type ProductListItem,
+} from "@/lib/products";
+import { getFavoriteProductIdsByUser } from "@/lib/favorites";
 import BottomNav from "../components/BottomNav";
 import ProductCard from "../components/ProductCard";
 import FeaturedProductCard from "../components/FeaturedProductCard";
@@ -12,21 +17,7 @@ import styles from "./page.module.css";
 import { getDictionary, hasLocale } from "../dictionaries";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
 
-type ProductListItem = Prisma.ProductGetPayload<{
-  select: {
-    id: true;
-    name: true;
-    slug: true;
-    description: true;
-    price: true;
-    originalPrice: true;
-    year: true;
-    manufacturer: true;
-    stock: true;
-    images: true;
-    featured: true;
-  };
-}>;
+// ProductListItem type is imported from "@/lib/products"
 
 export default async function HomePage({
   params,
@@ -54,59 +45,19 @@ export default async function HomePage({
   const skip = (page - 1) * ITEMS_PER_PAGE;
 
   // Obtener productos destacados (siempre se muestran)
-  const featuredProducts: ProductListItem[] = await prisma.product.findMany({
-    where: { featured: true },
-    select: {
-      id: true,
-      name: true,
-      slug: true,
-      description: true,
-      price: true,
-      originalPrice: true,
-      year: true,
-      manufacturer: true,
-      stock: true,
-      images: true,
-      featured: true,
-    },
-  });
+  const featuredProducts: ProductListItem[] = await getFeaturedProducts();
 
   // Obtener productos no destacados con paginación
   const [products, totalCount] = (await Promise.all([
-    prisma.product.findMany({
-      where: { featured: false },
-      skip,
-      take: ITEMS_PER_PAGE,
-      orderBy: { createdAt: "desc" },
-      select: {
-        id: true,
-        name: true,
-        slug: true,
-        description: true,
-        price: true,
-        originalPrice: true,
-        year: true,
-        manufacturer: true,
-        stock: true,
-        images: true,
-        featured: true,
-      },
-    }),
-    prisma.product.count({ where: { featured: false } }),
+    getProducts({ skip, take: ITEMS_PER_PAGE }),
+    getProductsCount(),
   ])) as [ProductListItem[], number];
 
   const totalPages = Math.ceil(totalCount / ITEMS_PER_PAGE);
   const user = await getCurrentUserWithAvatar();
 
   const favoriteIds = user
-    ? new Set(
-        (
-          await prisma.favorite.findMany({
-            where: { userId: user.sub },
-            select: { productId: true },
-          })
-        ).map((favorite) => favorite.productId),
-      )
+    ? await getFavoriteProductIdsByUser(user.sub)
     : new Set<string>();
 
   return (
