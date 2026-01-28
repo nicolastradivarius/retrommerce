@@ -1,25 +1,22 @@
 import { Frame, TitleBar, Cursor } from "@react95/core";
-import { Computer, Star } from "@react95/icons";
+import { Computer } from "@react95/icons";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ITEMS_PER_PAGE } from "@/lib/constants";
 import {
-  getFeaturedProducts,
   getProducts,
   getProductsCount,
   type ProductListItem,
 } from "@/lib/products";
+import FeaturedProducts from "../components/FeaturedProducts";
 import { getFavoriteProductIdsByUser } from "@/lib/favorites";
 import BottomNav from "../components/BottomNav";
 import ProductCard from "../components/ProductCard";
-import FeaturedProductCard from "../components/FeaturedProductCard";
 import styles from "./page.module.css";
 import { getDictionary, hasLocale } from "../dictionaries";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
 
-// ProductListItem type is imported from "@/lib/products"
-
-export default async function HomePage({
+export default async function ProductsPage({
   params,
   searchParams,
 }: {
@@ -44,8 +41,7 @@ export default async function HomePage({
 
   const skip = (page - 1) * ITEMS_PER_PAGE;
 
-  // Obtener productos destacados (siempre se muestran)
-  const featuredProducts: ProductListItem[] = await getFeaturedProducts();
+  // Featured products are rendered via the reusable server component <FeaturedProducts />
 
   // Obtener productos no destacados con paginación
   const [products, totalCount] = (await Promise.all([
@@ -72,35 +68,7 @@ export default async function HomePage({
           </div>
         </div>
 
-        {/* Panel de productos destacados */}
-        {featuredProducts.length > 0 && (
-          <div className={styles.window}>
-            <TitleBar
-              active
-              icon={<Star variant="16x16_4" />}
-              title={dict.home.featuredProducts}
-            >
-              <TitleBar.OptionsBox>
-                <TitleBar.Minimize />
-                <TitleBar.Restore />
-                <TitleBar.Close />
-              </TitleBar.OptionsBox>
-            </TitleBar>
-            <Frame className={styles.windowContent}>
-              <div className={styles.featuredScroll}>
-                <div className={styles.featuredGrid}>
-                  {featuredProducts.map((product) => (
-                    <FeaturedProductCard
-                      key={product.id}
-                      product={product}
-                      lang={lang}
-                    />
-                  ))}
-                </div>
-              </div>
-            </Frame>
-          </div>
-        )}
+        <FeaturedProducts lang={lang} fromPage="featured" />
 
         {/* Grid de productos con paginación */}
         <div className={styles.window}>

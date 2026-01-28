@@ -1,6 +1,6 @@
-import { Frame, Button, TitleBar, Cursor } from "@react95/core";
-import { Computer, Back } from "@react95/icons";
-import Link from "next/link";
+import { Frame, Button, TitleBar } from "@react95/core";
+import { Computer } from "@react95/icons";
+import BackToButton from "@/app/[lang]/components/BackToButton";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { formatPrice, hasDiscount } from "@/lib/utils";
@@ -55,10 +55,10 @@ export default async function ProductDetailPage({
     : null;
 
   const backUrl =
-    from === "favorites"
-      ? `/${lang}/user/favorites`
-      : from === "featured"
-        ? `/${lang}/products`
+    from === "home"
+      ? `/${lang}`
+      : from === "favorites"
+        ? `/${lang}/user/favorites`
         : `/${lang}/products`;
 
   return (
@@ -66,12 +66,9 @@ export default async function ProductDetailPage({
       <BottomNav lang={lang} dict={dict.navigation} user={user} />
 
       <div className={styles.main}>
-        <Link href={backUrl} className={`${styles.backLink} ${Cursor.Pointer}`}>
-          <Button className={Cursor.Pointer}>
-            <Back variant="16x16_4" />
-            {dict.common.backToProducts}
-          </Button>
-        </Link>
+        <div className={styles.backLink}>
+          <BackToButton href={backUrl} lang={lang} />
+        </div>
 
         <Frame className={styles.productFrame}>
           <TitleBar
