@@ -56,7 +56,7 @@ export default async function ProductDetailPage({
 
   const backUrl =
     from === "home"
-      ? `/${lang}`
+      ? `/${lang}/home`
       : from === "favorites"
         ? `/${lang}/user/favorites`
         : `/${lang}/products`;

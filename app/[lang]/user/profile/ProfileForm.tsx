@@ -31,6 +31,7 @@ interface ProfileFormProps {
     };
     navigation: {
       start: string;
+      home: string;
       products: string;
       myProfile: string;
       userPanel: string;

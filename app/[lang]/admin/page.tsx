@@ -78,7 +78,7 @@ export default async function AdminPage({
           </div>
 
           <Link
-            href={`/${lang}/products`}
+            href={`/${lang}/home`}
             className={`${styles.backLink} ${Cursor.Pointer}`}
           >
             ← {dict.common.backToHome}

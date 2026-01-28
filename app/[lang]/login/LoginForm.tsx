@@ -56,7 +56,7 @@ export default function LoginForm({ lang, dict }: LoginFormProps) {
       if (data.user.role === "ADMIN") {
         router.push(`/${lang}/admin`);
       } else {
-        router.push(`/${lang}`);
+        router.push(`/${lang}/home`);
       }
     } catch {
       setError(dict.auth.connectionError);
@@ -105,7 +105,7 @@ export default function LoginForm({ lang, dict }: LoginFormProps) {
         <button
           type="button"
           className={`${styles.button} ${Cursor.Pointer}`}
-          onClick={() => router.push(`/${lang}`)}
+          onClick={() => router.push(`/${lang}/home`)}
         >
           {dict.common.cancel}
         </button>

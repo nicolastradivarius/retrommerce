@@ -5,7 +5,7 @@ import {
   User1,
   Lock,
   Computer,
-  MsDos,
+  Msnstart1,
   FolderSettings,
   PowerOn,
   PowerOff,
@@ -76,10 +76,10 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
 
   const menuItems = [
     {
-      icon: <MsDos variant="16x16_32" />,
+      icon: <Msnstart1 variant="16x16_4" />,
       label: dict.home,
-      href: `/${lang}`,
-      basePath: "",
+      href: `/${lang}/home`,
+      basePath: "home",
     },
     {
       icon: <Computer variant="16x16_4" />,
@@ -117,8 +117,12 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
     if (!pathname) return false;
     // Remove the lang prefix from pathname
     const pathWithoutLang = pathname.replace(`/${lang}`, "");
-    if (basePath === "") {
-      return pathWithoutLang === "" || pathWithoutLang === "/";
+    if (basePath === "home") {
+      return (
+        pathWithoutLang === "" ||
+        pathWithoutLang === "/" ||
+        pathWithoutLang === "/home"
+      );
     }
     if (basePath === "user") {
       return pathWithoutLang === "/user";
