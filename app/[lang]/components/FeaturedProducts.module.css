@@ -1,0 +1,52 @@
+/* Styles for FeaturedProducts server component */
+
+/* Window frame (mimics Windows 95 panel look) */
+.window {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    box-shadow: 2px 2px 0px #000;
+    margin-bottom: 24px;
+}
+
+/* Content area inside the window */
+.windowContent {
+    padding: 16px;
+    background: #c0c0c0;
+}
+
+/* Horizontal scroll wrapper */
+.featuredScroll {
+    overflow-x: auto;
+    padding-bottom: 10px;
+}
+
+/* Flex layout so cards lay out horizontally and scroll */
+.featuredGrid {
+    display: flex;
+    gap: 16px;
+    min-width: min-content;
+    align-items: stretch;
+}
+
+/* Ensure each child (card wrapper) doesn't shrink so horizontal scrolling works */
+.featuredGrid > * {
+    flex-shrink: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .windowContent {
+        padding: 12px;
+    }
+
+    .featuredGrid {
+        gap: 12px;
+    }
+}
+
+@media (max-width: 400px) {
+    .featuredGrid {
+        gap: 8px;
+    }
+}
