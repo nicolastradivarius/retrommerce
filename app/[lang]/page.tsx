@@ -8,16 +8,14 @@ import {
 } from "@react95/icons";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getFeaturedProducts, type ProductListItem } from "@/lib/products";
+import FeaturedProducts from "./components/FeaturedProducts";
 import BottomNav from "./components/BottomNav";
-import FeaturedProductCard from "./components/FeaturedProductCard";
+
 import styles from "./page.module.css";
 import { getDictionary, hasLocale } from "./dictionaries";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
 
-// ProductListItem type is imported from "@/lib/products"
-
-export default async function LandingPage({
+export default async function HomePage({
   params,
 }: {
   params: Promise<{ lang: string }>;
@@ -30,9 +28,6 @@ export default async function LandingPage({
 
   const dict = await getDictionary(lang);
   const user = await getCurrentUserWithAvatar();
-
-  // Obtener productos destacados para mostrar en la landing
-  const featuredProducts: ProductListItem[] = await getFeaturedProducts();
 
   return (
     <div className={styles.container}>
@@ -72,35 +67,7 @@ export default async function LandingPage({
           </Frame>
         </div>
 
-        {/* Featured Products Section */}
-        {featuredProducts.length > 0 && (
-          <div className={styles.featuredWindow}>
-            <TitleBar
-              active
-              icon={<Mmsys120 variant="16x16_4" />}
-              title={dict.landing.featuredProductsTitle}
-            >
-              <TitleBar.OptionsBox>
-                <TitleBar.Minimize />
-                <TitleBar.Restore />
-                <TitleBar.Close />
-              </TitleBar.OptionsBox>
-            </TitleBar>
-            <Frame className={styles.featuredContent}>
-              <div className={styles.featuredScroll}>
-                <div className={styles.featuredGrid}>
-                  {featuredProducts.map((product) => (
-                    <FeaturedProductCard
-                      key={product.id}
-                      product={product}
-                      lang={lang}
-                    />
-                  ))}
-                </div>
-              </div>
-            </Frame>
-          </div>
-        )}
+        <FeaturedProducts lang={lang} fromPage="home" />
 
         {/* Features Section */}
         <div className={styles.featuresWindow}>
