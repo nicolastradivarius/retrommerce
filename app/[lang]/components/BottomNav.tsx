@@ -184,7 +184,7 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
                   <Link
                     key={index}
                     href={item.href}
-                    className={`${styles.windowButton} ${active ? styles.windowButtonActive : styles.windowButtonInactive} ${Cursor.Pointer}`}
+                    className={`${styles.windowButton} ${active ? styles.windowButtonPressed : styles.windowButtonInactive} ${Cursor.Pointer}`}
                   >
                     {item.icon}
                     <span>{item.label}</span>
