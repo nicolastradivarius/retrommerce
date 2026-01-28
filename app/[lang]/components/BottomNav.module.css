@@ -103,17 +103,16 @@
     color: #ffffff;
 }
 
-/* Ventana activa (presionada) */
-.windowButtonActive {
+/* Ventana presionada (pressed) */
+.windowButtonPressed {
     border-color: #808080 #ffffff #ffffff #808080;
     background: #c0c0c0;
     color: #000;
-    font-weight: bold;
     font-size: 11px;
-    padding-bottom: 4px;
+    padding-bottom: 1px;
 }
 
-.windowButtonActive:hover {
+.windowButtonPressed:hover {
     background: #c0c0c0;
 }
 
