@@ -1,0 +1,136 @@
+.filtersWindow {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    box-shadow: 2px 2px 0px #000;
+    margin-bottom: 24px;
+    position: sticky;
+    top: 24px;
+}
+
+.filtersContent {
+    padding: 16px;
+    background: #c0c0c0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.filterSection {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filterLabel {
+    font-family: "MS Sans Serif", sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #000;
+}
+
+.searchInput {
+    width: 100%;
+}
+
+.categoriesList {
+    gap: 6px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 8px;
+}
+
+.rangeInputs {
+    display: flex;
+    gap: 8px;
+}
+
+.rangeField {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.rangeLabel {
+    font-family: "MS Sans Serif", sans-serif;
+    font-size: 11px;
+    color: #000;
+}
+
+.numberInput {
+    width: 100%;
+    padding: 4px 6px;
+    font-family: "MS Sans Serif", sans-serif;
+    font-size: 11px;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #ffffff;
+    box-sizing: border-box;
+}
+
+.numberInput:focus {
+    outline: 1px dotted #000;
+    outline-offset: -4px;
+}
+
+.numberInput::-webkit-inner-spin-button,
+.numberInput::-webkit-outer-spin-button {
+    opacity: 1;
+}
+
+.filterActions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 8px;
+    border-top: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+    .filtersWindow {
+        position: static;
+        margin-bottom: 16px;
+    }
+
+    .filtersContent {
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .categoriesList {
+        max-height: 200px;
+    }
+}
+
+/* Pantallas muy pequeñas */
+@media (max-width: 400px) {
+    .filtersContent {
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .categoriesList {
+        max-height: 200px;
+        padding: 6px;
+    }
+
+    .rangeInputs {
+        gap: 6px;
+    }
+
+    .numberInput {
+        padding: 3px 4px;
+    }
+
+    .filterActions {
+        gap: 6px;
+    }
+
+    .applyButton,
+    .clearButton {
+        padding: 6px 8px;
+    }
+}

@@ -36,6 +36,21 @@
     "next": "Next →",
     "pageOf": "Page {page} of {total}"
   },
+  "filters": {
+    "title": "Filters",
+    "search": "Search product",
+    "searchPlaceholder": "Product name...",
+    "categories": "Categories",
+    "allCategories": "All categories",
+    "priceRange": "Price range",
+    "minPrice": "Min price",
+    "maxPrice": "Max price",
+    "yearRange": "Year range",
+    "minYear": "Min year",
+    "maxYear": "Max year",
+    "applyFilters": "Apply filters",
+    "clearFilters": "Clear filters"
+  },
   "product": {
     "manufacturer": "Manufacturer",
     "year": "Release year",

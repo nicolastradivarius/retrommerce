@@ -6,7 +6,7 @@
 }
 
 .main {
-    max-width: 60%;
+    max-width: 90%;
     margin: 0 auto;
     padding: 24px;
     width: 100%;
@@ -32,6 +32,31 @@
     margin: 4px 0 0 0;
     font-size: 11px;
     color: #c0c0c0;
+}
+
+.contentLayout {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    margin-top: 24px;
+}
+
+.sidebar {
+    width: 320px;
+    flex-shrink: 0;
+}
+
+.productsSection {
+    flex: 1;
+    min-width: 0;
+}
+
+.noResults {
+    padding: 40px 20px;
+    text-align: center;
+    font-family: "MS Sans Serif", sans-serif;
+    font-size: 11px;
+    color: #666;
 }
 
 .window {
@@ -329,6 +354,20 @@
     .main {
         max-width: 100%;
         padding: 12px;
+    }
+
+    .contentLayout {
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 16px;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .productsSection {
+        width: 100%;
     }
 
     .header {
