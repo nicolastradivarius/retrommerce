@@ -6,32 +6,10 @@
 }
 
 .main {
-    max-width: 90%;
+    max-width: 100%;
     margin: 0 auto;
     padding: 24px;
     width: 100%;
-}
-
-.header {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 24px;
-    padding: 16px;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.title {
-    margin: 0;
-    font-size: 11px;
-    color: white;
-    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.3);
-}
-
-.subtitle {
-    margin: 4px 0 0 0;
-    font-size: 11px;
-    color: #c0c0c0;
 }
 
 .contentLayout {
@@ -72,119 +50,12 @@
     background: #c0c0c0;
 }
 
-.featuredScroll {
-    overflow-x: auto;
-    padding-bottom: 10px;
-}
-
-.featuredGrid {
-    display: flex;
-    gap: 16px;
-    min-width: min-content;
-}
-
-.featuredLink {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-    flex-shrink: 0;
-}
-
-.featuredCard {
-    width: 220px;
-    padding: 12px;
-    transition: transform 0.1s;
-    background: linear-gradient(to bottom, #fff8dc, #ffefd5);
-    border: 3px solid;
-    border-color: #ffd700 #b8860b #b8860b #ffd700;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-}
-
-.featuredCard:hover {
-    transform: translateY(-4px);
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
-}
-
-.featuredImagePlaceholder {
-    width: 100%;
-    height: 100px;
-    background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%);
-    border: 2px inset #b8860b;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #806000;
-    font-size: 11px;
-    margin-bottom: 10px;
-    text-align: center;
-    padding: 8px;
-    font-weight: bold;
-}
-
-.featuredInfo {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.featuredName {
-    margin: 0;
-    font-size: 11px;
-    font-family: "MS Sans Serif", sans-serif;
-    font-weight: bold;
-    color: #333;
-    line-height: 1.3;
-}
-
-.featuredManufacturer {
-    margin: 0;
-    font-size: 11px;
-    color: #806000;
-    font-weight: bold;
-}
-
-.featuredPriceSection {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin-top: 4px;
-}
-
-.featuredPrice {
-    font-size: 11px;
-    font-weight: bold;
-    color: #008000;
-}
-
-.featuredOriginalPrice {
-    font-size: 11px;
-    color: #999;
-    text-decoration: line-through;
-}
-
 /* Grid de productos */
-.productsFrame {
-    padding: 24px;
-    background: #c0c0c0;
-}
-
-.sectionTitle {
-    margin: 0 0 24px 0;
-    font-family: "MS Sans Serif", sans-serif;
-    font-size: 11px;
-}
-
 .productGrid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
     gap: 16px;
     margin-bottom: 24px;
-}
-
-.productLink {
-    text-decoration: none;
-    color: inherit;
-    display: block;
 }
 
 .productCard {
@@ -349,214 +220,88 @@
     font-size: 11px;
 }
 
-/* Responsive para móviles */
+/* Estilos para las pestañas móviles */
+.mobileTabContent {
+    padding: 16px;
+    background: #c0c0c0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Asegurar que el grid se ajusta bien en las pestañas */
+.mobileTabContent .productGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+/* Filtros dentro de la pestaña móvil */
+.mobileTabContent .filtersContent {
+    padding: 0;
+    background: transparent;
+}
+
+.mobileTabContent .filterSection {
+    margin-bottom: 12px;
+}
+
+.mobileTabContent .filterActions {
+    margin-top: 8px;
+}
+
+/* Paginación en pestañas móviles */
+.mobileTabContent .pagination {
+    gap: 8px;
+    padding: 12px 0 0 0;
+    border-top: 2px solid #808080;
+}
+
+.mobileTabContent .paginationControls {
+    gap: 8px;
+}
+
+.mobileTabContent .pageNumber {
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+}
+
+.mobileTabContent .pageButton {
+    padding: 6px 10px;
+    font-size: 11px;
+}
+
+.mobileTabContent .pageInfo {
+    font-size: 11px;
+    text-align: center;
+}
+
+/* Media query para mobile: Full width window */
 @media (max-width: 768px) {
     .main {
         max-width: 100%;
-        padding: 12px;
-    }
-
-    .contentLayout {
-        flex-direction: column;
-        gap: 16px;
-        margin-top: 16px;
-    }
-
-    .sidebar {
-        width: 100%;
-    }
-
-    .productsSection {
-        width: 100%;
-    }
-
-    .header {
-        padding: 12px;
-        margin-bottom: 16px;
-        gap: 12px;
-    }
-
-    .title {
-        font-size: 11px;
-    }
-
-    .subtitle {
-        font-size: 11px;
-    }
-
-    /* Panel destacados móvil */
-    .featuredFrame {
-        padding: 12px;
-        margin-bottom: 16px;
-    }
-
-    .featuredHeader {
-        margin-bottom: 12px;
-        padding-bottom: 8px;
-    }
-
-    .featuredTitle {
-        font-size: 11px;
-    }
-
-    .featuredCard {
-        width: 140px;
         padding: 8px;
-    }
-
-    .featuredImagePlaceholder {
-        height: 60px;
-        font-size: 11px;
-        margin-bottom: 6px;
-        padding: 4px;
-    }
-
-    .featuredName {
-        font-size: 11px;
-    }
-
-    .featuredManufacturer {
-        font-size: 11px;
-    }
-
-    .featuredPrice {
-        font-size: 11px;
-    }
-
-    .featuredOriginalPrice {
-        font-size: 11px;
-    }
-
-    /* Grid productos móvil */
-    .productsFrame {
-        padding: 12px;
-    }
-
-    .sectionTitle {
-        font-size: 11px;
-        margin-bottom: 16px;
-    }
-
-    .productGrid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-        margin-bottom: 16px;
-    }
-
-    .productCard {
-        padding: 10px;
-    }
-
-    .productImagePlaceholder {
-        height: 80px;
-        font-size: 11px;
-        margin-bottom: 8px;
-        padding: 4px;
-    }
-
-    .productName {
-        font-size: 11px;
-        line-height: 1.2;
-    }
-
-    .manufacturer {
-        font-size: 11px;
-    }
-
-    .year {
-        font-size: 11px;
-    }
-
-    .priceSection {
-        margin-top: 4px;
-        gap: 4px;
-    }
-
-    .price {
-        font-size: 11px;
-    }
-
-    .originalPrice {
-        font-size: 11px;
-    }
-
-    .stock {
-        font-size: 11px;
-    }
-
-    /* Paginación móvil */
-    .pagination {
-        gap: 8px;
-        padding: 12px 8px;
-    }
-
-    .paginationControls {
-        gap: 8px;
-    }
-
-    .pageButton {
-        padding: 6px 10px;
-        font-size: 11px;
-    }
-
-    .pageNumber {
-        width: 28px;
-        height: 28px;
-        font-size: 11px;
-    }
-
-    .pageInfo {
-        font-size: 11px;
-        text-align: center;
     }
 }
 
-/* Pantallas muy pequeñas */
+/* Responsive ajustes para muy pequeñas pantallas en pestañas móviles */
 @media (max-width: 400px) {
-    .main {
-        padding: 8px;
-        max-width: 100%;
+    .mobileTabContent {
+        padding: 12px;
     }
 
-    .header {
-        padding: 8px;
+    .mobileTabContent .productGrid {
+        grid-template-columns: repeat(2, 1fr);
         gap: 8px;
     }
 
-    .title {
-        font-size: 11px;
+    .mobileTabContent .filterSection {
+        margin-bottom: 10px;
     }
 
-    .featuredCard {
-        width: 120px;
-        padding: 6px;
-    }
-
-    .featuredImagePlaceholder {
-        height: 50px;
-    }
-
-    .productGrid {
-        gap: 8px;
-    }
-
-    .productCard {
-        padding: 8px;
-    }
-
-    .productImagePlaceholder {
-        height: 70px;
-    }
-
-    .productName {
-        font-size: 11px;
-    }
-
-    .price {
-        font-size: 11px;
-    }
-
-    .pageNumbers {
+    .mobileTabContent .pageNumbers {
         display: none;
     }
 }

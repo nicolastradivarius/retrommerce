@@ -1,3 +1,14 @@
+// ============================================================================
+// COMPONENTE: ProductCard
+// ============================================================================
+// Propósito: Tarjeta individual de producto en el grid
+//
+// Características:
+// - Muestra información del producto (nombre, año, precio, stock)
+// - Botón para agregar/quitar favoritos
+// - Acepta precios serializados (siempre strings, nunca Decimal)
+// ============================================================================
+
 import { Frame, Cursor } from "@react95/core";
 import Link from "next/link";
 import { formatPrice, hasDiscount } from "@/lib/utils";
@@ -5,18 +16,40 @@ import type { Locale } from "../dictionaries";
 import FavoriteButton from "./FavoriteButton";
 import styles from "./ProductCard.module.css";
 
+/**
+ * Props del componente ProductCard
+ *
+ * Nota: Todos los productos son serializados en page.tsx ANTES de pasarlos
+ * tanto a desktop como a mobile, por lo que aquí siempre reciben strings.
+ */
 export interface ProductCardProps {
   product: {
-    id: string;
-    name: string;
-    slug: string;
-    price: { toString(): string };
-    originalPrice: { toString(): string };
+    // Identificadores
+    id: string; // ID único del producto
+    name: string; // Nombre del producto
+    slug: string; // URL-friendly identifier (usado en links)
+
+    /**
+     * Precio actual del producto (siempre string)
+     *
+     * Se serializa en page.tsx antes de pasar a este componente.
+     * La función formatPrice() parsea el string a número para formateo.
+     */
+    price: string;
+
+    // Precio original (antes de descuento, siempre string)
+    originalPrice: string;
+
+    // Información adicional
     manufacturer?: string | null;
     year?: number | null;
     stock: number;
   };
-  lang: Locale;
+
+  // Idioma e internacionalización
+  lang: Locale; // Idioma actual (es/en)
+
+  // Diccionario multiidioma para etiquetas
   dict: {
     year: string;
     stock: string;
@@ -26,11 +59,31 @@ export interface ProductCardProps {
     removeFromFavorites: string;
     loginToFavorite: string;
   };
-  isFavorite?: boolean;
-  canFavorite?: boolean;
-  fromPage?: string;
+
+  // Estado de favoritos
+  isFavorite?: boolean; // Si el usuario ya lo marcó como favorito
+  canFavorite?: boolean; // Si el usuario puede agregar a favoritos (debe estar logueado)
+
+  // Contexto de navegación
+  fromPage?: string; // De dónde viene (ej: "products", "favorites")
 }
 
+/**
+ * Componente ProductCard
+ *
+ * Renderiza una tarjeta de producto individual con:
+ * - Imagen placeholder
+ * - Nombre y fabricante
+ * - Año de lanzamiento
+ * - Precio (con descuento si aplica)
+ * - Stock disponible
+ * - Botón de favoritos
+ *
+ * ## Flujo de datos:
+ * page.tsx / ProductsMobileTabsContainer
+ *   → ProductCard (producto serializado)
+ *   → Link a página de detalle del producto
+ */
 export default function ProductCard({
   product,
   lang,

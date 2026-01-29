@@ -34,7 +34,8 @@
     "allProducts": "Todos los Productos",
     "previous": "← Anterior",
     "next": "Siguiente →",
-    "pageOf": "Página {page} de {total}"
+    "pageOf": "Página {page} de {total}",
+    "noResults": "No se encontraron productos con los filtros seleccionados"
   },
   "filters": {
     "title": "Filtros",
@@ -49,7 +50,9 @@
     "minYear": "Año mínimo",
     "maxYear": "Año máximo",
     "applyFilters": "Aplicar filtros",
-    "clearFilters": "Limpiar filtros"
+    "clearFilters": "Limpiar filtros",
+    "filtersApplied": "Filtros aplicados correctamente",
+    "filtersCleared": "Filtros limpiados"
   },
   "product": {
     "manufacturer": "Fabricante",

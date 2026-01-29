@@ -1,0 +1,71 @@
+.mobileTabContent {
+    padding: 16px;
+    background: #c0c0c0;
+    min-height: 300px;
+    overflow-y: auto;
+    max-height: calc(100vh - 200px);
+}
+
+/* Estilos para el contenido de filtros dentro de la pestaña */
+.mobileTabContent .filtersContent {
+    padding: 0;
+    background: transparent;
+    gap: 12px;
+}
+
+.mobileTabContent .filterSection {
+    margin-bottom: 12px;
+}
+
+/* Grid de productos en móvil */
+.mobileTabContent .productGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+/* Paginación en móvil */
+.mobileTabContent .pagination {
+    gap: 8px;
+    padding: 12px 0 0 0;
+    border-top: 2px solid #808080;
+}
+
+.mobileTabContent .paginationControls {
+    gap: 8px;
+}
+
+.mobileTabContent .pageNumber {
+    width: 28px;
+    height: 28px;
+    font-size: 11px;
+}
+
+.mobileTabContent .pageButton {
+    padding: 6px 10px;
+    font-size: 11px;
+}
+
+/* Responsive para pantallas muy pequeñas */
+@media (max-width: 400px) {
+    .mobileTabContent {
+        padding: 8px;
+        min-height: 250px;
+        max-height: calc(100vh - 140px);
+    }
+
+    .mobileTabContent .productGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+
+    .mobileTabContent .filterSection {
+        margin-bottom: 8px;
+    }
+
+    .pageNumbers {
+        display: none;
+    }
+}
