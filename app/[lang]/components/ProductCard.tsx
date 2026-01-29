@@ -18,15 +18,13 @@ export interface ProductCardProps {
   };
   lang: Locale;
   dict: {
-    productCard: {
-      year: string;
-      stock: string;
-      units: string;
-      outOfStock: string;
-      addToFavorites: string;
-      removeFromFavorites: string;
-      loginToFavorite: string;
-    };
+    year: string;
+    stock: string;
+    units: string;
+    outOfStock: string;
+    addToFavorites: string;
+    removeFromFavorites: string;
+    loginToFavorite: string;
   };
   isFavorite?: boolean;
   canFavorite?: boolean;
@@ -54,7 +52,7 @@ export default function ProductCard({
             initialIsFavorite={isFavorite}
             canFavorite={canFavorite}
             lang={lang}
-            dict={dict.productCard}
+            dict={dict}
             className={styles.favoriteButtonIcon}
           />
         </div>
@@ -65,7 +63,7 @@ export default function ProductCard({
           )}
           {product.year && (
             <p className={styles.year}>
-              {dict.productCard.year}: {product.year}
+              {dict.year}: {product.year}
             </p>
           )}
           <div className={styles.priceSection}>
@@ -78,8 +76,8 @@ export default function ProductCard({
           </div>
           <p className={styles.stock}>
             {product.stock > 0
-              ? `${dict.productCard.stock}: ${product.stock} ${dict.productCard.units}`
-              : dict.productCard.outOfStock}
+              ? `${dict.stock}: ${product.stock} ${dict.units}`
+              : dict.outOfStock}
           </p>
         </div>
       </Frame>

@@ -15,5 +15,16 @@ export default async function ProfilePage({
 
   const dict = await getDictionary(lang);
 
-  return <ProfileForm lang={lang} dict={dict} />;
+  // Pasar solo los subdiccionarios necesarios a ProfileForm
+  return (
+    <ProfileForm
+      lang={lang}
+      dict={{
+        common: dict.common,
+        auth: dict.auth,
+        navigation: dict.navigation,
+        user: dict.user,
+      }}
+    />
+  );
 }

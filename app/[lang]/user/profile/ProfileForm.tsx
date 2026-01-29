@@ -38,9 +38,6 @@ interface ProfileFormProps {
       login: string;
       favorites: string;
     };
-    topBar: {
-      hello: string;
-    };
     user: {
       myProfile: string;
       editPersonalInfo: string;

@@ -109,7 +109,11 @@ export default async function ProductsPage({
         <div className={styles.contentLayout}>
           {/* Filters sidebar */}
           <aside className={styles.sidebar}>
-            <ProductFilters lang={lang} categories={categories} dict={dict} />
+            <ProductFilters
+              lang={lang}
+              categories={categories}
+              dict={dict.filters}
+            />
           </aside>
 
           {/* Products grid */}
@@ -141,7 +145,7 @@ export default async function ProductsPage({
                           key={product.id}
                           product={product}
                           lang={lang}
-                          dict={dict}
+                          dict={dict.productCard}
                           isFavorite={favoriteIds.has(product.id)}
                           canFavorite={Boolean(user)}
                           fromPage="products"

@@ -32,22 +32,19 @@ interface ProductFiltersProps {
   lang: Locale; // Idioma actual (es/en) para construir las URLs
   categories: Category[]; // Lista de categorías disponibles para filtrar
   dict: {
-    // Diccionario de traducciones para las etiquetas del filtro
-    filters: {
-      title: string;
-      search: string;
-      searchPlaceholder: string;
-      categories: string;
-      allCategories: string;
-      priceRange: string;
-      minPrice: string;
-      maxPrice: string;
-      yearRange: string;
-      minYear: string;
-      maxYear: string;
-      applyFilters: string;
-      clearFilters: string;
-    };
+    title: string;
+    search: string;
+    searchPlaceholder: string;
+    categories: string;
+    allCategories: string;
+    priceRange: string;
+    minPrice: string;
+    maxPrice: string;
+    yearRange: string;
+    minYear: string;
+    maxYear: string;
+    applyFilters: string;
+    clearFilters: string;
   };
 }
 
@@ -246,7 +243,7 @@ export default function ProductFilters({
       <TitleBar
         active
         icon={<FolderSettings variant="16x16_4" />}
-        title={dict.filters.title}
+        title={dict.title}
       >
         <TitleBar.OptionsBox>
           <TitleBar.Minimize />
@@ -262,12 +259,12 @@ export default function ProductFilters({
             ============================ */}
         <div className={styles.filterSection}>
           <label htmlFor="search-input" className={styles.filterLabel}>
-            {dict.filters.search}:
+            {dict.search}:
           </label>
           <Input
             id="search-input"
             type="text"
-            placeholder={dict.filters.searchPlaceholder}
+            placeholder={dict.searchPlaceholder}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyDown={(e) => {
@@ -284,7 +281,7 @@ export default function ProductFilters({
             FILTRO: Categorías (checkboxes)
             ============================ */}
         <div className={styles.filterSection}>
-          <Fieldset legend={dict.filters.categories}>
+          <Fieldset legend={dict.categories}>
             <Frame
               display="flex"
               flexDirection="column"
@@ -308,14 +305,12 @@ export default function ProductFilters({
             FILTRO: Rango de precio
             ============================ */}
         <div className={styles.filterSection}>
-          <label className={styles.filterLabel}>
-            {dict.filters.priceRange}:
-          </label>
+          <label className={styles.filterLabel}>{dict.priceRange}:</label>
           <div className={styles.rangeInputs}>
             {/* Campo: Precio mínimo */}
             <div className={styles.rangeField}>
               <label htmlFor="min-price" className={styles.rangeLabel}>
-                {dict.filters.minPrice}
+                {dict.minPrice}
               </label>
               <input
                 id="min-price"
@@ -337,7 +332,7 @@ export default function ProductFilters({
             {/* Campo: Precio máximo */}
             <div className={styles.rangeField}>
               <label htmlFor="max-price" className={styles.rangeLabel}>
-                {dict.filters.maxPrice}
+                {dict.maxPrice}
               </label>
               <input
                 id="max-price"
@@ -362,14 +357,12 @@ export default function ProductFilters({
             FILTRO: Rango de año
             ============================ */}
         <div className={styles.filterSection}>
-          <label className={styles.filterLabel}>
-            {dict.filters.yearRange}:
-          </label>
+          <label className={styles.filterLabel}>{dict.yearRange}:</label>
           <div className={styles.rangeInputs}>
             {/* Campo: Año mínimo */}
             <div className={styles.rangeField}>
               <label htmlFor="min-year" className={styles.rangeLabel}>
-                {dict.filters.minYear}
+                {dict.minYear}
               </label>
               <input
                 id="min-year"
@@ -392,7 +385,7 @@ export default function ProductFilters({
             {/* Campo: Año máximo */}
             <div className={styles.rangeField}>
               <label htmlFor="max-year" className={styles.rangeLabel}>
-                {dict.filters.maxYear}
+                {dict.maxYear}
               </label>
               <input
                 id="max-year"
@@ -424,7 +417,7 @@ export default function ProductFilters({
             disabled={isPending} // Deshabilitar mientras se navega
             className={`${Cursor.Pointer}`}
           >
-            {dict.filters.applyFilters}
+            {dict.applyFilters}
           </Button>
 
           {/* Botón: Limpiar filtros (solo se muestra si hay filtros activos) */}
@@ -434,7 +427,7 @@ export default function ProductFilters({
               disabled={isPending}
               className={`${Cursor.Pointer}`}
             >
-              {dict.filters.clearFilters}
+              {dict.clearFilters}
             </Button>
           )}
         </div>
