@@ -1,25 +1,48 @@
+/* ProductsMobileTabsContainer.module.css
+   Mobile tab styles for the Products page.
+
+   Goal: use flex layout so the window and tab content stretch to fill
+   available vertical space and rely on internal scrolling instead of
+   fixed max-height calc() rules.
+*/
+
 .mobileTabContent {
     padding: 16px;
     background: #c0c0c0;
-    min-height: 300px;
-    overflow-y: auto;
-    max-height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* grow to fill the available space in the window */
+    min-height: 0; /* allow proper shrinking inside flex containers */
+    overflow-y: auto; /* internal scroll for overflowing content */
 }
 
-/* Ventana / contenedores base (copiado de page.module.css para que el componente pueda usar solo este módulo) */
+/* Window base (self-contained so component can import just this module) */
 .window {
     background: #c0c0c0;
     border: 2px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
     box-shadow: 2px 2px 0px #000;
     margin-bottom: 24px;
+
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
 }
 
+/* Frame / content inside the window: take remaining space */
 .windowContent {
     padding: 16px;
     background: #c0c0c0;
+
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden; /* delegate vertical scrolling to .mobileTabContent */
 }
 
+/* Empty state inside the tab */
 .noResults {
     padding: 40px 20px;
     text-align: center;
@@ -28,7 +51,7 @@
     color: #666;
 }
 
-/* Grid de productos (raíz) */
+/* Grid of products for mobile tab: 2 columns */
 .productGrid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -36,12 +59,12 @@
     margin-bottom: 16px;
 }
 
-/* Paginación (raíz) */
+/* Pagination (mobile-friendly) */
 .pagination {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     padding: 12px 0 0 0;
     border-top: 2px solid #808080;
 }
@@ -50,12 +73,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     flex-wrap: wrap;
 }
 
 .pageButton {
-    padding: 8px 16px;
+    padding: 6px 10px;
     background: #c0c0c0;
     border: 2px outset #dfdfdf;
     text-decoration: none;
@@ -70,12 +93,12 @@
 
 .pageNumbers {
     display: flex;
-    gap: 4px;
+    gap: 6px;
 }
 
 .pageNumber {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -97,10 +120,6 @@
     border: 2px inset #000040;
 }
 
-.pageNumberActive:hover {
-    background: #0000a0;
-}
-
 .pageInfo {
     font-family: "MS Sans Serif", sans-serif;
     font-weight: bold;
@@ -108,66 +127,25 @@
     font-size: 11px;
 }
 
-/* Estilos para el contenido de filtros dentro de la pestaña */
-.mobileTabContent .filtersContent {
-    padding: 0;
-    background: transparent;
-    gap: 12px;
-}
-
-.mobileTabContent .filterSection {
-    margin-bottom: 12px;
-}
-
-/* Grid de productos en móvil */
-.mobileTabContent .productGrid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-bottom: 16px;
-}
-
-/* Paginación en móvil */
-.mobileTabContent .pagination {
-    gap: 8px;
-    padding: 12px 0 0 0;
-    border-top: 2px solid #808080;
-}
-
-.mobileTabContent .paginationControls {
-    gap: 8px;
-}
-
-.mobileTabContent .pageNumber {
-    width: 28px;
-    height: 28px;
-    font-size: 11px;
-}
-
-.mobileTabContent .pageButton {
-    padding: 6px 10px;
-    font-size: 11px;
-}
-
-/* Responsive para pantallas muy pequeñas */
+/* Small screens tweaks */
 @media (max-width: 400px) {
     .mobileTabContent {
         padding: 8px;
-        min-height: 250px;
-        max-height: calc(100vh - 140px);
     }
 
-    .mobileTabContent .productGrid {
-        grid-template-columns: repeat(2, 1fr);
+    .productGrid {
         gap: 8px;
-        margin-bottom: 12px;
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .mobileTabContent .filterSection {
-        margin-bottom: 8px;
+    .pageNumber {
+        width: 26px;
+        height: 26px;
+        font-size: 11px;
     }
 
-    .pageNumbers {
-        display: none;
+    .pageButton {
+        padding: 6px 8px;
+        font-size: 11px;
     }
 }

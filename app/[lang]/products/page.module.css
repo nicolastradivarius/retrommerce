@@ -1,6 +1,6 @@
 /* page.module.css - Productos
-   Limpieza: se eliminaron estilos no utilizados relacionados con ProductCard
-   y selectores redundantes para filtros móviles.
+   Layout basado en flex para que la ventana principal ocupe la altura disponible.
+   Se añade padding-bottom para reservar espacio al BottomNav (barra fija).
 */
 
 .container {
@@ -10,18 +10,28 @@
     flex-direction: column;
 }
 
+/* Main se convierte en columna flexible para que su contenido pueda estirarse */
 .main {
     max-width: 100%;
     margin: 0 auto;
     padding: 24px;
+    padding-bottom: 56px; /* espacio base para BottomNav fijo */
+    /* Añadimos también soporte para safe-area en móviles: */
+    padding-bottom: calc(56px + env(safe-area-inset-bottom));
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0; /* importante para permitir overflow interno en elementos flex */
 }
 
+/* Layout de contenido: sidebar + zona de productos */
 .contentLayout {
     display: flex;
     gap: 24px;
-    align-items: flex-start;
+    align-items: stretch; /* estira columnas para que tengan la misma altura */
     margin-top: 24px;
+    min-height: 0;
 }
 
 .sidebar {
@@ -29,11 +39,16 @@
     flex-shrink: 0;
 }
 
+/* Zona de productos: columna flexible que crecerá para rellenar el espacio */
 .productsSection {
     flex: 1;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
+/* Mensaje de no-results */
 .noResults {
     padding: 40px 20px;
     text-align: center;
@@ -42,17 +57,30 @@
     color: #666;
 }
 
+/* Ventana principal (marco) - ahora flexible */
 .window {
     background: #c0c0c0;
     border: 2px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
     box-shadow: 2px 2px 0px #000;
     margin-bottom: 24px;
+
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* permite que la ventana crezca dentro de productsSection */
+    min-height: 0; /* necesario para manejo correcto de overflow en flex children */
 }
 
+/* Contenido interior de la ventana: scroll interno si hace falta */
 .windowContent {
     padding: 16px;
     background: #c0c0c0;
+
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: auto; /* el contenido que exceda altura hará scroll aquí */
 }
 
 /* Grid de productos */
@@ -61,6 +89,14 @@
     grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
     gap: 16px;
     margin-bottom: 24px;
+}
+
+/* Ajuste ligero para pantallas pequeñas: 2 columnas por defecto */
+@media (max-width: 480px) {
+    .productGrid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
 }
 
 /* Paginación */
@@ -139,10 +175,39 @@
     font-size: 11px;
 }
 
-/* Media query para mobile: Full width window */
+/* Responsive: mobile - ajustar padding y disposición */
 @media (max-width: 768px) {
     .main {
         max-width: 100%;
         padding: 8px;
+        padding-bottom: 56px;
+        padding-bottom: calc(56px + env(safe-area-inset-bottom));
+    }
+
+    /* En móviles preferimos apilar sidebar / contenido (por si se usa) */
+    .contentLayout {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    /* Normalmente en mobile el Sidebar no se muestra (usado ProductFilters en tabs) */
+    .sidebar {
+        display: none;
+    }
+}
+
+/* Ajustes muy pequeños */
+@media (max-width: 400px) {
+    .windowContent {
+        padding: 12px;
+    }
+
+    .productGrid {
+        gap: 8px;
+    }
+
+    .pageButton,
+    .pageNumber {
+        font-size: 11px;
     }
 }
