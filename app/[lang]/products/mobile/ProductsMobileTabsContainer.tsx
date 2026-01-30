@@ -23,7 +23,7 @@ import type { Locale } from "../../dictionaries";
 import type { ProductListItem } from "@/lib/products";
 import ProductCard from "../../components/ProductCard";
 import ProductFilters from "../ProductFilters";
-import styles from "../page.module.css";
+import styles from "./ProductsMobileTabsContainer.module.css";
 
 /**
  * Tipo para productos con precios ya serializados a strings

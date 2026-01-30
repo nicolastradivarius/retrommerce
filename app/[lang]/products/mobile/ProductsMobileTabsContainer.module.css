@@ -6,6 +6,108 @@
     max-height: calc(100vh - 200px);
 }
 
+/* Ventana / contenedores base (copiado de page.module.css para que el componente pueda usar solo este módulo) */
+.window {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    box-shadow: 2px 2px 0px #000;
+    margin-bottom: 24px;
+}
+
+.windowContent {
+    padding: 16px;
+    background: #c0c0c0;
+}
+
+.noResults {
+    padding: 40px 20px;
+    text-align: center;
+    font-family: "MS Sans Serif", sans-serif;
+    font-size: 11px;
+    color: #666;
+}
+
+/* Grid de productos (raíz) */
+.productGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+/* Paginación (raíz) */
+.pagination {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0 0 0;
+    border-top: 2px solid #808080;
+}
+
+.paginationControls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.pageButton {
+    padding: 8px 16px;
+    background: #c0c0c0;
+    border: 2px outset #dfdfdf;
+    text-decoration: none;
+    color: black;
+    font-family: "MS Sans Serif", sans-serif;
+    font-weight: bold;
+}
+
+.pageButton:hover {
+    background: #dfdfdf;
+}
+
+.pageNumbers {
+    display: flex;
+    gap: 4px;
+}
+
+.pageNumber {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #c0c0c0;
+    border: 2px outset #dfdfdf;
+    text-decoration: none;
+    color: black;
+    font-family: "MS Sans Serif", sans-serif;
+    font-size: 11px;
+}
+
+.pageNumber:hover {
+    background: #dfdfdf;
+}
+
+.pageNumberActive {
+    background: #000080;
+    color: white;
+    border: 2px inset #000040;
+}
+
+.pageNumberActive:hover {
+    background: #0000a0;
+}
+
+.pageInfo {
+    font-family: "MS Sans Serif", sans-serif;
+    font-weight: bold;
+    color: #666;
+    font-size: 11px;
+}
+
 /* Estilos para el contenido de filtros dentro de la pestaña */
 .mobileTabContent .filtersContent {
     padding: 0;
