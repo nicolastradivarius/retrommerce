@@ -1,42 +1,22 @@
-// ============================================================================
-// IMPORTACIONES
-// ============================================================================
-// Componentes de UI React95 (estilo Windows 95)
 import { Frame, TitleBar, Cursor } from "@react95/core";
 import { Computer } from "@react95/icons";
-
-// Utilidades de Next.js
 import Link from "next/link";
 import { notFound } from "next/navigation";
-
-// Constantes y configuración
 import { ITEMS_PER_PAGE } from "@/lib/constants";
-
-// Funciones de base de datos para obtener productos y categorías
 import {
   getProducts,
   getProductsCount,
   getCategories,
   type ProductListItem,
 } from "@/lib/products";
-
-// Funciones para manejar favoritos de usuarios
 import { getFavoriteProductIdsByUser } from "@/lib/favorites";
-
-// Componentes de aplicación
 import BottomNav from "../components/BottomNav";
 import ProductCard from "../components/ProductCard";
 import ProductFilters from "./ProductFilters";
 import ProductsMobileTabsContainer from "./mobile/ProductsMobileTabsContainer";
 import ResponsiveLayout from "./ResponsiveLayout";
-
-// Estilos CSS modular
 import styles from "./page.module.css";
-
-// Internacionalización y diccionarios
 import { getDictionary, hasLocale } from "../dictionaries";
-
-// Autenticación
 import { getCurrentUserWithAvatar } from "@/lib/auth";
 
 /**
