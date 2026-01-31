@@ -9,11 +9,9 @@ import {
   FolderSettings,
   PowerOn,
   PowerOff,
-  Mmsys103,
   Sndvol32304,
   Sndvol32303,
   Network2,
-  Tree,
   Msrating106,
 } from "@react95/icons";
 import Link from "next/link";
@@ -200,8 +198,6 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
             {/* System Tray */}
             <div className={styles.systemTray}>
               <div className={styles.trayInner}>
-                <Mmsys103 variant="16x16_4" />
-                <Tree variant="16x16_4" />
                 <Network2 variant="16x16_4" />
                 <button
                   className={`${styles.trayIcon} ${Cursor.Auto}`}
