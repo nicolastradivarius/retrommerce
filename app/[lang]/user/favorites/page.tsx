@@ -2,8 +2,8 @@ import { Frame, TitleBar, Cursor } from "@react95/core";
 import { FolderOpen } from "@react95/icons";
 import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
+import { getFavoriteProductsByUser } from "@/lib/favorites";
 import BottomNav from "../../components/BottomNav";
 import ProductCard from "../../components/ProductCard";
 import { getDictionary, hasLocale } from "../../dictionaries";
@@ -27,29 +27,7 @@ export default async function FavoritesPage({
     redirect(`/${lang}/login`);
   }
 
-  const favorites = await prisma.favorite.findMany({
-    where: { userId: user.sub },
-    orderBy: { createdAt: "desc" },
-    include: {
-      product: {
-        select: {
-          id: true,
-          name: true,
-          slug: true,
-          description: true,
-          price: true,
-          originalPrice: true,
-          year: true,
-          manufacturer: true,
-          stock: true,
-          images: true,
-          featured: true,
-        },
-      },
-    },
-  });
-
-  const products = favorites.map((favorite) => favorite.product);
+  const products = await getFavoriteProductsByUser(user.sub);
 
   return (
     <div className={styles.container}>
@@ -79,7 +57,7 @@ export default async function FavoritesPage({
                     key={product.id}
                     product={product}
                     lang={lang}
-                    dict={dict}
+                    dict={dict.productCard}
                     isFavorite
                     canFavorite
                     fromPage="favorites"

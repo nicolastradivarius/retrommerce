@@ -1,6 +1,24 @@
-import 'server-only';
+import "server-only";
 
 import { prisma } from "@/lib/prisma";
+
+/**
+ * Tipo para un producto en la lista de favoritos.
+ * Los precios se serializan a strings para que sean compatibles con el frontend.
+ */
+export type FavoriteProduct = {
+  id: string;
+  name: string;
+  slug: string;
+  description: string | null;
+  price: string;
+  originalPrice: string;
+  year: number | null;
+  manufacturer: string | null;
+  stock: number;
+  images: string[];
+  featured: boolean;
+};
 
 /**
  * Obtiene los ids de producto marcados como favoritos por un usuario.
@@ -22,7 +40,55 @@ export async function getFavoriteProductIdsByUser(
     return new Set(rows.map((r) => String(r.productId)));
   } catch (error) {
     // Log y retorno seguro para que la aplicación no rompa la carga de la página
-    console.error("Error fetching favorite product ids for user", userId, error);
+    console.error(
+      "Error fetching favorite product ids for user",
+      userId,
+      error,
+    );
     return new Set();
+  }
+}
+
+/**
+ * Obtiene los productos favoritos de un usuario con precios serializados a strings.
+ *
+ * @param userId - ID del usuario
+ * @returns Array de productos favoritos con precios como strings (compatibles con ProductCard)
+ */
+export async function getFavoriteProductsByUser(
+  userId: string,
+): Promise<FavoriteProduct[]> {
+  try {
+    const favorites = await prisma.favorite.findMany({
+      where: { userId },
+      orderBy: { createdAt: "desc" },
+      include: {
+        product: {
+          select: {
+            id: true,
+            name: true,
+            slug: true,
+            description: true,
+            price: true,
+            originalPrice: true,
+            year: true,
+            manufacturer: true,
+            stock: true,
+            images: true,
+            featured: true,
+          },
+        },
+      },
+    });
+
+    // Serializar los precios Decimal a strings
+    return favorites.map((favorite) => ({
+      ...favorite.product,
+      price: favorite.product.price.toString(),
+      originalPrice: favorite.product.originalPrice.toString(),
+    }));
+  } catch (error) {
+    console.error("Error fetching favorite products for user", userId, error);
+    return [];
   }
 }

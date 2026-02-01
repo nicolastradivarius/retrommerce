@@ -241,7 +241,7 @@
 @media (max-width: 768px) {
     .layout {
         grid-template-columns: 1fr;
-		  max-width: 100%;
+        max-width: 100%;
     }
 
     .menuGrid {
