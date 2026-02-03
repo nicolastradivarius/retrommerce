@@ -40,7 +40,7 @@ export default async function NotFound() {
           <div className={styles.separator} />
 
           <div className={styles.actions}>
-            <Link href="/products" className={Cursor.Pointer}>
+            <Link href="/" className={Cursor.Pointer}>
               <Button className={Cursor.Pointer}>Back to home</Button>
             </Link>
           </div>
