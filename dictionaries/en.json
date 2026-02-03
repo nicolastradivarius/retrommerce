@@ -114,7 +114,25 @@
     "loadingProfile": "Loading profile...",
     "profileLoadError": "Could not load profile",
     "editPersonalInfo": "Edit your personal information",
-    "preview": "Preview"
+    "preview": "Preview",
+    "profileSettings": "Profile Settings",
+    "profileInfo": "Your profile information",
+    "security": "Security",
+    "phone": "Phone",
+    "phonePlaceholder": "+1 234-567-8900",
+    "shippingAddresses": "Shipping addresses",
+    "addAddress": "Add address",
+    "noAddresses": "You have no saved addresses",
+    "changePassword": "Change password",
+    "currentPassword": "Current password",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm password",
+    "currentPasswordPlaceholder": "Enter your current password",
+    "newPasswordPlaceholder": "Enter new password",
+    "confirmPasswordPlaceholder": "Confirm new password",
+    "updatePassword": "Update password",
+    "passwordUpdated": "Password updated successfully",
+    "passwordUpdateError": "Error updating password"
   },
   "topBar": {
     "hello": "Hello"

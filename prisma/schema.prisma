@@ -21,31 +21,31 @@ model Category {
 }
 
 model Product {
-  id              String        @id @default(cuid())
-  name            String
-  slug            String        @unique
-  description     String?       @db.Text
-  price           Decimal       @db.Decimal(10, 2)
-  originalPrice   Decimal       @db.Decimal(10, 2) // Precio original para mostrar descuentos
-  year            Int?          // Año de lanzamiento del producto
-  manufacturer    String?       // Fabricante (IBM, Compaq, Intel, AMD, etc.)
-  stock           Int           @default(0)
-  images          String[]      // Array de URLs de imágenes
-  featured        Boolean       @default(false)
-  
+  id            String   @id @default(cuid())
+  name          String
+  slug          String   @unique
+  description   String?  @db.Text
+  price         Decimal  @db.Decimal(10, 2)
+  originalPrice Decimal  @db.Decimal(10, 2) // Precio original para mostrar descuentos
+  year          Int? // Año de lanzamiento del producto
+  manufacturer  String? // Fabricante (IBM, Compaq, Intel, AMD, etc.)
+  stock         Int      @default(0)
+  images        String[] // Array de URLs de imágenes
+  featured      Boolean  @default(false)
+
   // Especificaciones técnicas (JSON flexible)
-  specifications  Json?         // { cpu: "Pentium II 266MHz", ram: "64MB", etc. }
-  
+  specifications Json? // { cpu: "Pentium II 266MHz", ram: "64MB", etc. }
+
   // Relaciones
-  categoryId      String
-  category        Category      @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  orderItems      OrderItem[]
-  cartItems       CartItem[]
-  reviews         Review[]
-  favorites 	   Favorite[] // lista de usuarios que marcaron el producto como favorito
-  
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
+  categoryId String
+  category   Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  orderItems OrderItem[]
+  cartItems  CartItem[]
+  reviews    Review[]
+  favorites  Favorite[] // lista de usuarios que marcaron el producto como favorito
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([categoryId])
   @@index([slug])
@@ -55,22 +55,23 @@ model Product {
 
 // Usuarios
 model User {
-  id            String    @id @default(cuid())
-  email         String    @unique
-  name          String?
-  password      String    // Hasheada
-  avatar        String?
-  role          UserRole  @default(USER)
-  
+  id       String   @id @default(cuid())
+  email    String   @unique
+  name     String?
+  phone    String? // Número de teléfono del usuario
+  password String // Hasheada
+  avatar   String?
+  role     UserRole @default(USER)
+
   // Relaciones
-  addresses     Address[]
-  orders        Order[]
-  cart          Cart?
-  reviews       Review[]
-  favorites     Favorite[] // lista de productos favoritos del usuario
-  
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  addresses Address[]
+  orders    Order[]
+  cart      Cart?
+  reviews   Review[]
+  favorites Favorite[] // lista de productos favoritos del usuario
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("users")
 }
@@ -95,23 +96,23 @@ model Favorite {
 
 // Direcciones de envío
 model Address {
-  id          String   @id @default(cuid())
-  userId      String
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
-  fullName    String
-  street      String
-  city        String
-  state       String
-  zipCode     String
-  country     String
-  phone       String?
-  isDefault   Boolean  @default(false)
-  
-  orders      Order[]
-  
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  fullName  String
+  street    String
+  city      String
+  state     String
+  zipCode   String
+  country   String
+  phone     String?
+  isDefault Boolean @default(false)
+
+  orders Order[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([userId])
   @@map("addresses")
@@ -147,34 +148,34 @@ model CartItem {
 
 // Órdenes
 model Order {
-  id              String      @id @default(cuid())
-  orderNumber     String      @unique
-  userId          String
-  user            User        @relation(fields: [userId], references: [id])
-  
+  id          String @id @default(cuid())
+  orderNumber String @unique
+  userId      String
+  user        User   @relation(fields: [userId], references: [id])
+
   // Dirección de envío
-  addressId       String
-  address         Address     @relation(fields: [addressId], references: [id])
-  
+  addressId String
+  address   Address @relation(fields: [addressId], references: [id])
+
   // Totales
-  subtotal        Decimal     @db.Decimal(10, 2)
-  shipping        Decimal     @db.Decimal(10, 2)
-  tax             Decimal     @db.Decimal(10, 2)
-  total           Decimal     @db.Decimal(10, 2)
-  
+  subtotal Decimal @db.Decimal(10, 2)
+  shipping Decimal @db.Decimal(10, 2)
+  tax      Decimal @db.Decimal(10, 2)
+  total    Decimal @db.Decimal(10, 2)
+
   // Estado
-  status          OrderStatus @default(PENDING)
-  paymentStatus   PaymentStatus @default(PENDING)
-  
+  status        OrderStatus   @default(PENDING)
+  paymentStatus PaymentStatus @default(PENDING)
+
   // Items
-  items           OrderItem[]
-  
+  items OrderItem[]
+
   // Tracking
-  trackingNumber  String?
-  notes           String?     @db.Text
-  
-  createdAt       DateTime    @default(now())
-  updatedAt       DateTime    @updatedAt
+  trackingNumber String?
+  notes          String? @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@index([userId])
   @@index([orderNumber])
@@ -200,16 +201,16 @@ enum PaymentStatus {
 }
 
 model OrderItem {
-  id          String   @id @default(cuid())
-  orderId     String
-  order       Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  productId   String
-  product     Product  @relation(fields: [productId], references: [id])
-  
-  quantity    Int
-  price       Decimal  @db.Decimal(10, 2) // Precio al momento de la compra
-  
-  createdAt   DateTime @default(now())
+  id        String  @id @default(cuid())
+  orderId   String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+
+  quantity Int
+  price    Decimal @db.Decimal(10, 2) // Precio al momento de la compra
+
+  createdAt DateTime @default(now())
 
   @@index([orderId])
   @@index([productId])
@@ -218,16 +219,16 @@ model OrderItem {
 
 // Reseñas de productos
 model Review {
-  id        String   @id @default(cuid())
+  id        String  @id @default(cuid())
   productId String
-  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
   userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
-  rating    Int      // 1-5 estrellas
-  title     String?
-  comment   String?  @db.Text
-  
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  rating  Int // 1-5 estrellas
+  title   String?
+  comment String? @db.Text
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 

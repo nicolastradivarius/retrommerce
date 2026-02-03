@@ -80,13 +80,6 @@ export default async function UserPage({
               <div className={styles.separator} />
 
               <div className={styles.profileActions}>
-                <Link
-                  href={`/${lang}/user/profile`}
-                  className={`${styles.editProfileLink} ${Cursor.Pointer}`}
-                >
-                  <Notepad variant="16x16_4" />
-                  {dict.user.editProfile}
-                </Link>
                 <LogoutButton
                   lang={lang}
                   dict={dict.logoutButton}
@@ -96,11 +89,49 @@ export default async function UserPage({
             </Frame>
           </div>
 
-          {/* Ventana de Panel de Control */}
+          {/* Ventana de Configuración */}
           <div className={styles.window}>
             <TitleBar
               active
               icon={<FolderSettings variant="16x16_4" />}
+              title={dict.user.profileSettings}
+            >
+              <TitleBar.OptionsBox>
+                <TitleBar.Minimize />
+                <TitleBar.Restore />
+                <TitleBar.Close />
+              </TitleBar.OptionsBox>
+            </TitleBar>
+            <Frame className={styles.windowContent}>
+              <div className={styles.settingsGrid}>
+                <Link
+                  href={`/${lang}/user/profile-info`}
+                  className={`${styles.settingLink} ${Cursor.Pointer}`}
+                >
+                  <div className={styles.settingIcon}>
+                    <Notepad variant="32x32_4" />
+                    <span>{dict.user.profileInfo}</span>
+                  </div>
+                </Link>
+
+                <Link
+                  href={`/${lang}/user/security`}
+                  className={`${styles.settingLink} ${Cursor.Pointer}`}
+                >
+                  <div className={styles.settingIcon}>
+                    <FolderSettings variant="32x32_4" />
+                    <span>{dict.user.security}</span>
+                  </div>
+                </Link>
+              </div>
+            </Frame>
+          </div>
+
+          {/* Ventana de Panel de Control */}
+          <div className={styles.window}>
+            <TitleBar
+              active
+              icon={<Computer variant="16x16_4" />}
               title={dict.user.controlPanel}
             >
               <TitleBar.OptionsBox>
@@ -110,32 +141,22 @@ export default async function UserPage({
               </TitleBar.OptionsBox>
             </TitleBar>
             <Frame className={styles.windowContent}>
-              <div className={styles.menuGrid}>
+              <div className={styles.settingsGrid}>
                 <Link
                   href={`/${lang}/products`}
-                  className={`${styles.menuLink} ${Cursor.Pointer}`}
+                  className={`${styles.settingLink} ${Cursor.Pointer}`}
                 >
-                  <div className={styles.desktopIcon}>
+                  <div className={styles.settingIcon}>
                     <Folder variant="32x32_4" />
                     <span>{dict.user.catalog}</span>
                   </div>
                 </Link>
 
                 <Link
-                  href={`/${lang}/user/profile`}
-                  className={`${styles.menuLink} ${Cursor.Pointer}`}
-                >
-                  <div className={styles.desktopIcon}>
-                    <Notepad variant="32x32_4" />
-                    <span>{dict.user.myProfile}</span>
-                  </div>
-                </Link>
-
-                <Link
                   href={`/${lang}/user/favorites`}
-                  className={`${styles.menuLink} ${Cursor.Pointer}`}
+                  className={`${styles.settingLink} ${Cursor.Pointer}`}
                 >
-                  <div className={styles.desktopIcon}>
+                  <div className={styles.settingIcon}>
                     <Msrating106 variant="32x32_4" />
                     <span>{dict.user.favorites}</span>
                   </div>
@@ -143,9 +164,9 @@ export default async function UserPage({
 
                 <Link
                   href={`/${lang}/user/orders`}
-                  className={`${styles.menuLink} ${Cursor.Pointer}`}
+                  className={`${styles.settingLink} ${Cursor.Pointer}`}
                 >
-                  <div className={styles.desktopIcon}>
+                  <div className={styles.settingIcon}>
                     <Computer variant="32x32_4" />
                     <span>{dict.user.myOrders}</span>
                   </div>

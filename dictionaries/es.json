@@ -114,7 +114,25 @@
     "loadingProfile": "Cargando perfil...",
     "profileLoadError": "No se pudo cargar el perfil",
     "editPersonalInfo": "Edita tu información personal",
-    "preview": "Vista previa"
+    "preview": "Vista previa",
+    "profileSettings": "Configuración de Perfil",
+    "profileInfo": "Información de tu perfil",
+    "security": "Seguridad",
+    "phone": "Teléfono",
+    "phonePlaceholder": "+1 234-567-8900",
+    "shippingAddresses": "Direcciones de envío",
+    "addAddress": "Agregar dirección",
+    "noAddresses": "No tienes direcciones guardadas",
+    "changePassword": "Cambiar contraseña",
+    "currentPassword": "Contraseña actual",
+    "newPassword": "Nueva contraseña",
+    "confirmPassword": "Confirmar contraseña",
+    "currentPasswordPlaceholder": "Ingresa tu contraseña actual",
+    "newPasswordPlaceholder": "Ingresa nueva contraseña",
+    "confirmPasswordPlaceholder": "Confirma la nueva contraseña",
+    "updatePassword": "Actualizar contraseña",
+    "passwordUpdated": "Contraseña actualizada correctamente",
+    "passwordUpdateError": "Error al actualizar contraseña"
   },
   "topBar": {
     "hello": "Hola"

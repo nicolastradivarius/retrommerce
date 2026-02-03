@@ -1,0 +1,231 @@
+.container {
+    min-height: 100vh;
+    background: #008080;
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    flex: 1;
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.window {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    box-shadow: 2px 2px 0px #000;
+    width: 100%;
+    max-width: 800px;
+}
+
+.windowContent {
+    padding: 20px;
+    background: #c0c0c0;
+}
+
+.formSection,
+.addressSection {
+    margin-bottom: 24px;
+}
+
+.sectionTitle {
+    margin: 0 0 16px 0;
+    font-size: 13px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-weight: bold;
+    color: #000;
+    padding-bottom: 8px;
+    border-bottom: 2px solid;
+    border-color: #808080 #ffffff;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.label {
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-weight: bold;
+    color: #000;
+}
+
+.input {
+    padding: 4px 6px;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #fff;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    color: #000;
+}
+
+.input:focus {
+    outline: 1px dotted #000;
+    outline-offset: -4px;
+}
+
+.input.disabled {
+    background: #c0c0c0;
+    color: #808080;
+    cursor: not-allowed;
+}
+
+.hint {
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    color: #808080;
+    margin: 0;
+    font-style: italic;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.saveButton {
+    padding: 6px 16px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #000;
+    cursor: pointer;
+    min-width: 80px;
+}
+
+.saveButton:hover {
+    background: #d4d4d4;
+}
+
+.saveButton:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.cancelButton {
+    padding: 6px 16px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    color: #000;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 80px;
+}
+
+.cancelButton:hover {
+    background: #d4d4d4;
+}
+
+.cancelButton:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.separator {
+    height: 2px;
+    margin: 24px 0;
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #ffffff;
+}
+
+.addressSection {
+    margin-top: 24px;
+}
+
+.addressList {
+    min-height: 60px;
+    padding: 12px;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #fff;
+    margin-bottom: 12px;
+}
+
+.emptyMessage {
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    color: #808080;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.addButton {
+    padding: 6px 16px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    color: #000;
+    cursor: pointer;
+}
+
+.addButton:hover {
+    background: #d4d4d4;
+}
+
+.addButton:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.backLink {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 2px solid;
+    border-color: #808080 #ffffff;
+}
+
+.link {
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    color: #000080;
+    text-decoration: underline;
+}
+
+.link:hover {
+    color: #0000ff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main {
+        padding: 12px;
+    }
+
+    .window {
+        max-width: 100%;
+    }
+
+    .windowContent {
+        padding: 16px;
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+    }
+
+    .saveButton,
+    .cancelButton {
+        width: 100%;
+    }
+}
