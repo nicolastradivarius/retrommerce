@@ -65,6 +65,7 @@
     "outOfStock": "Out of stock",
     "category": "Category",
     "addToCart": "Add to cart",
+    "quantity": "Quantity",
     "technicalSpecs": "Technical Specifications",
     "addToFavorites": "Add to favorites",
     "removeFromFavorites": "Remove from favorites",

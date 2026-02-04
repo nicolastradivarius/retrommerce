@@ -1,4 +1,4 @@
-import { Frame, Button, TitleBar } from "@react95/core";
+import { Frame, TitleBar } from "@react95/core";
 import { Computer } from "@react95/icons";
 import BackToButton from "@/app/[lang]/components/BackToButton";
 import { notFound } from "next/navigation";
@@ -8,6 +8,7 @@ import { getCurrentUserWithAvatar } from "@/lib/auth";
 import BottomNav from "@/app/[lang]/components/BottomNav";
 import ImageCarousel from "@/app/[lang]/components/ImageCarousel";
 import FavoriteButton from "@/app/[lang]/components/FavoriteButton";
+import AddToCartButton from "@/app/[lang]/components/AddToCartButton";
 import { getDictionary, hasLocale } from "../../dictionaries";
 import styles from "./page.module.css";
 
@@ -168,11 +169,15 @@ export default async function ProductDetailPage({
 
                   {product.stock > 0 && (
                     <div className={styles.cardActions}>
-                      <Frame className={styles.addToCartFrame}>
-                        <Button className={styles.addToCartButton}>
-                          {dict.product.addToCart}
-                        </Button>
-                      </Frame>
+                      <AddToCartButton
+                        productId={product.id}
+                        stock={product.stock}
+                        lang={lang}
+                        dict={{
+                          addToCart: dict.product.addToCart,
+                          quantity: dict.product.quantity,
+                        }}
+                      />
                     </div>
                   )}
                 </Frame>
