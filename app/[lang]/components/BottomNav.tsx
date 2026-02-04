@@ -13,6 +13,7 @@ import {
   Sndvol32303,
   Network2,
   Msrating106,
+  Folder,
 } from "@react95/icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -31,6 +32,7 @@ interface BottomNavProps {
     userPanel: string;
     login: string;
     favorites: string;
+    cart: string;
   };
   user?: UserWithAvatar | null;
 }
@@ -39,6 +41,7 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isSoundIconToggled, setIsSoundIconToggled] = useState(false);
   const [isPowerToggled, setIsPowerToggled] = useState(false);
+  const [cartItemCount, setCartItemCount] = useState(0);
   const [currentTime, setCurrentTime] = useState(() => {
     return new Date()
       .toLocaleTimeString("es-AR", {
@@ -72,6 +75,38 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
     return () => clearInterval(interval);
   }, []);
 
+  // Fetch cart item count
+  useEffect(() => {
+    const fetchCartCount = async () => {
+      if (!user) {
+        setCartItemCount(0);
+        return;
+      }
+
+      try {
+        const response = await fetch("/api/cart/count");
+        const data = await response.json();
+        setCartItemCount(data.count || 0);
+      } catch (error) {
+        console.error("Error fetching cart count:", error);
+        setCartItemCount(0);
+      }
+    };
+
+    fetchCartCount();
+
+    // Escuchar evento de actualización del carrito
+    const handleCartUpdate = () => {
+      fetchCartCount();
+    };
+
+    window.addEventListener("cartUpdated", handleCartUpdate);
+
+    return () => {
+      window.removeEventListener("cartUpdated", handleCartUpdate);
+    };
+  }, [user]);
+
   const menuItems = [
     {
       icon: <Msnstart1 variant="16x16_4" />,
@@ -87,6 +122,13 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
     },
     ...(user
       ? [
+          {
+            icon: <Folder variant="16x16_4" />,
+            label:
+              cartItemCount > 0 ? `${dict.cart} (${cartItemCount})` : dict.cart,
+            href: `/${lang}/cart`,
+            basePath: "cart",
+          },
           {
             icon: <FolderSettings variant="16x16_4" />,
             label: dict.userPanel,

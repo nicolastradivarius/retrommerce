@@ -146,7 +146,8 @@
     "myProfile": "My Profile",
     "userPanel": "Control Panel",
     "login": "Login",
-    "favorites": "Favorites"
+    "favorites": "Favorites",
+    "cart": "Cart"
   },
   "logoutButton": {
     "logout": "Logout",

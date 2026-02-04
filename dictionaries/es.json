@@ -146,7 +146,8 @@
     "myProfile": "Mi Perfil",
     "userPanel": "Panel de Control",
     "login": "Iniciar Sesión",
-    "favorites": "Favoritos"
+    "favorites": "Favoritos",
+    "cart": "Carrito"
   },
   "logoutButton": {
     "logout": "Cerrar sesión",

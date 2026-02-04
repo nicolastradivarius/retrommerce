@@ -61,6 +61,10 @@ export default function AddToCartButton({
 
       // Éxito
       setButtonState("success");
+
+      // Disparar evento para actualizar el badge del carrito
+      window.dispatchEvent(new Event("cartUpdated"));
+
       setTimeout(() => {
         setButtonState("idle");
       }, 2000);
