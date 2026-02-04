@@ -63,6 +63,13 @@
     justify-content: center;
 }
 
+.heroAvatarContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
 .heroTitle {
     font-size: 24px;
     margin: 0 0 10px 0;

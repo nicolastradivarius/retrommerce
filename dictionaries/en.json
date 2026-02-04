@@ -13,6 +13,7 @@
   },
   "landing": {
     "welcome": "Welcome to Retrommerce",
+    "welcomeUser": "Welcome {username} to Retrommerce",
     "tagline": "Your vintage tech store from the 90s and 2000s",
     "description": "Explore our collection of classic devices, retro consoles, and nostalgic technology. Travel back in time with us.",
     "viewCatalog": "View Catalog",

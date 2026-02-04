@@ -1,4 +1,4 @@
-import { Frame, TitleBar, Cursor } from "@react95/core";
+import { Frame, TitleBar, Cursor, Avatar } from "@react95/core";
 import {
   User,
   Computer,
@@ -8,7 +8,6 @@ import {
   Awfxcg321303,
   Msrating106,
 } from "@react95/icons";
-import Image from "next/image";
 import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
@@ -58,12 +57,10 @@ export default async function UserPage({
               <div className={styles.profileHeader}>
                 <div className={styles.avatarContainer}>
                   {user.avatar ? (
-                    <Image
+                    <Avatar
                       src={user.avatar}
                       alt={dict.user.profilePhoto}
-                      fill
-                      sizes="64px"
-                      className={styles.avatarImage}
+                      size="64px"
                     />
                   ) : (
                     <div className={styles.avatarPlaceholder}>

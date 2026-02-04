@@ -1,4 +1,4 @@
-import { Frame, TitleBar, Button, Cursor } from "@react95/core";
+import { Frame, TitleBar, Button, Cursor, Avatar } from "@react95/core";
 import {
   Computer,
   Mmsys120,
@@ -48,10 +48,27 @@ export default async function HomePage({
           </TitleBar>
           <Frame className={styles.heroContent}>
             <div className={styles.heroInner}>
-              <div className={styles.heroIcon}>
-                <Computer variant="32x32_4" />
-              </div>
-              <h1 className={styles.heroTitle}>{dict.landing.welcome}</h1>
+              {user && user.avatar ? (
+                <div className={styles.heroAvatarContainer}>
+                  <Avatar
+                    src={user.avatar}
+                    alt={user.name || user.email}
+                    size="64px"
+                  />
+                </div>
+              ) : (
+                <div className={styles.heroIcon}>
+                  <Computer variant="32x32_4" />
+                </div>
+              )}
+              <h1 className={styles.heroTitle}>
+                {user
+                  ? dict.landing.welcomeUser.replace(
+                      "{username}",
+                      user.name || user.email,
+                    )
+                  : dict.landing.welcome}
+              </h1>
               <p className={styles.heroTagline}>{dict.landing.tagline}</p>
               <p className={styles.heroDescription}>
                 {dict.landing.description}
