@@ -1,20 +1,15 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { getCurrentUser } from '@/lib/auth';
-import sharp from 'sharp';
-import { uploadAvatarToCloudinary } from '@/lib/cloudinary';
-
-export const runtime = 'nodejs';
+import { NextRequest, NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+import { getCurrentUser } from "@/lib/auth";
+import sharp from "sharp";
+import { uploadAvatarToCloudinary } from "@/lib/cloudinary";
 
 export async function GET() {
   try {
     const userPayload = await getCurrentUser();
 
     if (!userPayload) {
-      return NextResponse.json(
-        { error: 'No autorizado' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "No autorizado" }, { status: 401 });
     }
 
     const user = await prisma.user.findUnique({
@@ -31,17 +26,17 @@ export async function GET() {
 
     if (!user) {
       return NextResponse.json(
-        { error: 'Usuario no encontrado' },
-        { status: 404 }
+        { error: "Usuario no encontrado" },
+        { status: 404 },
       );
     }
 
     return NextResponse.json({ user });
   } catch (error) {
-    console.error('Error fetching profile:', error);
+    console.error("Error fetching profile:", error);
     return NextResponse.json(
-      { error: 'Error al obtener perfil' },
-      { status: 500 }
+      { error: "Error al obtener perfil" },
+      { status: 500 },
     );
   }
 }
@@ -51,32 +46,29 @@ export async function PUT(request: NextRequest) {
     const userPayload = await getCurrentUser();
 
     if (!userPayload) {
-      return NextResponse.json(
-        { error: 'No autorizado' },
-        { status: 401 }
-      );
+      return NextResponse.json({ error: "No autorizado" }, { status: 401 });
     }
 
-    const contentType = request.headers.get('content-type') || '';
+    const contentType = request.headers.get("content-type") || "";
 
     let name: string | null | undefined;
     let avatar: string | null | undefined;
 
-    if (contentType.includes('multipart/form-data')) {
+    if (contentType.includes("multipart/form-data")) {
       const formData = await request.formData();
 
-      const rawName = formData.get('name');
-      if (typeof rawName === 'string') {
+      const rawName = formData.get("name");
+      if (typeof rawName === "string") {
         const trimmed = rawName.trim();
         name = trimmed.length > 0 ? trimmed : null;
       }
 
-      const avatarFile = formData.get('avatar');
+      const avatarFile = formData.get("avatar");
       if (avatarFile instanceof File) {
-        if (!avatarFile.type.startsWith('image/')) {
+        if (!avatarFile.type.startsWith("image/")) {
           return NextResponse.json(
-            { error: 'El archivo debe ser una imagen' },
-            { status: 400 }
+            { error: "El archivo debe ser una imagen" },
+            { status: 400 },
           );
         }
 
@@ -84,8 +76,8 @@ export async function PUT(request: NextRequest) {
         const maxBytes = 5 * 1024 * 1024;
         if (avatarFile.size > maxBytes) {
           return NextResponse.json(
-            { error: 'La imagen es demasiado grande (máx 5MB)' },
-            { status: 400 }
+            { error: "La imagen es demasiado grande (máx 5MB)" },
+            { status: 400 },
           );
         }
 
@@ -94,7 +86,7 @@ export async function PUT(request: NextRequest) {
 
         const optimizedBuffer = await sharp(inputBuffer)
           .rotate()
-          .resize(256, 256, { fit: 'cover' })
+          .resize(256, 256, { fit: "cover" })
           .webp({ quality: 80 })
           .toBuffer();
 
@@ -123,15 +115,15 @@ export async function PUT(request: NextRequest) {
       },
     });
 
-    return NextResponse.json({ 
+    return NextResponse.json({
       success: true,
-      user: updatedUser 
+      user: updatedUser,
     });
   } catch (error) {
-    console.error('Error updating profile:', error);
+    console.error("Error updating profile:", error);
     return NextResponse.json(
-      { error: 'Error al actualizar perfil' },
-      { status: 500 }
+      { error: "Error al actualizar perfil" },
+      { status: 500 },
     );
   }
 }
