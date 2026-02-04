@@ -1,0 +1,238 @@
+.container {
+    min-height: 100vh;
+    background: #008080;
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    flex: 1;
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.cartFrame {
+    width: 100%;
+    max-width: 1200px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    box-shadow: 2px 2px 0px #000;
+}
+
+.frameBody {
+    padding: 16px;
+    background: #c0c0c0;
+    min-height: 400px;
+}
+
+/* Estado vacío */
+.emptyCart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+    gap: 16px;
+}
+
+.emptyTitle {
+    margin: 0;
+    font-size: 16px;
+    font-family: "MS Sans Serif", sans-serif;
+    font-weight: bold;
+    color: #000080;
+}
+
+.emptyDescription {
+    margin: 0;
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    color: #000;
+}
+
+.continueButton {
+    padding: 8px 16px;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: "MS Sans Serif", sans-serif;
+    margin-top: 8px;
+}
+
+/* Contenido del carrito */
+.cartContent {
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 24px;
+}
+
+.itemsSection {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sectionTitle {
+    margin: 0 0 12px 0;
+    font-size: 13px;
+    font-family: "MS Sans Serif", sans-serif;
+    font-weight: bold;
+    color: #000080;
+}
+
+.itemsList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cartActions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.actionButton {
+    padding: 8px 16px;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: "MS Sans Serif", sans-serif;
+}
+
+/* Resumen */
+.summarySection {
+    position: sticky;
+    top: 24px;
+}
+
+.summaryFrame {
+    padding: 16px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+}
+
+.summaryTitle {
+    margin: 0 0 16px 0;
+    font-size: 13px;
+    font-family: "MS Sans Serif", sans-serif;
+    font-weight: bold;
+    color: #000080;
+    text-align: center;
+}
+
+.summaryRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.summaryLabel {
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    color: #000;
+}
+
+.summaryValue {
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    font-weight: bold;
+    color: #000;
+}
+
+.separator {
+    height: 2px;
+    margin: 12px 0;
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #ffffff;
+}
+
+.totalRow {
+    margin-top: 8px;
+}
+
+.totalLabel {
+    font-size: 13px;
+    font-family: "MS Sans Serif", sans-serif;
+    font-weight: bold;
+    color: #000080;
+}
+
+.totalValue {
+    font-size: 13px;
+    font-family: "MS Sans Serif", sans-serif;
+    font-weight: bold;
+    color: #000080;
+}
+
+.checkoutButton {
+    width: 100%;
+    padding: 10px 16px;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: "MS Sans Serif", sans-serif;
+    margin-top: 16px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    cursor: not-allowed;
+}
+
+.checkoutButton:disabled {
+    opacity: 0.6;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .cartContent {
+        grid-template-columns: 1fr;
+    }
+
+    .summarySection {
+        position: static;
+        order: -1;
+        margin-bottom: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main {
+        padding: 12px;
+    }
+
+    .frameBody {
+        padding: 12px;
+    }
+
+    .cartActions {
+        flex-direction: column;
+    }
+
+    .actionButton {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .main {
+        padding: 8px;
+    }
+
+    .frameBody {
+        padding: 8px;
+    }
+
+    .emptyCart {
+        padding: 40px 16px;
+    }
+
+    .summaryFrame {
+        padding: 12px;
+    }
+}
