@@ -1,13 +1,6 @@
 import "server-only";
 
 import { prisma } from "@/lib/prisma";
-import {
-  ProductNotFoundError,
-  CartItemNotFoundError,
-  InsufficientStockError,
-  InvalidQuantityError,
-  ForbiddenError,
-} from "@/lib/errors";
 
 /**
  * Tipo para un item del carrito con información del producto.
@@ -169,7 +162,7 @@ export async function addToCart(
   try {
     // Validar cantidad
     if (quantity <= 0) {
-      throw new InvalidQuantityError("Quantity must be greater than 0");
+      return null;
     }
 
     // Verificar que el producto existe y tiene stock
@@ -179,7 +172,7 @@ export async function addToCart(
     });
 
     if (!product) {
-      throw new ProductNotFoundError();
+      return null;
     }
 
     // Obtener o crear carrito
@@ -201,7 +194,7 @@ export async function addToCart(
 
       // Validar stock
       if (newQuantity > product.stock) {
-        throw new InsufficientStockError(product.stock, newQuantity);
+        return null;
       }
 
       // Actualizar cantidad
@@ -212,7 +205,7 @@ export async function addToCart(
     } else {
       // Validar stock para nuevo item
       if (quantity > product.stock) {
-        throw new InsufficientStockError(product.stock, quantity);
+        return null;
       }
 
       // Crear nuevo item en el carrito
@@ -265,12 +258,12 @@ export async function updateCartItemQuantity(
     });
 
     if (!cartItem) {
-      throw new CartItemNotFoundError();
+      return null;
     }
 
     // Validar que el item pertenece al usuario
     if (cartItem.cart.userId !== userId) {
-      throw new ForbiddenError("This item does not belong to your cart");
+      return null;
     }
 
     // Si la cantidad es 0 o menor, eliminar el item
@@ -283,7 +276,7 @@ export async function updateCartItemQuantity(
 
     // Validar stock
     if (quantity > cartItem.product.stock) {
-      throw new InsufficientStockError(cartItem.product.stock, quantity);
+      return null;
     }
 
     // Actualizar cantidad
@@ -325,11 +318,11 @@ export async function removeFromCart(
     });
 
     if (!cartItem) {
-      throw new CartItemNotFoundError();
+      return null;
     }
 
     if (cartItem.cart.userId !== userId) {
-      throw new ForbiddenError("This item does not belong to your cart");
+      return null;
     }
 
     // Eliminar el item

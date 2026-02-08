@@ -1,11 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { getCartWithItems, addToCart } from "@/lib/cart";
-import {
-  AppError,
-  InvalidQuantityError,
-  MissingFieldError,
-} from "@/lib/errors";
 
 /**
  * GET /api/cart
@@ -57,12 +52,18 @@ export async function POST(request: NextRequest) {
 
     // Validar datos de entrada
     if (!productId || typeof productId !== "string") {
-      throw new MissingFieldError("productId");
+      return NextResponse.json(
+        { error: "productId is required" },
+        { status: 400 },
+      );
     }
 
     const qty = parseInt(quantity);
     if (isNaN(qty) || qty <= 0) {
-      throw new InvalidQuantityError("Quantity must be greater than 0");
+      return NextResponse.json(
+        { error: "Quantity must be greater than 0" },
+        { status: 400 },
+      );
     }
 
     // Agregar al carrito
@@ -81,16 +82,6 @@ export async function POST(request: NextRequest) {
     });
   } catch (error: unknown) {
     console.error("Error adding to cart:", error);
-
-    // Manejar errores de la aplicación
-    if (error instanceof AppError) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: error.statusCode },
-      );
-    }
-
-    // Error desconocido
     return NextResponse.json(
       { error: "Error adding to cart" },
       { status: 500 },

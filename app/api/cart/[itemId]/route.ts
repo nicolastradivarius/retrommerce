@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { updateCartItemQuantity, removeFromCart } from "@/lib/cart";
-import { AppError, InvalidQuantityError } from "@/lib/errors";
 
 /**
  * PUT /api/cart/[itemId]
@@ -26,7 +25,7 @@ export async function PUT(
     // Validar cantidad
     const qty = parseInt(quantity);
     if (isNaN(qty)) {
-      throw new InvalidQuantityError("Invalid quantity");
+      return NextResponse.json({ error: "Invalid quantity" }, { status: 400 });
     }
 
     // Actualizar cantidad del item
@@ -45,16 +44,6 @@ export async function PUT(
     });
   } catch (error: unknown) {
     console.error("Error updating cart item:", error);
-
-    // Manejar errores de la aplicación
-    if (error instanceof AppError) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: error.statusCode },
-      );
-    }
-
-    // Error desconocido
     return NextResponse.json({ error: "Error updating cart" }, { status: 500 });
   }
 }
@@ -92,16 +81,6 @@ export async function DELETE(
     });
   } catch (error: unknown) {
     console.error("Error removing cart item:", error);
-
-    // Manejar errores de la aplicación
-    if (error instanceof AppError) {
-      return NextResponse.json(
-        { error: error.message },
-        { status: error.statusCode },
-      );
-    }
-
-    // Error desconocido
     return NextResponse.json(
       { error: "Error removing from cart" },
       { status: 500 },
