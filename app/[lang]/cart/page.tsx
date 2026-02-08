@@ -108,6 +108,8 @@ export default async function CartPage({
                       dict={{
                         clearCart: dict.cart.clearCart,
                         clearCartConfirm: dict.cart.clearCartConfirm,
+                        confirm: dict.common.confirm,
+                        cancel: dict.common.cancel,
                       }}
                     />
                   </div>
