@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button, Cursor } from "@react95/core";
 import { useRouter } from "next/navigation";
-import ConfirmModal from "../components/ConfirmModal";
+import ConfirmModal from "./ConfirmModal";
 import styles from "./ClearCartButton.module.css";
 
 interface ClearCartButtonProps {

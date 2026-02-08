@@ -8,8 +8,8 @@ import {
 } from "@react95/icons";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import FeaturedProducts from "../components/FeaturedProducts";
-import BottomNav from "../components/BottomNav";
+import FeaturedProducts from "../_components/FeaturedProducts";
+import BottomNav from "../_components/BottomNav";
 import styles from "./page.module.css";
 import { getDictionary, hasLocale } from "../dictionaries";
 import { getCurrentUserWithAvatar } from "@/lib/auth";

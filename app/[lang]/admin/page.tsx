@@ -2,7 +2,7 @@ import { Frame, Cursor } from "@react95/core";
 import { Settings, Computer, FolderOpen, User } from "@react95/icons";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import LogoutButton from "../components/LogoutButton";
+import LogoutButton from "../_components/LogoutButton";
 import { getDictionary, hasLocale } from "../dictionaries";
 import styles from "./page.module.css";
 

@@ -1,14 +1,14 @@
 import { Frame, TitleBar } from "@react95/core";
 import { Computer } from "@react95/icons";
-import BackToButton from "@/app/[lang]/components/BackToButton";
+import BackToButton from "@/app/[lang]/_components/BackToButton";
 import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { formatPrice, hasDiscount } from "@/lib/utils";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
-import BottomNav from "@/app/[lang]/components/BottomNav";
-import ImageCarousel from "@/app/[lang]/components/ImageCarousel";
-import FavoriteButton from "@/app/[lang]/components/FavoriteButton";
-import AddToCartButton from "@/app/[lang]/components/AddToCartButton";
+import BottomNav from "@/app/[lang]/_components/BottomNav";
+import ImageCarousel from "@/app/[lang]/_components/ImageCarousel";
+import FavoriteButton from "@/app/[lang]/_components/FavoriteButton";
+import AddToCartButton from "@/app/[lang]/_components/AddToCartButton";
 import { getDictionary, hasLocale } from "../../dictionaries";
 import styles from "./page.module.css";
 
