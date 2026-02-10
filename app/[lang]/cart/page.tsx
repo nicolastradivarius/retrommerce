@@ -1,5 +1,5 @@
 import { Frame, TitleBar, Button, Cursor } from "@react95/core";
-import { Folder, Computer, Tick } from "@react95/icons";
+import { Folder, Computer } from "@react95/icons";
 import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
 import { getCurrentUserWithAvatar } from "@/lib/auth";

@@ -8,7 +8,6 @@
 
 .mobileTabContent {
     padding: 16px;
-    background: #c0c0c0;
     display: flex;
     flex-direction: column;
     flex: 1; /* grow to fill the available space in the window */
@@ -16,7 +15,7 @@
     overflow-y: auto; /* internal scroll for overflowing content */
 }
 
-/* Window base (self-contained so component can import just this module) */
+/* Window base */
 .window {
     background: #c0c0c0;
     border: 2px solid;
