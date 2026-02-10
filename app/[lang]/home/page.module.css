@@ -6,8 +6,8 @@
 }
 
 .main {
-    max-width: 60%;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
     padding: 24px;
     width: 100%;
 }
@@ -54,7 +54,8 @@
 
 .heroInner {
     text-align: center;
-    max-width: 600px;
+    max-width: none;
+    width: 100%;
 }
 
 .heroIcon {
