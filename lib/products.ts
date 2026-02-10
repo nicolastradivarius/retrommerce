@@ -196,7 +196,6 @@ export async function getProductsCount({
 }
 
 /**
- * Obtiene todas las categorías disponibles.
  * Simple consulta de todas las categorías, ordenadas alfabéticamente.
  */
 export async function getCategories() {
@@ -207,5 +206,55 @@ export async function getCategories() {
       slug: true,
     },
     orderBy: { name: "asc" },
+  });
+}
+
+/**
+ * Obtiene las categorías con el conteo de productos por categoría.
+ * Útil para mostrar en barras de navegación o filtros.
+ */
+export async function getCategoriesWithCount() {
+  const categories = await prisma.category.findMany({
+    select: {
+      id: true,
+      name: true,
+      slug: true,
+      _count: {
+        select: {
+          products: true,
+        },
+      },
+    },
+    orderBy: { name: "asc" },
+  });
+
+  return categories.map((category) => ({
+    id: category.id,
+    name: category.name,
+    slug: category.slug,
+    count: category._count.products,
+  }));
+}
+
+/**
+ * Obtiene el producto marcado como destacado en la homepage (producto del día).
+ * Retorna null si no hay ninguno marcado.
+ */
+export async function getHomepageFeaturedProduct(): Promise<ProductListItem | null> {
+  return prisma.product.findFirst({
+    where: { featuredOnHomepage: true },
+    select: {
+      id: true,
+      name: true,
+      slug: true,
+      description: true,
+      price: true,
+      originalPrice: true,
+      year: true,
+      manufacturer: true,
+      stock: true,
+      images: true,
+      featured: true,
+    },
   });
 }
