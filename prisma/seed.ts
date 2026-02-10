@@ -125,7 +125,9 @@ async function main() {
     // === COMPUTADORAS ===
     prisma.product.upsert({
       where: { slug: "ibm-thinkpad-600e" },
-      update: {},
+      update: {
+        featuredOnHomepage: true,
+      },
       create: {
         name: "IBM ThinkPad 600E",
         slug: "ibm-thinkpad-600e",
@@ -137,6 +139,7 @@ async function main() {
         manufacturer: "IBM",
         stock: 3,
         featured: true,
+        featuredOnHomepage: true,
         images: ["/images/thinkpad-600e.jpg"],
         specifications: {
           cpu: "Intel Pentium II 366MHz",

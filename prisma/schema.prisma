@@ -21,17 +21,18 @@ model Category {
 }
 
 model Product {
-  id            String   @id @default(cuid())
-  name          String
-  slug          String   @unique
-  description   String?  @db.Text
-  price         Decimal  @db.Decimal(10, 2)
-  originalPrice Decimal  @db.Decimal(10, 2) // Precio original para mostrar descuentos
-  year          Int? // Año de lanzamiento del producto
-  manufacturer  String? // Fabricante (IBM, Compaq, Intel, AMD, etc.)
-  stock         Int      @default(0)
-  images        String[] // Array de URLs de imágenes
-  featured      Boolean  @default(false)
+  id                 String   @id @default(cuid())
+  name               String
+  slug               String   @unique
+  description        String?  @db.Text
+  price              Decimal  @db.Decimal(10, 2)
+  originalPrice      Decimal  @db.Decimal(10, 2) // Precio original para mostrar descuentos
+  year               Int? // Año de lanzamiento del producto
+  manufacturer       String? // Fabricante (IBM, Compaq, Intel, AMD, etc.)
+  stock              Int      @default(0)
+  images             String[] // Array de URLs de imágenes
+  featured           Boolean  @default(false)
+  featuredOnHomepage Boolean  @default(false) // Producto promocional del día en la homepage
 
   // Especificaciones técnicas (JSON flexible)
   specifications Json? // { cpu: "Pentium II 266MHz", ram: "64MB", etc. }
@@ -50,6 +51,7 @@ model Product {
   @@index([categoryId])
   @@index([slug])
   @@index([featured])
+  @@index([featuredOnHomepage])
   @@map("products")
 }
 
