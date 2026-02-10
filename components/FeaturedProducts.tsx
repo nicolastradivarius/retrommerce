@@ -3,7 +3,7 @@ import "server-only";
 import { Frame, TitleBar } from "@react95/core";
 import { Star } from "@react95/icons";
 import FeaturedProductCard from "./FeaturedProductCard";
-import { getDictionary, type Locale } from "../dictionaries";
+import { getDictionary, type Locale } from "@/app/[lang]/dictionaries";
 import { getFeaturedProducts, type ProductListItem } from "@/lib/products";
 import styles from "./FeaturedProducts.module.css";
 

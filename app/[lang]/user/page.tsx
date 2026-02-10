@@ -11,9 +11,9 @@ import {
 import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
-import LogoutButton from "../_components/LogoutButton";
-import BottomNav from "../_components/BottomNav";
-import { getDictionary, hasLocale } from "../dictionaries";
+import LogoutButton from "@/components/LogoutButton";
+import BottomNav from "@/components/BottomNav";
+import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 import styles from "./page.module.css";
 
 export default async function UserPage({

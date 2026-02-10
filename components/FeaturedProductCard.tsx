@@ -1,7 +1,7 @@
 import { Frame, Cursor } from "@react95/core";
 import Link from "next/link";
 import { formatPrice, hasDiscount } from "@/lib/utils";
-import type { Locale } from "../dictionaries";
+import type { Locale } from "@/app/[lang]/dictionaries";
 import styles from "./FeaturedProductCard.module.css";
 
 export interface FeaturedProductCardProps {

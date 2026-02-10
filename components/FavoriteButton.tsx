@@ -4,7 +4,7 @@ import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { Cursor } from "@react95/core";
 import { Msrating106 } from "@react95/icons";
-import type { Locale } from "../dictionaries";
+import type { Locale } from "@/app/[lang]/dictionaries";
 import styles from "./FavoriteButton.module.css";
 
 interface FavoriteButtonProps {

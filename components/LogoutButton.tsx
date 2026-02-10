@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Cursor } from "@react95/core";
-import type { Locale } from "../dictionaries";
+import type { Locale } from "@/app/[lang]/dictionaries";
 
 interface LogoutButtonProps {
   className?: string;

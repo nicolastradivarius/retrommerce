@@ -18,7 +18,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect, cloneElement } from "react";
-import type { Locale } from "../dictionaries";
+import type { Locale } from "@/app/[lang]/dictionaries";
 import type { UserWithAvatar } from "@/lib/auth";
 import styles from "./BottomNav.module.css";
 

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button, Cursor } from "@react95/core";
 import { Computer } from "@react95/icons";
-import type { Locale } from "../dictionaries";
+import type { Locale } from "@/app/[lang]/dictionaries";
 import styles from "./AddToCartButton.module.css";
 
 interface AddToCartButtonProps {

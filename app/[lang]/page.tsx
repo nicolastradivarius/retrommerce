@@ -1,5 +1,5 @@
 import { redirect, notFound } from "next/navigation";
-import { hasLocale } from "./dictionaries";
+import { hasLocale } from "@/app/[lang]/dictionaries";
 
 export default async function RootPage({
   params,

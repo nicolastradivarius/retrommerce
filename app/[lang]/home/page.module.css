@@ -48,14 +48,28 @@
     background: #c0c0c0;
     min-height: 250px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    gap: 24px;
 }
 
 .heroInner {
-    text-align: center;
-    max-width: none;
+    display: flex;
+    gap: 32px;
     width: 100%;
+    align-items: flex-start;
+}
+
+.heroLeft {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.heroRight {
+    flex: 0 0 350px;
+    display: flex;
 }
 
 .heroIcon {
@@ -102,6 +116,175 @@
     padding: 10px 24px;
     font-size: 11px;
     font-weight: bold;
+    font-family: "MS Sans Serif", sans-serif;
+}
+
+/* Deal of the Day */
+.dealFrame {
+    width: 100%;
+    padding: 16px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.dealHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #808080;
+}
+
+.dealTitle {
+    font-size: 11px;
+    font-weight: bold;
+    margin: 0;
+    color: #000080;
+    font-family: "MS Sans Serif", sans-serif;
+}
+
+.dealContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.dealImage {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    padding: 8px;
+}
+
+.dealProductName {
+    font-size: 13px;
+    font-weight: bold;
+    margin: 0;
+    color: #000000;
+    text-align: center;
+    font-family: "MS Sans Serif", sans-serif;
+}
+
+.dealManufacturer {
+    font-size: 11px;
+    margin: 0;
+    color: #000080;
+    font-family: "MS Sans Serif", sans-serif;
+}
+
+.dealYear {
+    font-size: 11px;
+    margin: 0;
+    color: #808080;
+    font-family: "MS Sans Serif", sans-serif;
+}
+
+.dealPricing {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 4px 0;
+}
+
+.dealOriginalPrice {
+    font-size: 11px;
+    color: #808080;
+    text-decoration: line-through;
+    font-family: "MS Sans Serif", sans-serif;
+}
+
+.dealPrice {
+    font-size: 16px;
+    font-weight: bold;
+    color: #008000;
+    font-family: "MS Sans Serif", sans-serif;
+}
+
+.dealButton {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 16px;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: "MS Sans Serif", sans-serif;
+}
+
+/* Categories Bar */
+.categoriesBar {
+    width: 100%;
+    background: #c0c0c0;
+    border-top: 2px solid #808080;
+    padding-top: 16px;
+}
+
+.categoriesHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.categoriesTitle {
+    font-size: 11px;
+    font-weight: bold;
+    color: #000080;
+    font-family: "MS Sans Serif", sans-serif;
+}
+
+.categoriesList {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+.categoryLink {
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.categoryItem {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.1s;
+}
+
+.categoryItem:hover {
+    border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.categoryItem:active {
+    border-color: #000000 #c0c0c0 #c0c0c0 #000000;
+}
+
+.categoryName {
+    font-size: 11px;
+    color: #000000;
+    font-family: "MS Sans Serif", sans-serif;
+}
+
+.categoryCount {
+    font-size: 11px;
+    color: #808080;
     font-family: "MS Sans Serif", sans-serif;
 }
 
@@ -200,6 +383,17 @@
         min-height: 200px;
     }
 
+    .heroInner {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .heroRight {
+        flex: 1 1 auto;
+        width: 100%;
+        max-width: 350px;
+    }
+
     .heroTitle {
         font-size: 18px;
     }
@@ -210,6 +404,10 @@
 
     .heroDescription {
         font-size: 11px;
+    }
+
+    .categoriesBar {
+        display: none;
     }
 
     .featuredContent {
@@ -245,6 +443,10 @@
         min-height: 180px;
     }
 
+    .heroRight {
+        max-width: 100%;
+    }
+
     .heroTitle {
         font-size: 16px;
     }
@@ -255,6 +457,14 @@
 
     .heroDescription {
         font-size: 11px;
+    }
+
+    .dealImage {
+        height: 150px;
+    }
+
+    .categoriesBar {
+        display: none;
     }
 
     .featuredContent {

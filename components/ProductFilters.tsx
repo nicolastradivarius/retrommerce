@@ -25,7 +25,7 @@ import {
   Input,
 } from "@react95/core";
 import { FolderSettings } from "@react95/icons";
-import type { Locale } from "../dictionaries";
+import type { Locale } from "@/app/[lang]/dictionaries";
 import styles from "./ProductFilters.module.css";
 
 // ============================================================================
@@ -228,13 +228,6 @@ export default function ProductFilters({
    * 3. Si el slug no existe: agregarlo
    * 4. Devolver el nuevo Set (React detecta el cambio)
    *
-   * ## Ejemplo:
-   * selectedCategories = Set["electronics"]
-   * handleCategoryToggle("furniture")
-   * → selectedCategories = Set["electronics", "furniture"]
-   *
-   * handleCategoryToggle("electronics")
-   * → selectedCategories = Set["furniture"]
    */
   const handleCategoryToggle = (categorySlug: string) => {
     setSelectedCategories((prev) => {

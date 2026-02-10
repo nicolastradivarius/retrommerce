@@ -5,14 +5,20 @@ import {
   Progman36,
   Wmsui322225,
   Msnstart1,
+  FolderExe,
 } from "@react95/icons";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import FeaturedProducts from "../_components/FeaturedProducts";
-import BottomNav from "../_components/BottomNav";
+import FeaturedProducts from "@/components/FeaturedProducts";
+import BottomNav from "@/components/BottomNav";
 import styles from "./page.module.css";
-import { getDictionary, hasLocale } from "../dictionaries";
+import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
+import {
+  getHomepageFeaturedProduct,
+  getCategoriesWithCount,
+} from "@/lib/products";
+import Image from "next/image";
 
 export default async function HomePage({
   params,
@@ -27,6 +33,8 @@ export default async function HomePage({
 
   const dict = await getDictionary(lang);
   const user = await getCurrentUserWithAvatar();
+  const dealOfTheDay = await getHomepageFeaturedProduct();
+  const categories = await getCategoriesWithCount();
 
   return (
     <div className={styles.container}>
@@ -48,38 +56,123 @@ export default async function HomePage({
           </TitleBar>
           <Frame className={styles.heroContent}>
             <div className={styles.heroInner}>
-              {user && user.avatar ? (
-                <div className={styles.heroAvatarContainer}>
-                  <Avatar
-                    src={user.avatar}
-                    alt={user.name || user.email}
-                    size="64px"
-                  />
-                </div>
-              ) : (
-                <div className={styles.heroIcon}>
-                  <Computer variant="32x32_4" />
+              <div className={styles.heroLeft}>
+                {user && user.avatar ? (
+                  <div className={styles.heroAvatarContainer}>
+                    <Avatar
+                      src={user.avatar}
+                      alt={user.name || user.email}
+                      size="64px"
+                    />
+                  </div>
+                ) : (
+                  <div className={styles.heroIcon}>
+                    <Computer variant="32x32_4" />
+                  </div>
+                )}
+                <h1 className={styles.heroTitle}>
+                  {user
+                    ? dict.landing.welcomeUser.replace(
+                        "{username}",
+                        user.name || user.email,
+                      )
+                    : dict.landing.welcome}
+                </h1>
+                <p className={styles.heroTagline}>{dict.landing.tagline}</p>
+                <p className={styles.heroDescription}>
+                  {dict.landing.description}
+                </p>
+                <Link href={`/${lang}/products`}>
+                  <Button className={`${styles.ctaButton} ${Cursor.Pointer}`}>
+                    <Msnstart1 variant="32x32_8" />
+                    {dict.landing.viewCatalog}
+                  </Button>
+                </Link>
+              </div>
+
+              {dealOfTheDay && (
+                <div className={styles.heroRight}>
+                  <Frame className={styles.dealFrame}>
+                    <div className={styles.dealHeader}>
+                      <Msnstart1 variant="16x16_4" />
+                      <h2 className={styles.dealTitle}>
+                        {dict.landing.dealOfTheDay}
+                      </h2>
+                    </div>
+                    <div className={styles.dealContent}>
+                      {dealOfTheDay.images[0] && (
+                        <div className={styles.dealImage}>
+                          <Image
+                            src={dealOfTheDay.images[0]}
+                            alt={dealOfTheDay.name}
+                            width={200}
+                            height={200}
+                            style={{ objectFit: "contain" }}
+                          />
+                        </div>
+                      )}
+                      <h3 className={styles.dealProductName}>
+                        {dealOfTheDay.name}
+                      </h3>
+                      {dealOfTheDay.manufacturer && (
+                        <p className={styles.dealManufacturer}>
+                          {dealOfTheDay.manufacturer}
+                        </p>
+                      )}
+                      {dealOfTheDay.year && (
+                        <p className={styles.dealYear}>{dealOfTheDay.year}</p>
+                      )}
+                      <div className={styles.dealPricing}>
+                        <span className={styles.dealOriginalPrice}>
+                          ${dealOfTheDay.originalPrice.toString()}
+                        </span>
+                        <span className={styles.dealPrice}>
+                          ${dealOfTheDay.price.toString()}
+                        </span>
+                      </div>
+                      <Link href={`/${lang}/products/${dealOfTheDay.slug}`}>
+                        <Button
+                          className={`${styles.dealButton} ${Cursor.Pointer}`}
+                        >
+                          {dict.landing.viewProduct}
+                        </Button>
+                      </Link>
+                    </div>
+                  </Frame>
                 </div>
               )}
-              <h1 className={styles.heroTitle}>
-                {user
-                  ? dict.landing.welcomeUser.replace(
-                      "{username}",
-                      user.name || user.email,
-                    )
-                  : dict.landing.welcome}
-              </h1>
-              <p className={styles.heroTagline}>{dict.landing.tagline}</p>
-              <p className={styles.heroDescription}>
-                {dict.landing.description}
-              </p>
-              <Link href={`/${lang}/products`}>
-                <Button className={`${styles.ctaButton} ${Cursor.Pointer}`}>
-                  <Msnstart1 variant="32x32_8" />
-                  {dict.landing.viewCatalog}
-                </Button>
-              </Link>
             </div>
+
+            {/* Barra de categorías */}
+            {categories.length > 0 && (
+              <div className={styles.categoriesBar}>
+                <div className={styles.categoriesHeader}>
+                  <FolderExe variant="16x16_4" />
+                  <span className={styles.categoriesTitle}>
+                    {dict.landing.exploreCategories}
+                  </span>
+                </div>
+                <div className={styles.categoriesList}>
+                  {categories.map((category) => (
+                    <Link
+                      key={category.id}
+                      href={`/${lang}/products?category=${category.slug}`}
+                      className={styles.categoryLink}
+                    >
+                      <Frame className={styles.categoryItem}>
+                        <FolderExe variant="16x16_4" />
+                        <span className={styles.categoryName}>
+                          {category.name}
+                        </span>
+                        <span className={styles.categoryCount}>
+                          ({category.count})
+                        </span>
+                      </Frame>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </Frame>
         </div>
 

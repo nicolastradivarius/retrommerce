@@ -4,10 +4,10 @@ import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
 import { getCartWithItems } from "@/lib/cart";
-import BottomNav from "../_components/BottomNav";
-import CartItem from "../_components/CartItem";
-import ClearCartButton from "../_components/ClearCartButton";
-import { getDictionary, hasLocale } from "../dictionaries";
+import BottomNav from "@/components/BottomNav";
+import CartItem from "@/components/CartItem";
+import ClearCartButton from "@/components/ClearCartButton";
+import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 import { formatPrice } from "@/lib/utils";
 import styles from "./page.module.css";
 

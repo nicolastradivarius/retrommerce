@@ -1,5 +1,5 @@
 import { Frame, TitleBar, Cursor } from "@react95/core";
-import { Computer } from "@react95/icons";
+import { Computer, Warning } from "@react95/icons";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ITEMS_PER_PAGE } from "@/lib/constants";
@@ -10,13 +10,13 @@ import {
   type ProductListItem,
 } from "@/lib/products";
 import { getFavoriteProductIdsByUser } from "@/lib/favorites";
-import BottomNav from "../_components/BottomNav";
-import ProductCard from "../_components/ProductCard";
-import ProductFilters from "../_components/ProductFilters";
+import BottomNav from "@/components/BottomNav";
+import ProductCard from "@/components/ProductCard";
+import ProductFilters from "@/components/ProductFilters";
 import ProductsMobileTabsContainer from "./_mobile/ProductsMobileTabsContainer";
-import ResponsiveLayout from "../_components/ResponsiveLayout";
+import ResponsiveLayout from "@/components/ResponsiveLayout";
 import styles from "./page.module.css";
-import { getDictionary, hasLocale } from "../dictionaries";
+import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
 
 /**
@@ -221,9 +221,8 @@ export default async function ProductsPage({
               <Frame className={styles.windowContent}>
                 {serializedProducts.length === 0 ? (
                   <div className={styles.noResults}>
-                    <p>
-                      No se encontraron productos con los filtros seleccionados.
-                    </p>
+                    <Warning variant="32x32_4" />
+                    <p>{dict.home.noResults}</p>
                   </div>
                 ) : (
                   <>

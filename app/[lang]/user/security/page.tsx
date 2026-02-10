@@ -3,8 +3,8 @@ import { FolderSettings } from "@react95/icons";
 import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
-import BottomNav from "../../_components/BottomNav";
-import { getDictionary, hasLocale } from "../../dictionaries";
+import BottomNav from "@/components/BottomNav";
+import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 import styles from "./page.module.css";
 
 export default async function SecurityPage({
