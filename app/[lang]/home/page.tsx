@@ -156,7 +156,7 @@ export default async function HomePage({
                   {categories.map((category) => (
                     <Link
                       key={category.id}
-                      href={`/${lang}/products?category=${category.slug}`}
+                      href={`/${lang}/products?categories=${category.slug}&page=1`}
                       className={styles.categoryLink}
                     >
                       <Frame className={styles.categoryItem}>
