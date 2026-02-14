@@ -20,6 +20,77 @@ import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
 
 /**
+ * Genera una descripción de los filtros aplicados
+ */
+function generateFilterDescription(
+  categorySlugs: string[] | undefined,
+  categories: Array<{ id: string; name: string; slug: string }>,
+  minPrice: number | undefined,
+  maxPrice: number | undefined,
+  minYear: number | undefined,
+  maxYear: number | undefined,
+  dict: {
+    showingProducts: string;
+    priceRange: string;
+    priceFrom: string;
+    priceUpTo: string;
+    yearRange: string;
+    yearFrom: string;
+    yearUpTo: string;
+    category: string;
+  },
+): string | null {
+  const filters: string[] = [];
+
+  // Agregar categorías
+  if (categorySlugs && categorySlugs.length > 0) {
+    const categoryNames = categorySlugs
+      .map((slug) => categories.find((cat) => cat.slug === slug)?.name)
+      .filter(Boolean);
+
+    if (categoryNames.length > 0) {
+      filters.push(
+        ...categoryNames.map((name) =>
+          dict.category.replace("{category}", name!),
+        ),
+      );
+    }
+  }
+
+  // Agregar rango de precio
+  if (minPrice !== undefined && maxPrice !== undefined) {
+    filters.push(
+      dict.priceRange
+        .replace("${min}", minPrice.toString())
+        .replace("${max}", maxPrice.toString()),
+    );
+  } else if (minPrice !== undefined) {
+    filters.push(dict.priceFrom.replace("${min}", minPrice.toString()));
+  } else if (maxPrice !== undefined) {
+    filters.push(dict.priceUpTo.replace("${max}", maxPrice.toString()));
+  }
+
+  // Agregar rango de año
+  if (minYear !== undefined && maxYear !== undefined) {
+    filters.push(
+      dict.yearRange
+        .replace("{min}", minYear.toString())
+        .replace("{max}", maxYear.toString()),
+    );
+  } else if (minYear !== undefined) {
+    filters.push(dict.yearFrom.replace("{min}", minYear.toString()));
+  } else if (maxYear !== undefined) {
+    filters.push(dict.yearUpTo.replace("{max}", maxYear.toString()));
+  }
+
+  if (filters.length === 0) {
+    return null;
+  }
+
+  return `${dict.showingProducts} ${filters.join(", ")}.`;
+}
+
+/**
  * Página principal de productos
  *
  * Este Server Component maneja:
@@ -185,6 +256,28 @@ export default async function ProductsPage({
   const serializedProducts = products.map(serializeProduct);
 
   // ============================================================================
+  // GENERAR DESCRIPCIÓN DE FILTROS
+  // ============================================================================
+  const filterDescription = generateFilterDescription(
+    categorySlugs,
+    categories,
+    minPrice,
+    maxPrice,
+    minYear,
+    maxYear,
+    {
+      showingProducts: dict.home.showingProducts,
+      priceRange: dict.home.priceRange,
+      priceFrom: dict.home.priceFrom,
+      priceUpTo: dict.home.priceUpTo,
+      yearRange: dict.home.yearRange,
+      yearFrom: dict.home.yearFrom,
+      yearUpTo: dict.home.yearUpTo,
+      category: dict.home.category,
+    },
+  );
+
+  // ============================================================================
   // RENDER DESKTOP (≥768px)
   // ============================================================================
   // Layout: Barra lateral con filtros + Grid de productos
@@ -219,6 +312,11 @@ export default async function ProductsPage({
                 </TitleBar.OptionsBox>
               </TitleBar>
               <Frame className={styles.windowContent}>
+                {filterDescription && (
+                  <div className={styles.filterDescription}>
+                    <p>{filterDescription}</p>
+                  </div>
+                )}
                 {serializedProducts.length === 0 ? (
                   <div className={styles.noResults}>
                     <Warning variant="32x32_4" />
@@ -372,6 +470,7 @@ export default async function ProductsPage({
           maxYear={maxYear}
           favoriteIds={favoriteIds}
           canFavorite={Boolean(user)}
+          filterDescription={filterDescription}
           dict={{
             filters: dict.filters,
             allProducts: dict.home.allProducts,

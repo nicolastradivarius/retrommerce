@@ -406,10 +406,6 @@
         font-size: 11px;
     }
 
-    .categoriesBar {
-        display: none;
-    }
-
     .featuredContent {
         padding: 12px;
     }
@@ -461,10 +457,6 @@
 
     .dealImage {
         height: 150px;
-    }
-
-    .categoriesBar {
-        display: none;
     }
 
     .featuredContent {

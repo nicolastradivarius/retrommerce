@@ -101,6 +101,9 @@ interface ProductsMobileTabsContainerProps {
   // Si el usuario puede agregar a favoritos (está logueado)
   canFavorite: boolean;
 
+  // Descripción de filtros aplicados (opcional)
+  filterDescription?: string | null;
+
   dict: {
     // Diccionario para ProductFilters
     filters: {
@@ -152,6 +155,7 @@ export default function ProductsMobileTabsContainer({
   maxPrice,
   minYear,
   maxYear,
+  filterDescription,
   dict,
 }: ProductsMobileTabsContainerProps) {
   /**
@@ -206,6 +210,11 @@ export default function ProductsMobileTabsContainer({
           {/* Catalog Tab */}
           <Tab title="Catalog">
             <div className={styles.mobileTabContent}>
+              {filterDescription && (
+                <div className={styles.filterDescription}>
+                  <p>{filterDescription}</p>
+                </div>
+              )}
               {products.length === 0 ? (
                 <div className={styles.noResults}>
                   <p>{dict.noResults}</p>

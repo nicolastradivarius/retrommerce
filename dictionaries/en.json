@@ -40,7 +40,15 @@
     "previous": "← Previous",
     "next": "Next →",
     "pageOf": "Page {page} of {total}",
-    "noResults": "No products found with the selected filters"
+    "noResults": "No products found with the selected filters",
+    "showingProducts": "Showing products matching:",
+    "priceRange": "price between ${min} and ${max}",
+    "priceFrom": "price from ${min}",
+    "priceUpTo": "price up to ${max}",
+    "yearRange": "year between {min} and {max}",
+    "yearFrom": "year from {min}",
+    "yearUpTo": "year up to {max}",
+    "category": "{category}"
   },
   "filters": {
     "title": "Filters",
