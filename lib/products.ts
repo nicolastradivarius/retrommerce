@@ -288,6 +288,46 @@ export async function getProductsByUser(userId: string): Promise<
 }
 
 /**
+ * Tipo del producto detallado retornado por getProductBySlug.
+ * Incluye categoría y usuario publicador.
+ * Inferido directamente del schema de Prisma para mantenerse siempre sincronizado.
+ */
+export type ProductDetail = Prisma.ProductGetPayload<{
+  include: {
+    category: true;
+    user: {
+      select: {
+        name: true;
+        email: true;
+      };
+    };
+  };
+}>;
+
+/**
+ * Obtiene un producto por su slug, incluyendo la categoría y el usuario que lo publicó.
+ * Retorna null si no existe.
+ *
+ * @param slug - Slug único del producto
+ */
+export async function getProductBySlug(
+  slug: string,
+): Promise<ProductDetail | null> {
+  return prisma.product.findUnique({
+    where: { slug },
+    include: {
+      category: true,
+      user: {
+        select: {
+          name: true,
+          email: true,
+        },
+      },
+    },
+  });
+}
+
+/**
  * Obtiene el producto marcado como destacado en la homepage (producto del día).
  * Retorna null si no hay ninguno marcado.
  */
