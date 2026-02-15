@@ -34,12 +34,11 @@ model Product {
   featured           Boolean  @default(false)
   featuredOnHomepage Boolean  @default(false) // Producto promocional del día en la homepage
 
-  // Especificaciones técnicas (JSON flexible)
-  specifications Json? // { cpu: "Pentium II 266MHz", ram: "64MB", etc. }
-
   // Relaciones
   categoryId String
   category   Category    @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  userId     String? // Usuario que publicó el producto (opcional para productos existentes)
+  user       User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
   orderItems OrderItem[]
   cartItems  CartItem[]
   reviews    Review[]
@@ -51,6 +50,7 @@ model Product {
   @@index([categoryId])
   @@index([slug])
   @@index([featured])
+  @@index([userId])
   @@index([featuredOnHomepage])
   @@map("products")
 }
@@ -71,6 +71,7 @@ model User {
   cart      Cart?
   reviews   Review[]
   favorites Favorite[] // lista de productos favoritos del usuario
+  products  Product[] // productos publicados por el usuario
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
