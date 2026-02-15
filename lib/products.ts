@@ -237,6 +237,57 @@ export async function getCategoriesWithCount() {
 }
 
 /**
+ * Obtiene los productos publicados por un usuario específico.
+ * Retorna un array de productos con precios serializados a strings.
+ *
+ * @param userId - ID del usuario
+ */
+export async function getProductsByUser(userId: string): Promise<
+  {
+    id: string;
+    name: string;
+    slug: string;
+    description: string | null;
+    price: string;
+    originalPrice: string;
+    year: number | null;
+    manufacturer: string | null;
+    stock: number;
+    images: string[];
+    featured: boolean;
+  }[]
+> {
+  try {
+    const products = await prisma.product.findMany({
+      where: { userId },
+      orderBy: { createdAt: "desc" },
+      select: {
+        id: true,
+        name: true,
+        slug: true,
+        description: true,
+        price: true,
+        originalPrice: true,
+        year: true,
+        manufacturer: true,
+        stock: true,
+        images: true,
+        featured: true,
+      },
+    });
+
+    return products.map((product) => ({
+      ...product,
+      price: product.price.toString(),
+      originalPrice: product.originalPrice.toString(),
+    }));
+  } catch (error) {
+    console.error("Error fetching products for user", userId, error);
+    return [];
+  }
+}
+
+/**
  * Obtiene el producto marcado como destacado en la homepage (producto del día).
  * Retorna null si no hay ninguno marcado.
  */
