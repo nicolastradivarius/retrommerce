@@ -4,9 +4,9 @@ import {
   Computer,
   FolderSettings,
   Notepad,
-  Folder,
   Awfxcg321303,
   Msrating106,
+  FolderFile,
 } from "@react95/icons";
 import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
@@ -140,12 +140,12 @@ export default async function UserPage({
             <Frame className={styles.windowContent}>
               <div className={styles.settingsGrid}>
                 <Link
-                  href={`/${lang}/products`}
+                  href={`/${lang}/user/products`}
                   className={`${styles.settingLink} ${Cursor.Pointer}`}
                 >
                   <div className={styles.settingIcon}>
-                    <Folder variant="32x32_4" />
-                    <span>{dict.user.catalog}</span>
+                    <FolderFile variant="32x32_4" />
+                    <span>{dict.user.myProducts}</span>
                   </div>
                 </Link>
 

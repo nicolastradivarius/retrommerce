@@ -2,9 +2,10 @@ import { Frame, TitleBar } from "@react95/core";
 import { Computer } from "@react95/icons";
 import BackToButton from "@/components/BackToButton";
 import { notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
 import { formatPrice, hasDiscount } from "@/lib/utils";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
+import { getProductBySlug } from "@/lib/products";
+import { isProductFavorite } from "@/lib/favorites";
 import BottomNav from "@/components/BottomNav";
 import ImageCarousel from "@/components/ImageCarousel";
 import FavoriteButton from "@/components/FavoriteButton";
@@ -29,31 +30,13 @@ export default async function ProductDetailPage({
   const dict = await getDictionary(lang);
   const user = await getCurrentUserWithAvatar();
 
-  const product = await prisma.product.findUnique({
-    where: { slug },
-    include: {
-      category: true,
-    },
-  });
+  const product = await getProductBySlug(slug);
 
   if (!product) {
     notFound();
   }
 
-  // Parsear las especificaciones
-  const specs = product.specifications as Record<string, string> | null;
-
-  const isFavorite = user
-    ? await prisma.favorite.findUnique({
-        where: {
-          userId_productId: {
-            userId: user.sub,
-            productId: product.id,
-          },
-        },
-        select: { id: true },
-      })
-    : null;
+  const isFavorite = await isProductFavorite(user?.sub, product.id);
 
   const backUrl =
     from === "home"
@@ -95,6 +78,12 @@ export default async function ProductDetailPage({
                 {product.year && (
                   <p className={styles.year}>
                     {dict.product.year}: {product.year}
+                  </p>
+                )}
+                {product.user && (
+                  <p className={styles.publishedBy}>
+                    {dict.product.publishedBy}:{" "}
+                    {product.user.name || product.user.email}
                   </p>
                 )}
               </div>
@@ -159,7 +148,7 @@ export default async function ProductDetailPage({
                   <div className={styles.favoriteRow}>
                     <FavoriteButton
                       productId={product.id}
-                      initialIsFavorite={Boolean(isFavorite)}
+                      initialIsFavorite={isFavorite}
                       canFavorite={Boolean(user)}
                       lang={lang}
                       dict={dict.product}
@@ -183,23 +172,6 @@ export default async function ProductDetailPage({
                 </Frame>
               </div>
             </div>
-
-            {specs && Object.keys(specs).length > 0 && (
-              <div className={styles.section}>
-                <h2 className={styles.sectionTitle}>
-                  {dict.product.technicalSpecs}
-                </h2>
-                <Frame className={styles.specsFrame}>
-                  <ul className={styles.specsList}>
-                    {Object.entries(specs).map(([key, value]) => (
-                      <li key={key} className={styles.specItem}>
-                        <strong>{key}:</strong> {value}
-                      </li>
-                    ))}
-                  </ul>
-                </Frame>
-              </div>
-            )}
           </div>
         </Frame>
       </div>
