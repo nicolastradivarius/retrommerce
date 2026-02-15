@@ -50,6 +50,43 @@ export async function getFavoriteProductIdsByUser(
 }
 
 /**
+ * Verifica si un producto está marcado como favorito por un usuario.
+ * Retorna `true` si el usuario tiene el producto en favoritos, `false` en caso contrario.
+ *
+ * @param userId - ID del usuario (puede ser undefined/null)
+ * @param productId - ID del producto
+ */
+export async function isProductFavorite(
+  userId?: string | null,
+  productId?: string,
+): Promise<boolean> {
+  if (!userId || !productId) return false;
+
+  try {
+    const favorite = await prisma.favorite.findUnique({
+      where: {
+        userId_productId: {
+          userId,
+          productId,
+        },
+      },
+      select: { id: true },
+    });
+
+    return Boolean(favorite);
+  } catch (error) {
+    console.error(
+      "Error checking favorite status for user",
+      userId,
+      "product",
+      productId,
+      error,
+    );
+    return false;
+  }
+}
+
+/**
  * Obtiene los productos favoritos de un usuario con precios serializados a strings.
  *
  * @param userId - ID del usuario
