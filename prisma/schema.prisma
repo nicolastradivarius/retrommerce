@@ -228,15 +228,18 @@ model Review {
   userId    String
   user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  rating  Int // 1-5 estrellas
-  title   String?
-  comment String? @db.Text
+  content String @db.Text
+
+  // Respuestas de un solo nivel (una reseña puede tener respuestas, pero una respuesta no puede ser respondida)
+  parentId String?
+  parent   Review?  @relation("ReviewReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies  Review[] @relation("ReviewReplies")
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([productId, userId]) // Un usuario solo puede hacer una reseña por producto
   @@index([productId])
   @@index([userId])
+  @@index([parentId])
   @@map("reviews")
 }

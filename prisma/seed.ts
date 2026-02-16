@@ -16,6 +16,7 @@ async function main() {
   const hashedPasswordAdmin = await bcrypt.hash("admin123", 10);
 
   const users = await Promise.all([
+    // [0] Usuario Demo
     prisma.user.upsert({
       where: { email: "user@retrommerce.com" },
       update: {},
@@ -27,6 +28,7 @@ async function main() {
         role: "USER",
       },
     }),
+    // [1] Administrador
     prisma.user.upsert({
       where: { email: "admin@retrommerce.com" },
       update: {},
@@ -36,6 +38,126 @@ async function main() {
         phone: "+1 555-0101",
         password: hashedPasswordAdmin,
         role: "ADMIN",
+      },
+    }),
+    // [2] Carlos Mendez
+    prisma.user.upsert({
+      where: { email: "carlos@retrommerce.com" },
+      update: {},
+      create: {
+        email: "carlos@retrommerce.com",
+        name: "Carlos Mendez",
+        phone: "+1 555-0102",
+        password: hashedPasswordUser,
+        role: "USER",
+      },
+    }),
+    // [3] Laura Gonzalez
+    prisma.user.upsert({
+      where: { email: "laura@retrommerce.com" },
+      update: {},
+      create: {
+        email: "laura@retrommerce.com",
+        name: "Laura Gonzalez",
+        phone: "+1 555-0103",
+        password: hashedPasswordUser,
+        role: "USER",
+      },
+    }),
+    // [4] Martin Rodriguez
+    prisma.user.upsert({
+      where: { email: "martin@retrommerce.com" },
+      update: {},
+      create: {
+        email: "martin@retrommerce.com",
+        name: "Martin Rodriguez",
+        phone: "+1 555-0104",
+        password: hashedPasswordUser,
+        role: "USER",
+      },
+    }),
+    // [5] Ana Torres
+    prisma.user.upsert({
+      where: { email: "ana@retrommerce.com" },
+      update: {},
+      create: {
+        email: "ana@retrommerce.com",
+        name: "Ana Torres",
+        phone: "+1 555-0105",
+        password: hashedPasswordUser,
+        role: "USER",
+      },
+    }),
+    // [6] Pedro Sanchez
+    prisma.user.upsert({
+      where: { email: "pedro@retrommerce.com" },
+      update: {},
+      create: {
+        email: "pedro@retrommerce.com",
+        name: "Pedro Sanchez",
+        phone: "+1 555-0106",
+        password: hashedPasswordUser,
+        role: "USER",
+      },
+    }),
+    // [7] Valentina Lopez
+    prisma.user.upsert({
+      where: { email: "valentina@retrommerce.com" },
+      update: {},
+      create: {
+        email: "valentina@retrommerce.com",
+        name: "Valentina Lopez",
+        phone: "+1 555-0107",
+        password: hashedPasswordUser,
+        role: "USER",
+      },
+    }),
+    // [8] Diego Fernandez
+    prisma.user.upsert({
+      where: { email: "diego@retrommerce.com" },
+      update: {},
+      create: {
+        email: "diego@retrommerce.com",
+        name: "Diego Fernandez",
+        phone: "+1 555-0108",
+        password: hashedPasswordUser,
+        role: "USER",
+      },
+    }),
+    // [9] Camila Ruiz
+    prisma.user.upsert({
+      where: { email: "camila@retrommerce.com" },
+      update: {},
+      create: {
+        email: "camila@retrommerce.com",
+        name: "Camila Ruiz",
+        phone: "+1 555-0109",
+        password: hashedPasswordUser,
+        role: "USER",
+      },
+    }),
+    // [10] Santiago Morales
+    prisma.user.upsert({
+      where: { email: "santiago@retrommerce.com" },
+      update: {},
+      create: {
+        email: "santiago@retrommerce.com",
+        name: "Santiago Morales",
+        phone: "+1 555-0110",
+        password: hashedPasswordUser,
+        role: "USER",
+      },
+    }),
+    // [11] Isabella Vargas
+    prisma.user.upsert({
+      where: { email: "isabella@retrommerce.com" },
+      update: {},
+      create: {
+        email: "isabella@retrommerce.com",
+        name: "Isabella Vargas",
+        phone: "+1 555-0111",
+        password: hashedPasswordUser,
+        role: "USER",
       },
     }),
   ]);
@@ -123,6 +245,7 @@ async function main() {
   // Crear productos de ejemplo
   const products = await Promise.all([
     // === COMPUTADORAS ===
+    // Producto 0 -> users[0]
     prisma.product.upsert({
       where: { slug: "ibm-thinkpad-600e" },
       update: {
@@ -146,9 +269,10 @@ async function main() {
         userId: users[0].id,
       },
     }),
+    // Producto 1 -> users[2]
     prisma.product.upsert({
       where: { slug: "compaq-presario-5000" },
-      update: { userId: users[0].id },
+      update: { userId: users[2].id },
       create: {
         name: "Compaq Presario 5000",
         slug: "compaq-presario-5000",
@@ -162,12 +286,13 @@ async function main() {
         featured: true,
         images: ["/images/presario-5000.jpg"],
         categoryId: categories[0].id,
-        userId: users[0].id,
+        userId: users[2].id,
       },
     }),
+    // Producto 2 -> users[3]
     prisma.product.upsert({
       where: { slug: "dell-dimension-4600" },
-      update: { userId: users[0].id },
+      update: { userId: users[3].id },
       create: {
         name: "Dell Dimension 4600",
         slug: "dell-dimension-4600",
@@ -180,12 +305,13 @@ async function main() {
         stock: 5,
         images: ["/images/dell-4600.jpg"],
         categoryId: categories[0].id,
-        userId: users[0].id,
+        userId: users[3].id,
       },
     }),
+    // Producto 3 -> users[4]
     prisma.product.upsert({
       where: { slug: "hp-pavilion-a1000" },
-      update: { userId: users[0].id },
+      update: { userId: users[4].id },
       create: {
         name: "HP Pavilion a1000",
         slug: "hp-pavilion-a1000",
@@ -198,12 +324,13 @@ async function main() {
         stock: 3,
         images: ["/images/hp-a1000.jpg"],
         categoryId: categories[0].id,
-        userId: users[0].id,
+        userId: users[4].id,
       },
     }),
+    // Producto 4 -> users[5]
     prisma.product.upsert({
       where: { slug: "gateway-2000-p5-133" },
-      update: { userId: users[0].id },
+      update: { userId: users[5].id },
       create: {
         name: "Gateway 2000 P5-133",
         slug: "gateway-2000-p5-133",
@@ -216,12 +343,13 @@ async function main() {
         stock: 2,
         images: ["/images/gateway-p5.jpg"],
         categoryId: categories[0].id,
-        userId: users[0].id,
+        userId: users[5].id,
       },
     }),
+    // Producto 5 -> users[6]
     prisma.product.upsert({
       where: { slug: "apple-imac-g3-bondi" },
-      update: { userId: users[0].id },
+      update: { userId: users[6].id },
       create: {
         name: "Apple iMac G3 Bondi Blue",
         slug: "apple-imac-g3-bondi",
@@ -235,12 +363,13 @@ async function main() {
         featured: true,
         images: ["/images/imac-g3.jpg"],
         categoryId: categories[0].id,
-        userId: users[0].id,
+        userId: users[6].id,
       },
     }),
+    // Producto 6 -> users[7]
     prisma.product.upsert({
       where: { slug: "packard-bell-legend" },
-      update: { userId: users[0].id },
+      update: { userId: users[7].id },
       create: {
         name: "Packard Bell Legend 406CD",
         slug: "packard-bell-legend",
@@ -253,12 +382,13 @@ async function main() {
         stock: 3,
         images: ["/images/packard-bell.jpg"],
         categoryId: categories[0].id,
-        userId: users[0].id,
+        userId: users[7].id,
       },
     }),
+    // Producto 7 -> users[8]
     prisma.product.upsert({
       where: { slug: "emachines-etower-500is" },
-      update: { userId: users[0].id },
+      update: { userId: users[8].id },
       create: {
         name: "eMachines eTower 500is",
         slug: "emachines-etower-500is",
@@ -270,14 +400,15 @@ async function main() {
         stock: 6,
         images: ["/images/emachines.jpg"],
         categoryId: categories[0].id,
-        userId: users[0].id,
+        userId: users[8].id,
       },
     }),
 
     // === PROCESADORES ===
+    // Producto 8 -> users[9]
     prisma.product.upsert({
       where: { slug: "intel-pentium-3-800mhz" },
-      update: { userId: users[0].id },
+      update: { userId: users[9].id },
       create: {
         name: "Intel Pentium III 800MHz",
         slug: "intel-pentium-3-800mhz",
@@ -291,12 +422,13 @@ async function main() {
         featured: true,
         images: ["/images/pentium3-800.jpg"],
         categoryId: categories[1].id,
-        userId: users[0].id,
+        userId: users[9].id,
       },
     }),
+    // Producto 9 -> users[10]
     prisma.product.upsert({
       where: { slug: "amd-athlon-xp-2400" },
-      update: { userId: users[0].id },
+      update: { userId: users[10].id },
       create: {
         name: "AMD Athlon XP 2400+",
         slug: "amd-athlon-xp-2400",
@@ -309,12 +441,13 @@ async function main() {
         stock: 6,
         images: ["/images/athlon-xp-2400.jpg"],
         categoryId: categories[1].id,
-        userId: users[0].id,
+        userId: users[10].id,
       },
     }),
+    // Producto 10 -> users[11]
     prisma.product.upsert({
       where: { slug: "intel-pentium-4-3ghz" },
-      update: { userId: users[0].id },
+      update: { userId: users[11].id },
       create: {
         name: "Intel Pentium 4 3.0GHz",
         slug: "intel-pentium-4-3ghz",
@@ -326,9 +459,10 @@ async function main() {
         stock: 9,
         images: ["/images/pentium4-3ghz.jpg"],
         categoryId: categories[1].id,
-        userId: users[0].id,
+        userId: users[11].id,
       },
     }),
+    // Producto 11 -> users[0]
     prisma.product.upsert({
       where: { slug: "amd-k6-2-450" },
       update: { userId: users[0].id },
@@ -347,9 +481,10 @@ async function main() {
         userId: users[0].id,
       },
     }),
+    // Producto 12 -> users[2]
     prisma.product.upsert({
       where: { slug: "intel-pentium-mmx-233" },
-      update: { userId: users[0].id },
+      update: { userId: users[2].id },
       create: {
         name: "Intel Pentium MMX 233MHz",
         slug: "intel-pentium-mmx-233",
@@ -361,12 +496,13 @@ async function main() {
         stock: 7,
         images: ["/images/pentium-mmx.jpg"],
         categoryId: categories[1].id,
-        userId: users[0].id,
+        userId: users[2].id,
       },
     }),
+    // Producto 13 -> users[3]
     prisma.product.upsert({
       where: { slug: "cyrix-6x86mx-pr233" },
-      update: { userId: users[0].id },
+      update: { userId: users[3].id },
       create: {
         name: "Cyrix 6x86MX PR233",
         slug: "cyrix-6x86mx-pr233",
@@ -378,12 +514,13 @@ async function main() {
         stock: 5,
         images: ["/images/cyrix-6x86.jpg"],
         categoryId: categories[1].id,
-        userId: users[0].id,
+        userId: users[3].id,
       },
     }),
+    // Producto 14 -> users[4]
     prisma.product.upsert({
       where: { slug: "amd-duron-900" },
-      update: { userId: users[0].id },
+      update: { userId: users[4].id },
       create: {
         name: "AMD Duron 900MHz",
         slug: "amd-duron-900",
@@ -395,12 +532,13 @@ async function main() {
         stock: 10,
         images: ["/images/duron-900.jpg"],
         categoryId: categories[1].id,
-        userId: users[0].id,
+        userId: users[4].id,
       },
     }),
+    // Producto 15 -> users[5]
     prisma.product.upsert({
       where: { slug: "intel-celeron-300a" },
-      update: { userId: users[0].id },
+      update: { userId: users[5].id },
       create: {
         name: "Intel Celeron 300A",
         slug: "intel-celeron-300a",
@@ -414,14 +552,15 @@ async function main() {
         featured: true,
         images: ["/images/celeron-300a.jpg"],
         categoryId: categories[1].id,
-        userId: users[0].id,
+        userId: users[5].id,
       },
     }),
 
     // === MEMORIAS RAM ===
+    // Producto 16 -> users[6]
     prisma.product.upsert({
       where: { slug: "kingston-128mb-pc133" },
-      update: { userId: users[0].id },
+      update: { userId: users[6].id },
       create: {
         name: "Kingston 128MB PC133 SDRAM",
         slug: "kingston-128mb-pc133",
@@ -434,12 +573,13 @@ async function main() {
         stock: 15,
         images: ["/images/kingston-128mb.jpg"],
         categoryId: categories[2].id,
-        userId: users[0].id,
+        userId: users[6].id,
       },
     }),
+    // Producto 17 -> users[7]
     prisma.product.upsert({
       where: { slug: "corsair-256mb-pc2700" },
-      update: { userId: users[0].id },
+      update: { userId: users[7].id },
       create: {
         name: "Corsair 256MB PC2700 DDR",
         slug: "corsair-256mb-pc2700",
@@ -452,12 +592,13 @@ async function main() {
         stock: 12,
         images: ["/images/corsair-256mb.jpg"],
         categoryId: categories[2].id,
-        userId: users[0].id,
+        userId: users[7].id,
       },
     }),
+    // Producto 18 -> users[8]
     prisma.product.upsert({
       where: { slug: "crucial-512mb-pc3200" },
-      update: { userId: users[0].id },
+      update: { userId: users[8].id },
       create: {
         name: "Crucial 512MB PC3200 DDR",
         slug: "crucial-512mb-pc3200",
@@ -470,12 +611,13 @@ async function main() {
         stock: 14,
         images: ["/images/crucial-512mb.jpg"],
         categoryId: categories[2].id,
-        userId: users[0].id,
+        userId: users[8].id,
       },
     }),
+    // Producto 19 -> users[9]
     prisma.product.upsert({
       where: { slug: "simm-32mb-edo" },
-      update: { userId: users[0].id },
+      update: { userId: users[9].id },
       create: {
         name: "SIMM 32MB EDO RAM",
         slug: "simm-32mb-edo",
@@ -488,12 +630,13 @@ async function main() {
         stock: 8,
         images: ["/images/simm-32mb.jpg"],
         categoryId: categories[2].id,
-        userId: users[0].id,
+        userId: users[9].id,
       },
     }),
+    // Producto 20 -> users[10]
     prisma.product.upsert({
       where: { slug: "kingston-64mb-pc100" },
-      update: { userId: users[0].id },
+      update: { userId: users[10].id },
       create: {
         name: "Kingston 64MB PC100 SDRAM",
         slug: "kingston-64mb-pc100",
@@ -505,12 +648,13 @@ async function main() {
         stock: 20,
         images: ["/images/kingston-64mb.jpg"],
         categoryId: categories[2].id,
-        userId: users[0].id,
+        userId: users[10].id,
       },
     }),
+    // Producto 21 -> users[11]
     prisma.product.upsert({
       where: { slug: "samsung-1gb-ddr2" },
-      update: { userId: users[0].id },
+      update: { userId: users[11].id },
       create: {
         name: "Samsung 1GB DDR2-667",
         slug: "samsung-1gb-ddr2",
@@ -522,14 +666,15 @@ async function main() {
         stock: 16,
         images: ["/images/samsung-1gb.jpg"],
         categoryId: categories[2].id,
-        userId: users[0].id,
+        userId: users[11].id,
       },
     }),
 
     // === MONITORES CRT ===
+    // Producto 22 -> users[0]
     prisma.product.upsert({
       where: { slug: "sony-trinitron-cpd-g220" },
-      update: { userId: users[1].id },
+      update: { userId: users[0].id },
       create: {
         name: "Sony Trinitron CPD-G220",
         slug: "sony-trinitron-cpd-g220",
@@ -543,12 +688,13 @@ async function main() {
         featured: true,
         images: ["/images/trinitron-g220.jpg"],
         categoryId: categories[3].id,
-        userId: users[1].id,
+        userId: users[0].id,
       },
     }),
+    // Producto 23 -> users[2]
     prisma.product.upsert({
       where: { slug: "viewsonic-p95f" },
-      update: { userId: users[1].id },
+      update: { userId: users[2].id },
       create: {
         name: "ViewSonic P95f+",
         slug: "viewsonic-p95f",
@@ -561,12 +707,13 @@ async function main() {
         stock: 3,
         images: ["/images/viewsonic-p95f.jpg"],
         categoryId: categories[3].id,
-        userId: users[1].id,
+        userId: users[2].id,
       },
     }),
+    // Producto 24 -> users[3]
     prisma.product.upsert({
       where: { slug: "samsung-syncmaster-997df" },
-      update: { userId: users[1].id },
+      update: { userId: users[3].id },
       create: {
         name: "Samsung SyncMaster 997DF",
         slug: "samsung-syncmaster-997df",
@@ -579,12 +726,13 @@ async function main() {
         stock: 2,
         images: ["/images/samsung-997df.jpg"],
         categoryId: categories[3].id,
-        userId: users[1].id,
+        userId: users[3].id,
       },
     }),
+    // Producto 25 -> users[4]
     prisma.product.upsert({
       where: { slug: "dell-p1110" },
-      update: { userId: users[1].id },
+      update: { userId: users[4].id },
       create: {
         name: "Dell P1110 Trinitron",
         slug: "dell-p1110",
@@ -598,12 +746,13 @@ async function main() {
         featured: true,
         images: ["/images/dell-p1110.jpg"],
         categoryId: categories[3].id,
-        userId: users[1].id,
+        userId: users[4].id,
       },
     }),
+    // Producto 26 -> users[5]
     prisma.product.upsert({
       where: { slug: "nec-multisync-fe991sb" },
-      update: { userId: users[1].id },
+      update: { userId: users[5].id },
       create: {
         name: "NEC MultiSync FE991SB",
         slug: "nec-multisync-fe991sb",
@@ -616,12 +765,13 @@ async function main() {
         stock: 2,
         images: ["/images/nec-fe991sb.jpg"],
         categoryId: categories[3].id,
-        userId: users[1].id,
+        userId: users[5].id,
       },
     }),
+    // Producto 27 -> users[6]
     prisma.product.upsert({
       where: { slug: "compaq-v700" },
-      update: { userId: users[1].id },
+      update: { userId: users[6].id },
       create: {
         name: "Compaq V700",
         slug: "compaq-v700",
@@ -633,14 +783,15 @@ async function main() {
         stock: 5,
         images: ["/images/compaq-v700.jpg"],
         categoryId: categories[3].id,
-        userId: users[1].id,
+        userId: users[6].id,
       },
     }),
 
     // === TARJETAS GRÁFICAS ===
+    // Producto 28 -> users[7]
     prisma.product.upsert({
       where: { slug: "3dfx-voodoo3-3000-agp" },
-      update: { userId: users[1].id },
+      update: { userId: users[7].id },
       create: {
         name: "3dfx Voodoo3 3000 AGP",
         slug: "3dfx-voodoo3-3000-agp",
@@ -653,12 +804,13 @@ async function main() {
         featured: true,
         images: ["/images/voodoo3-3000.jpg"],
         categoryId: categories[4].id,
-        userId: users[1].id,
+        userId: users[7].id,
       },
     }),
+    // Producto 29 -> users[8]
     prisma.product.upsert({
       where: { slug: "nvidia-riva-tnt2-ultra" },
-      update: { userId: users[1].id },
+      update: { userId: users[8].id },
       create: {
         name: "NVIDIA Riva TNT2 Ultra",
         slug: "nvidia-riva-tnt2-ultra",
@@ -671,12 +823,13 @@ async function main() {
         stock: 7,
         images: ["/images/tnt2-ultra.jpg"],
         categoryId: categories[4].id,
-        userId: users[1].id,
+        userId: users[8].id,
       },
     }),
+    // Producto 30 -> users[9]
     prisma.product.upsert({
       where: { slug: "ati-radeon-9800-pro" },
-      update: { userId: users[1].id },
+      update: { userId: users[9].id },
       create: {
         name: "ATI Radeon 9800 Pro",
         slug: "ati-radeon-9800-pro",
@@ -690,12 +843,13 @@ async function main() {
         featured: true,
         images: ["/images/radeon-9800-pro.jpg"],
         categoryId: categories[4].id,
-        userId: users[1].id,
+        userId: users[9].id,
       },
     }),
+    // Producto 31 -> users[10]
     prisma.product.upsert({
       where: { slug: "nvidia-geforce-fx-5900-ultra" },
-      update: { userId: users[1].id },
+      update: { userId: users[10].id },
       create: {
         name: "NVIDIA GeForce FX 5900 Ultra",
         slug: "nvidia-geforce-fx-5900-ultra",
@@ -707,12 +861,13 @@ async function main() {
         stock: 5,
         images: ["/images/geforce-fx-5900.jpg"],
         categoryId: categories[4].id,
-        userId: users[1].id,
+        userId: users[10].id,
       },
     }),
+    // Producto 32 -> users[11]
     prisma.product.upsert({
       where: { slug: "3dfx-voodoo2-12mb" },
-      update: { userId: users[1].id },
+      update: { userId: users[11].id },
       create: {
         name: "3dfx Voodoo2 12MB",
         slug: "3dfx-voodoo2-12mb",
@@ -725,12 +880,13 @@ async function main() {
         stock: 3,
         images: ["/images/voodoo2.jpg"],
         categoryId: categories[4].id,
-        userId: users[1].id,
+        userId: users[11].id,
       },
     }),
+    // Producto 33 -> users[0]
     prisma.product.upsert({
       where: { slug: "nvidia-geforce2-mx400" },
-      update: { userId: users[1].id },
+      update: { userId: users[0].id },
       create: {
         name: "NVIDIA GeForce2 MX400",
         slug: "nvidia-geforce2-mx400",
@@ -743,9 +899,10 @@ async function main() {
         stock: 9,
         images: ["/images/geforce2-mx400.jpg"],
         categoryId: categories[4].id,
-        userId: users[1].id,
+        userId: users[0].id,
       },
     }),
+    // Producto 34 -> users[1]
     prisma.product.upsert({
       where: { slug: "ati-rage-128-pro" },
       update: { userId: users[1].id },
@@ -763,9 +920,10 @@ async function main() {
         userId: users[1].id,
       },
     }),
+    // Producto 35 -> users[2]
     prisma.product.upsert({
       where: { slug: "matrox-g400-max" },
-      update: { userId: users[1].id },
+      update: { userId: users[2].id },
       create: {
         name: "Matrox G400 MAX",
         slug: "matrox-g400-max",
@@ -777,14 +935,15 @@ async function main() {
         stock: 4,
         images: ["/images/matrox-g400.jpg"],
         categoryId: categories[4].id,
-        userId: users[1].id,
+        userId: users[2].id,
       },
     }),
 
     // === DISCOS DUROS ===
+    // Producto 36 -> users[3]
     prisma.product.upsert({
       where: { slug: "western-digital-caviar-40gb" },
-      update: { userId: users[1].id },
+      update: { userId: users[3].id },
       create: {
         name: "Western Digital Caviar 40GB",
         slug: "western-digital-caviar-40gb",
@@ -797,12 +956,13 @@ async function main() {
         stock: 10,
         images: ["/images/wd-caviar-40gb.jpg"],
         categoryId: categories[5].id,
-        userId: users[1].id,
+        userId: users[3].id,
       },
     }),
+    // Producto 37 -> users[4]
     prisma.product.upsert({
       where: { slug: "seagate-barracuda-80gb" },
-      update: { userId: users[1].id },
+      update: { userId: users[4].id },
       create: {
         name: "Seagate Barracuda 80GB",
         slug: "seagate-barracuda-80gb",
@@ -814,12 +974,13 @@ async function main() {
         stock: 8,
         images: ["/images/seagate-80gb.jpg"],
         categoryId: categories[5].id,
-        userId: users[1].id,
+        userId: users[4].id,
       },
     }),
+    // Producto 38 -> users[5]
     prisma.product.upsert({
       where: { slug: "maxtor-diamondmax-120gb" },
-      update: { userId: users[1].id },
+      update: { userId: users[5].id },
       create: {
         name: "Maxtor DiamondMax 120GB",
         slug: "maxtor-diamondmax-120gb",
@@ -832,12 +993,13 @@ async function main() {
         stock: 7,
         images: ["/images/maxtor-120gb.jpg"],
         categoryId: categories[5].id,
-        userId: users[1].id,
+        userId: users[5].id,
       },
     }),
+    // Producto 39 -> users[6]
     prisma.product.upsert({
       where: { slug: "quantum-fireball-10gb" },
-      update: { userId: users[1].id },
+      update: { userId: users[6].id },
       create: {
         name: "Quantum Fireball 10GB",
         slug: "quantum-fireball-10gb",
@@ -849,12 +1011,13 @@ async function main() {
         stock: 6,
         images: ["/images/quantum-10gb.jpg"],
         categoryId: categories[5].id,
-        userId: users[1].id,
+        userId: users[6].id,
       },
     }),
+    // Producto 40 -> users[7]
     prisma.product.upsert({
       where: { slug: "ibm-deskstar-75gxp" },
-      update: { userId: users[1].id },
+      update: { userId: users[7].id },
       create: {
         name: "IBM Deskstar 75GXP 45GB",
         slug: "ibm-deskstar-75gxp",
@@ -867,12 +1030,13 @@ async function main() {
         stock: 4,
         images: ["/images/deskstar-75gxp.jpg"],
         categoryId: categories[5].id,
-        userId: users[1].id,
+        userId: users[7].id,
       },
     }),
+    // Producto 41 -> users[8]
     prisma.product.upsert({
       where: { slug: "seagate-cheetah-scsi" },
-      update: { userId: users[1].id },
+      update: { userId: users[8].id },
       create: {
         name: "Seagate Cheetah 36GB SCSI",
         slug: "seagate-cheetah-scsi",
@@ -884,14 +1048,15 @@ async function main() {
         stock: 3,
         images: ["/images/cheetah-scsi.jpg"],
         categoryId: categories[5].id,
-        userId: users[1].id,
+        userId: users[8].id,
       },
     }),
 
     // === PERIFÉRICOS ===
+    // Producto 42 -> users[9]
     prisma.product.upsert({
       where: { slug: "ibm-model-m-keyboard" },
-      update: { userId: users[0].id },
+      update: { userId: users[9].id },
       create: {
         name: "IBM Model M Keyboard",
         slug: "ibm-model-m-keyboard",
@@ -905,12 +1070,13 @@ async function main() {
         featured: true,
         images: ["/images/model-m.jpg"],
         categoryId: categories[6].id,
-        userId: users[0].id,
+        userId: users[9].id,
       },
     }),
+    // Producto 43 -> users[10]
     prisma.product.upsert({
       where: { slug: "microsoft-intellimouse-explorer" },
-      update: { userId: users[0].id },
+      update: { userId: users[10].id },
       create: {
         name: "Microsoft IntelliMouse Explorer 3.0",
         slug: "microsoft-intellimouse-explorer",
@@ -924,12 +1090,13 @@ async function main() {
         featured: true,
         images: ["/images/intellimouse.jpg"],
         categoryId: categories[6].id,
-        userId: users[0].id,
+        userId: users[10].id,
       },
     }),
+    // Producto 44 -> users[11]
     prisma.product.upsert({
       where: { slug: "logitech-mx500" },
-      update: { userId: users[0].id },
+      update: { userId: users[11].id },
       create: {
         name: "Logitech MX500",
         slug: "logitech-mx500",
@@ -941,9 +1108,10 @@ async function main() {
         stock: 5,
         images: ["/images/mx500.jpg"],
         categoryId: categories[6].id,
-        userId: users[0].id,
+        userId: users[11].id,
       },
     }),
+    // Producto 45 -> users[0]
     prisma.product.upsert({
       where: { slug: "dell-quietkey-keyboard" },
       update: { userId: users[0].id },
@@ -962,9 +1130,10 @@ async function main() {
         userId: users[0].id,
       },
     }),
+    // Producto 46 -> users[1]
     prisma.product.upsert({
       where: { slug: "microsoft-serial-mouse" },
-      update: { userId: users[0].id },
+      update: { userId: users[1].id },
       create: {
         name: "Microsoft Serial Mouse 2.0",
         slug: "microsoft-serial-mouse",
@@ -976,14 +1145,15 @@ async function main() {
         stock: 8,
         images: ["/images/serial-mouse.jpg"],
         categoryId: categories[6].id,
-        userId: users[0].id,
+        userId: users[1].id,
       },
     }),
 
     // === TARJETAS DE SONIDO ===
+    // Producto 47 -> users[2]
     prisma.product.upsert({
       where: { slug: "creative-soundblaster-live" },
-      update: { userId: users[0].id },
+      update: { userId: users[2].id },
       create: {
         name: "Creative Sound Blaster Live!",
         slug: "creative-soundblaster-live",
@@ -996,12 +1166,13 @@ async function main() {
         featured: true,
         images: ["/images/sb-live.jpg"],
         categoryId: categories[7].id,
-        userId: users[0].id,
+        userId: users[2].id,
       },
     }),
+    // Producto 48 -> users[3]
     prisma.product.upsert({
       where: { slug: "creative-awe64-gold" },
-      update: { userId: users[0].id },
+      update: { userId: users[3].id },
       create: {
         name: "Creative AWE64 Gold",
         slug: "creative-awe64-gold",
@@ -1013,12 +1184,13 @@ async function main() {
         stock: 3,
         images: ["/images/awe64-gold.jpg"],
         categoryId: categories[7].id,
-        userId: users[0].id,
+        userId: users[3].id,
       },
     }),
+    // Producto 49 -> users[4]
     prisma.product.upsert({
       where: { slug: "sound-blaster-16" },
-      update: { userId: users[0].id },
+      update: { userId: users[4].id },
       create: {
         name: "Sound Blaster 16",
         slug: "sound-blaster-16",
@@ -1030,12 +1202,13 @@ async function main() {
         stock: 5,
         images: ["/images/sb16.jpg"],
         categoryId: categories[7].id,
-        userId: users[0].id,
+        userId: users[4].id,
       },
     }),
+    // Producto 50 -> users[5]
     prisma.product.upsert({
       where: { slug: "creative-audigy-2" },
-      update: { userId: users[0].id },
+      update: { userId: users[5].id },
       create: {
         name: "Creative Audigy 2 ZS",
         slug: "creative-audigy-2",
@@ -1047,12 +1220,13 @@ async function main() {
         stock: 6,
         images: ["/images/audigy2.jpg"],
         categoryId: categories[7].id,
-        userId: users[0].id,
+        userId: users[5].id,
       },
     }),
+    // Producto 51 -> users[6]
     prisma.product.upsert({
       where: { slug: "gravis-ultrasound" },
-      update: { userId: users[0].id },
+      update: { userId: users[6].id },
       create: {
         name: "Gravis UltraSound MAX",
         slug: "gravis-ultrasound",
@@ -1064,18 +1238,303 @@ async function main() {
         stock: 2,
         images: ["/images/gus-max.jpg"],
         categoryId: categories[7].id,
-        userId: users[0].id,
+        userId: users[6].id,
       },
     }),
   ]);
 
   console.log(`✅ Created ${products.length} products`);
+
+  // === RESEÑAS ===
+  // Primero limpiamos reseñas existentes para evitar duplicados en re-seeds
+  await prisma.review.deleteMany({});
+
+  // Reseñas raíz (sin parentId)
+  const review1 = await prisma.review.create({
+    data: {
+      productId: products[0].id, // IBM ThinkPad 600E
+      userId: users[2].id, // Carlos Mendez
+      content:
+        "Increíble estado de conservación. El trackpoint funciona perfecto y el teclado tiene ese tacto clásico de ThinkPad que ya no se encuentra. Windows 98 arranca sin problemas.",
+    },
+  });
+
+  const review2 = await prisma.review.create({
+    data: {
+      productId: products[0].id, // IBM ThinkPad 600E
+      userId: users[5].id, // Ana Torres
+      content:
+        "Llegó bien embalada y todo funciona. La batería obviamente no dura nada pero para usarla conectada está genial. Muy nostálgica.",
+    },
+  });
+
+  const review3 = await prisma.review.create({
+    data: {
+      productId: products[0].id, // IBM ThinkPad 600E
+      userId: users[8].id, // Diego Fernandez
+      content:
+        "La compré para una colección y estoy muy contento. El vendedor fue muy atento con el empaquetado.",
+    },
+  });
+
+  const review4 = await prisma.review.create({
+    data: {
+      productId: products[5].id, // Apple iMac G3 Bondi Blue
+      userId: users[0].id, // Usuario Demo
+      content:
+        "El color Bondi Blue es espectacular en persona. Funciona de maravilla con Mac OS 9. Un clásico absoluto del diseño industrial.",
+    },
+  });
+
+  const review5 = await prisma.review.create({
+    data: {
+      productId: products[5].id, // Apple iMac G3 Bondi Blue
+      userId: users[3].id, // Laura Gonzalez
+      content:
+        "Siempre quise uno de estos. Lo tengo en el living y todos preguntan qué es. El CRT se ve increíble, colores vibrantes.",
+    },
+  });
+
+  const review6 = await prisma.review.create({
+    data: {
+      productId: products[28].id, // 3dfx Voodoo3 3000 AGP
+      userId: users[2].id, // Carlos Mendez
+      content:
+        "La instalé en mi build retro con un Pentium III y corre Quake III de lujo. La nostalgia de Glide no tiene precio.",
+    },
+  });
+
+  const review7 = await prisma.review.create({
+    data: {
+      productId: products[28].id, // 3dfx Voodoo3 3000 AGP
+      userId: users[11].id, // Isabella Vargas
+      content:
+        "Funciona perfecto. Los juegos con Glide API se ven mucho mejor que con Direct3D de la época. Excelente compra para retro gaming.",
+    },
+  });
+
+  const review8 = await prisma.review.create({
+    data: {
+      productId: products[42].id, // IBM Model M Keyboard
+      userId: users[0].id, // Usuario Demo
+      content:
+        "El sonido de las teclas buckling spring es adictivo. Escribir en este teclado es una experiencia completamente diferente. Construido como un tanque.",
+    },
+  });
+
+  const review9 = await prisma.review.create({
+    data: {
+      productId: products[42].id, // IBM Model M Keyboard
+      userId: users[4].id, // Martin Rodriguez
+      content:
+        "Lo uso todos los días para trabajar. Mis compañeros de oficina me odian por el ruido pero yo soy feliz. Calidad insuperable.",
+    },
+  });
+
+  const review10 = await prisma.review.create({
+    data: {
+      productId: products[42].id, // IBM Model M Keyboard
+      userId: users[7].id, // Valentina Lopez
+      content:
+        "Pesadísimo pero indestructible. Lleva más de 30 años y sigue funcionando como el primer día. Una reliquia.",
+    },
+  });
+
+  const review11 = await prisma.review.create({
+    data: {
+      productId: products[22].id, // Sony Trinitron CPD-G220
+      userId: users[3].id, // Laura Gonzalez
+      content:
+        "La calidad de imagen del Trinitron sigue siendo impresionante. Para juegos retro no hay nada mejor que un buen CRT. Cero input lag.",
+    },
+  });
+
+  const review12 = await prisma.review.create({
+    data: {
+      productId: products[22].id, // Sony Trinitron CPD-G220
+      userId: users[10].id, // Santiago Morales
+      content:
+        "Pesa una tonelada pero la imagen es perfecta. Los colores son mucho más vivos que en cualquier LCD moderno. Para speedrunning es indispensable.",
+    },
+  });
+
+  const review13 = await prisma.review.create({
+    data: {
+      productId: products[8].id, // Intel Pentium III 800MHz
+      userId: users[6].id, // Pedro Sanchez
+      content:
+        "Lo usé para armar un PC retro con Windows 98 SE. Corre todo lo de la época sin problemas. Buen precio también.",
+    },
+  });
+
+  const review14 = await prisma.review.create({
+    data: {
+      productId: products[47].id, // Creative Sound Blaster Live!
+      userId: users[8].id, // Diego Fernandez
+      content:
+        "El chip EMU10K1 suena espectacular. EAX en juegos como Thief y Half-Life es otra experiencia. Imprescindible para un build retro serio.",
+    },
+  });
+
+  const review15 = await prisma.review.create({
+    data: {
+      productId: products[47].id, // Creative Sound Blaster Live!
+      userId: users[11].id, // Isabella Vargas
+      content:
+        "Funciona de inmediato con Windows 98 y XP. Los drivers se encuentran fácil online. Calidad de audio muy buena para la época.",
+    },
+  });
+
+  const review16 = await prisma.review.create({
+    data: {
+      productId: products[30].id, // ATI Radeon 9800 Pro
+      userId: users[0].id, // Usuario Demo
+      content:
+        "La mejor tarjeta AGP que existió. Half-Life 2, Doom 3, Far Cry... todo corre de lujo. Un must para builds retro de gama alta.",
+    },
+  });
+
+  const review17 = await prisma.review.create({
+    data: {
+      productId: products[1].id, // Compaq Presario 5000
+      userId: users[9].id, // Camila Ruiz
+      content:
+        "Mi primera computadora fue una Presario. Esta me trajo muchos recuerdos. Funciona perfectamente con Windows 2000.",
+    },
+  });
+
+  const review18 = await prisma.review.create({
+    data: {
+      productId: products[43].id, // Microsoft IntelliMouse Explorer 3.0
+      userId: users[2].id, // Carlos Mendez
+      content:
+        "El mejor mouse que se fabricó. La forma ergonómica es perfecta y el sensor óptico sigue siendo preciso. Leyenda del gaming.",
+    },
+  });
+
+  console.log("✅ Created 18 root reviews");
+
+  // Respuestas a reseñas (un solo nivel de profundidad)
+  await Promise.all([
+    // Respuesta del vendedor (users[0]) a la reseña de Carlos en ThinkPad
+    prisma.review.create({
+      data: {
+        productId: products[0].id,
+        userId: users[0].id, // El vendedor del producto
+        content:
+          "¡Gracias Carlos! Me alegra que te haya gustado. Todos los ThinkPad que vendo pasan por una revisión completa antes del envío.",
+        parentId: review1.id,
+      },
+    }),
+    // Respuesta de otro usuario a la reseña de Ana en ThinkPad
+    prisma.review.create({
+      data: {
+        productId: products[0].id,
+        userId: users[10].id, // Santiago Morales
+        content:
+          "¿Probaste ponerle una batería de terceros? Hay algunas compatibles en eBay que dan un par de horas.",
+        parentId: review2.id,
+      },
+    }),
+    // Respuesta a la reseña del iMac G3
+    prisma.review.create({
+      data: {
+        productId: products[5].id,
+        userId: users[6].id, // Pedro (vendedor del iMac)
+        content:
+          "¡Gracias por la reseña! Si querés, también tengo el teclado y mouse USB originales que hacen juego.",
+        parentId: review4.id,
+      },
+    }),
+    // Respuesta a reseña de Voodoo3
+    prisma.review.create({
+      data: {
+        productId: products[28].id,
+        userId: users[9].id, // Camila Ruiz
+        content:
+          "¿En qué resolución lo corrés? Yo tengo la Voodoo3 2000 y a 1024x768 ya empieza a sufrir un poco.",
+        parentId: review6.id,
+      },
+    }),
+    // Carlos responde sobre la Voodoo3
+    prisma.review.create({
+      data: {
+        productId: products[28].id,
+        userId: users[2].id, // Carlos (autor de review6)
+        content:
+          "A 800x600 va perfecta. La 3000 tiene más memoria y clockea más alto que la 2000, así que a 1024x768 también se banca bastante bien.",
+        parentId: review6.id,
+      },
+    }),
+    // Respuesta en Model M
+    prisma.review.create({
+      data: {
+        productId: products[42].id,
+        userId: users[9].id, // Camila (vendedora del Model M)
+        content:
+          "¡Gracias! Es verdad que son ruidosos pero la calidad de escritura no tiene comparación. Tengo más unidades si alguien necesita.",
+        parentId: review8.id,
+      },
+    }),
+    // Respuesta en Trinitron
+    prisma.review.create({
+      data: {
+        productId: products[22].id,
+        userId: users[4].id, // Martin Rodriguez
+        content:
+          "Totalmente de acuerdo con lo del input lag. Para juegos de pelea y speedruns un CRT es obligatorio.",
+        parentId: review11.id,
+      },
+    }),
+    // Respuesta en Sound Blaster Live
+    prisma.review.create({
+      data: {
+        productId: products[47].id,
+        userId: users[2].id, // Carlos (vendedor de SB Live)
+        content:
+          "Me alegra que funcione bien. Si necesitás el CD original con los drivers y el software, avisame que tengo copias.",
+        parentId: review14.id,
+      },
+    }),
+    // Respuesta en Radeon 9800 Pro
+    prisma.review.create({
+      data: {
+        productId: products[30].id,
+        userId: users[9].id, // Camila (vendedora de Radeon 9800)
+        content:
+          "¡Gracias por la reseña! Tengo también una Radeon 9700 Pro si alguien busca algo similar pero un poco más económico.",
+        parentId: review16.id,
+      },
+    }),
+    // Respuesta en Compaq Presario
+    prisma.review.create({
+      data: {
+        productId: products[1].id,
+        userId: users[2].id, // Carlos (vendedor de Presario)
+        content:
+          "¡Qué bueno que te trajo buenos recuerdos! Las Presario eran muy populares. Si necesitás los drivers originales, puedo pasártelos.",
+        parentId: review17.id,
+      },
+    }),
+    // Respuesta en IntelliMouse
+    prisma.review.create({
+      data: {
+        productId: products[43].id,
+        userId: users[7].id, // Valentina Lopez
+        content:
+          "Coincido totalmente. Todavía hay gente que juega competitivo con el IntelliMouse. El shape es perfecto para claw grip.",
+        parentId: review18.id,
+      },
+    }),
+  ]);
+
+  console.log("✅ Created 11 review replies");
   console.log("🎉 Seeding completed!");
 }
 
 main()
   .catch((e) => {
-    console.error("❌ Error seeding database:", e);
+    console.error(e);
     process.exit(1);
   })
   .finally(async () => {
