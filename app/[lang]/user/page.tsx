@@ -7,6 +7,7 @@ import {
   Awfxcg321303,
   Msrating106,
   FolderFile,
+  Textchat,
 } from "@react95/icons";
 import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
@@ -166,6 +167,16 @@ export default async function UserPage({
                   <div className={styles.settingIcon}>
                     <Computer variant="32x32_4" />
                     <span>{dict.user.myOrders}</span>
+                  </div>
+                </Link>
+
+                <Link
+                  href={`/${lang}/user/reviews`}
+                  className={`${styles.settingLink} ${Cursor.Pointer}`}
+                >
+                  <div className={styles.settingIcon}>
+                    <Textchat variant="32x32_4" />
+                    <span>{dict.user.myReviews}</span>
                   </div>
                 </Link>
               </div>

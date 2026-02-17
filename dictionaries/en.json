@@ -134,6 +134,7 @@
     "profileInfo": "Your profile information",
     "security": "Security",
     "myProducts": "My Publications",
+    "myReviews": "My Reviews",
     "phone": "Phone",
     "phonePlaceholder": "+1 234-567-8900",
     "shippingAddresses": "Shipping addresses",
@@ -149,6 +150,16 @@
     "updatePassword": "Update password",
     "passwordUpdated": "Password updated successfully",
     "passwordUpdateError": "Error updating password"
+  },
+  "myReviews": {
+    "title": "My Reviews",
+    "empty": "You haven't written any reviews yet.",
+    "backToUserPanel": "Back to user panel",
+    "page": "Page",
+    "of": "of",
+    "previous": "← Previous",
+    "next": "Next →",
+    "onProduct": "on"
   },
   "topBar": {
     "hello": "Hello"
@@ -197,7 +208,13 @@
     "edited": "edited",
     "save": "Save",
     "cancel": "Cancel",
-    "reviewCount": "{count} comment(s)"
+    "reviewCount": "{count} comment(s)",
+    "noUserReviews": "You haven't written any reviews yet.",
+    "page": "Page",
+    "of": "of",
+    "previous": "← Previous",
+    "next": "Next →",
+    "onProduct": "on"
   },
   "notFound": {
     "title": "Error 404 - Page not found",

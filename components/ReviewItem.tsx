@@ -90,7 +90,7 @@ export default function ReviewItem({
   const isAdmin = currentUserRole === "ADMIN";
   const canEdit = isAuthor || isAdmin;
   const canDelete = isAuthor || isAdmin;
-  const canReply = !isReply && !!currentUserId;
+  const canReply = !!currentUserId;
 
   const wasEdited =
     new Date(review.updatedAt).getTime() -
@@ -266,6 +266,17 @@ export default function ReviewItem({
 
         {!isEditing && (
           <div className={styles.toolbar}>
+            {canReply && (
+              <button
+                type="button"
+                onClick={() => setShowReplyForm(!showReplyForm)}
+                className={`${styles.toolbarButton} ${showReplyForm ? styles.activeToolbarButton : ""} ${Cursor.Pointer}`}
+                title={dict.reply}
+              >
+                <Message variant="16x16_4" />
+                <span className={styles.toolbarLabel}>{dict.reply}</span>
+              </button>
+            )}
             {canEdit && (
               <button
                 type="button"
@@ -302,17 +313,6 @@ export default function ReviewItem({
                 {linkCopied ? dict.linkCopied : dict.share}
               </span>
             </button>
-            {canReply && (
-              <button
-                type="button"
-                onClick={() => setShowReplyForm(!showReplyForm)}
-                className={`${styles.toolbarButton} ${showReplyForm ? styles.activeToolbarButton : ""} ${Cursor.Pointer}`}
-                title={dict.reply}
-              >
-                <Message variant="16x16_4" />
-                <span className={styles.toolbarLabel}>{dict.reply}</span>
-              </button>
-            )}
           </div>
         )}
       </Frame>
@@ -320,7 +320,7 @@ export default function ReviewItem({
       {showReplyForm && (
         <ReviewForm
           productId={productId}
-          parentId={review.id}
+          parentId={isReply ? review.parentId! : review.id}
           onSubmitted={handleReplySubmitted}
           onCancel={() => setShowReplyForm(false)}
           dict={dict}

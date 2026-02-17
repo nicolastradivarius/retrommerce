@@ -1,0 +1,153 @@
+.container {
+    min-height: 100vh;
+    background: #008080;
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    flex: 1;
+    padding: 24px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.window {
+    width: 100%;
+    max-width: 1000px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    box-shadow: 2px 2px 0px #000;
+}
+
+.windowContent {
+    padding: 16px;
+    background: #c0c0c0;
+}
+
+.reviewsList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.empty {
+    margin: 0 0 16px 0;
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    color: #444;
+    text-align: center;
+    padding: 24px 0;
+}
+
+/* Pagination */
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
+    padding: 8px 0;
+    border-top: 2px solid;
+    border-top-color: #808080;
+}
+
+.pageButton {
+    text-decoration: none;
+    color: inherit;
+}
+
+.pageButton button {
+    padding: 4px 12px;
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    cursor: pointer;
+    color: #000;
+}
+
+.pageButton button:hover {
+    background: #d4d4d4;
+}
+
+.pageButton button:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #a0a0a0;
+}
+
+.pageButtonDisabled {
+    padding: 4px 12px;
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pageInfo {
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    color: #000;
+    min-width: 100px;
+    text-align: center;
+}
+
+.backLink {
+    display: inline-block;
+    margin-top: 16px;
+    color: #000080;
+    text-decoration: underline;
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+}
+
+.backLink:hover {
+    color: #0000ff;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .main {
+        padding: 12px;
+        max-width: 100%;
+    }
+
+    .windowContent {
+        padding: 10px;
+    }
+
+    .reviewsList {
+        gap: 6px;
+    }
+
+    .pagination {
+        gap: 8px;
+        margin-top: 12px;
+    }
+
+    .pageInfo {
+        min-width: 80px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main {
+        padding: 8px;
+    }
+
+    .pagination {
+        gap: 6px;
+    }
+
+    .pageButton button,
+    .pageButtonDisabled {
+        padding: 3px 8px;
+        font-size: 10px;
+    }
+}

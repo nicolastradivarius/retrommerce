@@ -1,0 +1,238 @@
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.reviewFrame {
+    padding: 0;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+}
+
+.layout {
+    display: flex;
+    flex-direction: row;
+    min-height: 0;
+}
+
+.reviewContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px 6px;
+    border-bottom: 1px solid #a0a0a0;
+}
+
+.meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+}
+
+.date {
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    color: #444;
+}
+
+.editedTag {
+    font-style: italic;
+    color: #808080;
+}
+
+.content {
+    margin: 0;
+    padding: 8px 10px;
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    line-height: 1.6;
+    color: #000;
+    white-space: pre-wrap;
+    word-break: break-word;
+    flex: 1;
+}
+
+/* Toolbar */
+
+.toolbar {
+    display: flex;
+    gap: 2px;
+    padding: 4px 10px 6px;
+    border-top: 1px solid #a0a0a0;
+    flex-wrap: wrap;
+}
+
+.toolbarButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    color: #000;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    cursor: pointer;
+}
+
+.toolbarButton:hover {
+    background: #d4d4d4;
+}
+
+.toolbarButton:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #a0a0a0;
+}
+
+.toolbarLabel {
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+}
+
+.deleteButton:hover {
+    background: #ffcccc;
+}
+
+/* Product info on the right */
+
+.productLink {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    border-left: 2px solid;
+    border-left-color: #808080;
+    flex-shrink: 0;
+}
+
+.productLink:hover .productInfo {
+    background: #d4d4d4;
+}
+
+.productInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 14px;
+    min-width: 100px;
+    max-width: 120px;
+    text-align: center;
+    transition: background 0.1s ease;
+}
+
+.productImage {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #ffffff;
+    display: block;
+}
+
+.productImagePlaceholder {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    color: #808080;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: "MS Sans Serif", sans-serif;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.productName {
+    font-size: 10px;
+    font-family: "MS Sans Serif", sans-serif;
+    color: #000080;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .layout {
+        flex-direction: column-reverse;
+    }
+
+    .productLink {
+        border-left: none;
+        border-bottom: 2px solid;
+        border-bottom-color: #808080;
+    }
+
+    .productInfo {
+        flex-direction: row;
+        max-width: 100%;
+        min-width: 0;
+        padding: 8px 10px;
+        gap: 8px;
+    }
+
+    .productImage {
+        width: 40px;
+        height: 40px;
+    }
+
+    .productImagePlaceholder {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .productName {
+        font-size: 11px;
+        -webkit-line-clamp: 2;
+    }
+
+    .header {
+        padding: 6px 8px 4px;
+    }
+
+    .content {
+        padding: 6px 8px;
+    }
+
+    .toolbar {
+        padding: 4px 8px 4px;
+    }
+
+    .toolbarLabel {
+        display: none;
+    }
+}
+
+@media (max-width: 400px) {
+    .productImage {
+        width: 32px;
+        height: 32px;
+    }
+
+    .productImagePlaceholder {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+    }
+}

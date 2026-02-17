@@ -116,6 +116,7 @@
     "controlPanel": "Panel de Control",
     "catalog": "Catálogo",
     "favorites": "Mis Favoritos",
+    "myReviews": "Mis Reseñas",
     "myOrders": "Mis Pedidos",
     "profilePhoto": "Foto de perfil",
     "name": "Nombre",
@@ -194,10 +195,26 @@
     "linkCopied": "¡Enlace copiado!",
     "loginToReview": "Inicia sesión para escribir una reseña",
     "noReviews": "Aún no hay reseñas para este producto",
+    "noUserReviews": "Aún no has escrito ninguna reseña",
     "edited": "editado",
     "save": "Guardar",
     "cancel": "Cancelar",
-    "reviewCount": "{count} comentario(s)"
+    "reviewCount": "{count} comentario(s)",
+    "page": "Página",
+    "of": "de",
+    "previous": "← Anterior",
+    "next": "Siguiente →",
+    "onProduct": "en"
+  },
+  "myReviews": {
+    "title": "Mis Reseñas",
+    "empty": "Aún no has escrito ninguna reseña.",
+    "backToUserPanel": "Volver al panel de usuario",
+    "page": "Página",
+    "of": "de",
+    "previous": "← Anterior",
+    "next": "Siguiente →",
+    "onProduct": "en"
   },
   "notFound": {
     "title": "Error 404 - Página no encontrada",
