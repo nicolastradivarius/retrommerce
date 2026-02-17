@@ -4,8 +4,8 @@ import { useEffect, useRef, useCallback } from "react";
 import { Frame } from "@react95/core";
 import { Textchat } from "@react95/icons";
 import { useRouter } from "next/navigation";
-import ReviewForm from "@/components/ReviewForm";
-import ReviewItem from "@/components/ReviewItem";
+import ReviewForm from "@/components/review/ReviewForm";
+import ReviewItem from "@/components/review/ReviewItem";
 import styles from "./ReviewSection.module.css";
 
 interface ReviewUser {
@@ -96,7 +96,8 @@ export default function ReviewSection({
         element.scrollIntoView({ behavior: "smooth", block: "center" });
 
         // Add highlight class
-        const frame = element.querySelector(`.${styles.highlightTarget}`) || element;
+        const frame =
+          element.querySelector(`.${styles.highlightTarget}`) || element;
         frame.classList.add(styles.highlighted);
         setTimeout(() => {
           frame.classList.remove(styles.highlighted);

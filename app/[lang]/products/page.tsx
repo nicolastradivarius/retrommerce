@@ -10,11 +10,11 @@ import {
   type ProductListItem,
 } from "@/lib/products";
 import { getFavoriteProductIdsByUser } from "@/lib/favorites";
-import BottomNav from "@/components/BottomNav";
-import ProductCard from "@/components/ProductCard";
-import ProductFilters from "@/components/ProductFilters";
+import BottomNav from "@/components/layout/BottomNav";
+import ProductCard from "@/components/product/ProductCard";
+import ProductFilters from "@/components/product/ProductFilters";
 import ProductsMobileTabsContainer from "./_mobile/ProductsMobileTabsContainer";
-import ResponsiveLayout from "@/components/ResponsiveLayout";
+import ResponsiveLayout from "@/components/layout/ResponsiveLayout";
 import styles from "./page.module.css";
 import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 import { getCurrentUserWithAvatar } from "@/lib/auth";

@@ -9,8 +9,8 @@ import {
 } from "@react95/icons";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import FeaturedProducts from "@/components/FeaturedProducts";
-import BottomNav from "@/components/BottomNav";
+import FeaturedProducts from "@/components/product/FeaturedProducts";
+import BottomNav from "@/components/layout/BottomNav";
 import styles from "./page.module.css";
 import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 import { getCurrentUserWithAvatar } from "@/lib/auth";

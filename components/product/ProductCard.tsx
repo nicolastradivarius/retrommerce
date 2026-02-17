@@ -13,7 +13,7 @@ import { Frame, Cursor } from "@react95/core";
 import Link from "next/link";
 import { formatPrice, hasDiscount } from "@/lib/utils";
 import type { Locale } from "@/app/[lang]/dictionaries";
-import FavoriteButton from "./FavoriteButton";
+import FavoriteButton from "../ui/FavoriteButton";
 import styles from "./ProductCard.module.css";
 
 /**

@@ -12,8 +12,8 @@ import {
 import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
-import LogoutButton from "@/components/LogoutButton";
-import BottomNav from "@/components/BottomNav";
+import LogoutButton from "@/components/auth/LogoutButton";
+import BottomNav from "@/components/layout/BottomNav";
 import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 import styles from "./page.module.css";
 

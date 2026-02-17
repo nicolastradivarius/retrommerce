@@ -4,8 +4,8 @@ import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
 import { getFavoriteProductsByUser } from "@/lib/favorites";
-import BottomNav from "@/components/BottomNav";
-import ProductCard from "@/components/ProductCard";
+import BottomNav from "@/components/layout/BottomNav";
+import ProductCard from "@/components/product/ProductCard";
 import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 import styles from "./page.module.css";
 

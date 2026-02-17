@@ -4,8 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { Button, Frame, Cursor } from "@react95/core";
 import { Pen, RecycleFull, Url102, Message } from "@react95/icons";
-import ConfirmModal from "@/components/ConfirmModal";
-import ReviewForm from "@/components/ReviewForm";
+import ConfirmModal from "@/components/ui/ConfirmModal";
+import ReviewForm from "@/components/review/ReviewForm";
 import styles from "./ReviewItem.module.css";
 
 interface ReviewUser {

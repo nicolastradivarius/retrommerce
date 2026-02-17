@@ -4,8 +4,8 @@ import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
 import { getReviewsByUserId } from "@/lib/reviews";
-import BottomNav from "@/components/BottomNav";
-import UserReviewItem from "@/components/UserReviewItem";
+import BottomNav from "@/components/layout/BottomNav";
+import UserReviewItem from "@/components/review/UserReviewItem";
 import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 import styles from "./page.module.css";
 

@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Frame, Cursor } from "@react95/core";
 import { RecycleFull } from "@react95/icons";
-import ConfirmModal from "@/components/ConfirmModal";
+import ConfirmModal from "@/components/ui/ConfirmModal";
 import styles from "./UserReviewItem.module.css";
 
 interface ReviewUser {

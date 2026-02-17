@@ -1,17 +1,17 @@
 import { Frame, TitleBar } from "@react95/core";
 import { Computer } from "@react95/icons";
-import BackToButton from "@/components/BackToButton";
+import BackToButton from "@/components/layout/BackToButton";
 import { notFound } from "next/navigation";
 import { formatPrice, hasDiscount } from "@/lib/utils";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
 import { getProductBySlug } from "@/lib/products";
 import { getReviewsByProductId } from "@/lib/reviews";
 import { isProductFavorite } from "@/lib/favorites";
-import BottomNav from "@/components/BottomNav";
-import ImageCarousel from "@/components/ImageCarousel";
-import FavoriteButton from "@/components/FavoriteButton";
-import AddToCartButton from "@/components/AddToCartButton";
-import ReviewSection from "@/components/ReviewSection";
+import BottomNav from "@/components/layout/BottomNav";
+import ImageCarousel from "@/components/product/ImageCarousel";
+import FavoriteButton from "@/components/ui/FavoriteButton";
+import AddToCartButton from "@/components/cart/AddToCartButton";
+import ReviewSection from "@/components/review/ReviewSection";
 import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 import styles from "./page.module.css";
 

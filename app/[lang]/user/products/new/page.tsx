@@ -5,7 +5,7 @@ import { FileText } from "@react95/icons";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import BottomNav from "@/components/BottomNav";
+import BottomNav from "@/components/layout/BottomNav";
 import type { Locale } from "@/app/[lang]/dictionaries";
 import styles from "./page.module.css";
 

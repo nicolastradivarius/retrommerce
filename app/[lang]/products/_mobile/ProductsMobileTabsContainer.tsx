@@ -21,8 +21,8 @@ import { Computer } from "@react95/icons";
 import Link from "next/link";
 import type { Locale } from "@/app/[lang]/dictionaries";
 import type { ProductListItem } from "@/lib/products";
-import ProductCard from "@/components/ProductCard";
-import ProductFilters from "@/components/ProductFilters";
+import ProductCard from "@/components/product/ProductCard";
+import ProductFilters from "@/components/product/ProductFilters";
 import styles from "./ProductsMobileTabsContainer.module.css";
 
 /**
