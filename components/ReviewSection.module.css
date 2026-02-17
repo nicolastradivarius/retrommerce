@@ -1,0 +1,135 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.titleRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.title {
+    margin: 0;
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    font-weight: bold;
+    color: #000080;
+}
+
+.count {
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    color: #444;
+    margin-left: auto;
+}
+
+.formFrame {
+    padding: 10px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+}
+
+.loginPrompt {
+    padding: 10px 12px;
+    background: #dfdfdf;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.loginText {
+    margin: 0;
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    color: #444;
+    font-style: italic;
+}
+
+.emptyFrame {
+    padding: 16px 12px;
+    background: #ffffff;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    text-align: center;
+}
+
+.emptyText {
+    margin: 0;
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    color: #808080;
+}
+
+.reviewsList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Highlight animation for linked/shared reviews */
+
+@keyframes reviewHighlight {
+    0% {
+        outline: 3px solid #000080;
+        outline-offset: 2px;
+    }
+    50% {
+        outline: 3px solid #000080;
+        outline-offset: 2px;
+    }
+    75% {
+        outline: 3px solid #6060c0;
+        outline-offset: 2px;
+    }
+    100% {
+        outline: 3px solid transparent;
+        outline-offset: 2px;
+    }
+}
+
+.highlighted {
+    animation: reviewHighlight 3s ease-out forwards;
+}
+
+.highlightTarget {
+    outline: 3px solid transparent;
+    outline-offset: 2px;
+    transition: outline-color 0.3s ease;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .container {
+        gap: 8px;
+    }
+
+    .formFrame {
+        padding: 8px;
+    }
+
+    .loginPrompt {
+        padding: 8px 10px;
+    }
+
+    .emptyFrame {
+        padding: 12px 10px;
+    }
+
+    .reviewsList {
+        gap: 6px;
+    }
+}
+
+@media (max-width: 400px) {
+    .titleRow {
+        gap: 6px;
+    }
+
+    .count {
+        font-size: 10px;
+    }
+}

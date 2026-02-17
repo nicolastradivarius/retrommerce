@@ -177,6 +177,28 @@
     "removeFromFavorites": "Quitar favorito",
     "loginToFavorite": "Inicia sesión"
   },
+  "reviews": {
+    "title": "Reseñas",
+    "writeReview": "Escribe una reseña",
+    "writeReply": "Escribe una respuesta",
+    "placeholder": "Escribe tu comentario...",
+    "replyPlaceholder": "Escribe tu respuesta...",
+    "publish": "Publicar",
+    "publishing": "Publicando...",
+    "edit": "Editar",
+    "delete": "Borrar",
+    "share": "Compartir",
+    "reply": "Responder",
+    "confirmDelete": "¿Estás seguro de que quieres borrar esta reseña? Las respuestas asociadas también serán eliminadas.",
+    "confirmDeleteReply": "¿Estás seguro de que quieres borrar esta respuesta?",
+    "linkCopied": "¡Enlace copiado!",
+    "loginToReview": "Inicia sesión para escribir una reseña",
+    "noReviews": "Aún no hay reseñas para este producto",
+    "edited": "editado",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "reviewCount": "{count} comentario(s)"
+  },
   "notFound": {
     "title": "Error 404 - Página no encontrada",
     "message": "No se puede encontrar la página solicitada.",

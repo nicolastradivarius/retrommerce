@@ -69,13 +69,12 @@
     display: grid;
     grid-template-columns: 1fr minmax(200px, 380px);
     gap: 24px;
-    margin-bottom: 24px;
+    margin-bottom: 0;
 }
 
 .leftColumn {
     display: flex;
     flex-direction: column;
-    gap: 24px;
 }
 
 .rightColumn {
@@ -95,7 +94,8 @@
 }
 
 .section {
-    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-bottom: 0;
 }
 
 .sectionTitle {

@@ -1,0 +1,125 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.replyContainer {
+    padding: 8px;
+    margin-top: 6px;
+    background: #dfdfdf;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.label {
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    font-weight: bold;
+    color: #000080;
+}
+
+.textarea {
+    width: 100%;
+    padding: 6px 8px;
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    line-height: 1.5;
+    color: #000;
+    background: #ffffff;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    outline: none;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.textarea::placeholder {
+    color: #808080;
+}
+
+.textarea:disabled {
+    background: #c0c0c0;
+    color: #808080;
+}
+
+.error {
+    margin: 0;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    color: #aa0000;
+    background: #ffffff;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.actions {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.submitButton {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: "MS Sans Serif", sans-serif;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+}
+
+.submitButton:hover:not(:disabled) {
+    background: #d4d4d4;
+}
+
+.submitButton:active:not(:disabled) {
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #a0a0a0;
+}
+
+.submitButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.cancelButton {
+    padding: 4px 12px;
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+}
+
+.cancelButton:hover:not(:disabled) {
+    background: #d4d4d4;
+}
+
+.cancelButton:active:not(:disabled) {
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #a0a0a0;
+}
+
+.cancelButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .container {
+        gap: 6px;
+    }
+
+    .replyContainer {
+        padding: 6px;
+    }
+
+    .actions {
+        flex-direction: row;
+    }
+}

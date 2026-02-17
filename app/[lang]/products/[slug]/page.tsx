@@ -5,11 +5,13 @@ import { notFound } from "next/navigation";
 import { formatPrice, hasDiscount } from "@/lib/utils";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
 import { getProductBySlug } from "@/lib/products";
+import { getReviewsByProductId } from "@/lib/reviews";
 import { isProductFavorite } from "@/lib/favorites";
 import BottomNav from "@/components/BottomNav";
 import ImageCarousel from "@/components/ImageCarousel";
 import FavoriteButton from "@/components/FavoriteButton";
 import AddToCartButton from "@/components/AddToCartButton";
+import ReviewSection from "@/components/ReviewSection";
 import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 import styles from "./page.module.css";
 
@@ -18,10 +20,10 @@ export default async function ProductDetailPage({
   searchParams,
 }: {
   params: Promise<{ lang: string; slug: string }>;
-  searchParams: Promise<{ from?: string }>;
+  searchParams: Promise<{ from?: string; reviewId?: string }>;
 }) {
   const { lang, slug } = await params;
-  const { from = "products" } = await searchParams;
+  const { from = "products", reviewId } = await searchParams;
 
   if (!hasLocale(lang)) {
     notFound();
@@ -36,7 +38,22 @@ export default async function ProductDetailPage({
     notFound();
   }
 
-  const isFavorite = await isProductFavorite(user?.sub, product.id);
+  const [isFavorite, reviews] = await Promise.all([
+    isProductFavorite(user?.sub, product.id),
+    getReviewsByProductId(product.id),
+  ]);
+
+  // Serialize dates for client components (Date objects can't cross the server/client boundary)
+  const serializedReviews = reviews.map((review) => ({
+    ...review,
+    createdAt: review.createdAt.toISOString(),
+    updatedAt: review.updatedAt.toISOString(),
+    replies: review.replies.map((reply) => ({
+      ...reply,
+      createdAt: reply.createdAt.toISOString(),
+      updatedAt: reply.updatedAt.toISOString(),
+    })),
+  }));
 
   const backUrl =
     from === "home"
@@ -95,15 +112,6 @@ export default async function ProductDetailPage({
                   images={product.images}
                   productName={product.name}
                 />
-
-                {product.description && (
-                  <div className={styles.section}>
-                    <h2 className={styles.sectionTitle}>
-                      {dict.product.description}
-                    </h2>
-                    <p className={styles.description}>{product.description}</p>
-                  </div>
-                )}
               </div>
 
               <div className={styles.rightColumn}>
@@ -172,6 +180,26 @@ export default async function ProductDetailPage({
                 </Frame>
               </div>
             </div>
+
+            {product.description && (
+              <div className={styles.section}>
+                <h2 className={styles.sectionTitle}>
+                  {dict.product.description}
+                </h2>
+                <p className={styles.description}>{product.description}</p>
+              </div>
+            )}
+
+            <ReviewSection
+              reviews={serializedReviews}
+              productId={product.id}
+              productSlug={product.slug}
+              currentUserId={user?.sub}
+              currentUserRole={user?.role}
+              lang={lang}
+              dict={dict.reviews}
+              reviewIdToScroll={reviewId}
+            />
           </div>
         </Frame>
       </div>

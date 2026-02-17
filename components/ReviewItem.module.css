@@ -1,0 +1,331 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.replyContainer {
+    margin-left: 32px;
+    margin-top: 4px;
+}
+
+.reviewFrame {
+    padding: 0;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+}
+
+.replyFrame {
+    background: #d4d4d4;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px 6px;
+    border-bottom: 1px solid #a0a0a0;
+}
+
+.avatarWrapper {
+    flex-shrink: 0;
+}
+
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 0;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    object-fit: cover;
+    display: block;
+}
+
+.avatarPlaceholder {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000080;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: "MS Sans Serif", sans-serif;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    user-select: none;
+}
+
+.meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+}
+
+.userName {
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    font-weight: bold;
+    color: #000;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.adminBadge {
+    font-size: 9px;
+    font-weight: bold;
+    color: #ffffff;
+    background: #000080;
+    padding: 1px 4px;
+    font-family: "MS Sans Serif", sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.date {
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    color: #444;
+}
+
+.editedTag {
+    font-style: italic;
+    color: #808080;
+}
+
+.content {
+    margin: 0;
+    padding: 8px 10px;
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    line-height: 1.6;
+    color: #000;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* Edit mode */
+
+.editContainer {
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.editTextarea {
+    width: 100%;
+    padding: 6px 8px;
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    line-height: 1.5;
+    color: #000;
+    background: #ffffff;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    outline: none;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.editTextarea:disabled {
+    background: #c0c0c0;
+    color: #808080;
+}
+
+.editError {
+    margin: 0;
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    color: #aa0000;
+}
+
+.editActions {
+    display: flex;
+    gap: 6px;
+}
+
+.saveButton {
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: bold;
+    font-family: "MS Sans Serif", sans-serif;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+}
+
+.saveButton:hover:not(:disabled) {
+    background: #d4d4d4;
+}
+
+.saveButton:active:not(:disabled) {
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #a0a0a0;
+}
+
+.saveButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.cancelEditButton {
+    padding: 4px 12px;
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+}
+
+.cancelEditButton:hover:not(:disabled) {
+    background: #d4d4d4;
+}
+
+.cancelEditButton:active:not(:disabled) {
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #a0a0a0;
+}
+
+.cancelEditButton:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Toolbar */
+
+.toolbar {
+    display: flex;
+    gap: 2px;
+    padding: 4px 10px 6px;
+    border-top: 1px solid #a0a0a0;
+    flex-wrap: wrap;
+}
+
+.toolbarButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 8px;
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+    color: #000;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    cursor: pointer;
+}
+
+.toolbarButton:hover {
+    background: #d4d4d4;
+}
+
+.toolbarButton:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #a0a0a0;
+}
+
+.toolbarLabel {
+    font-size: 11px;
+    font-family: "MS Sans Serif", sans-serif;
+}
+
+.deleteButton:hover {
+    background: #ffcccc;
+}
+
+.copiedButton {
+    background: #008000;
+    color: #ffffff;
+    border-color: #00ff00 #006600 #006600 #00ff00;
+}
+
+.copiedButton:hover {
+    background: #00aa00;
+}
+
+.copiedButton .toolbarLabel {
+    color: #ffffff;
+}
+
+.activeToolbarButton {
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #a0a0a0;
+}
+
+/* Replies list */
+
+.repliesList {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 4px;
+}
+
+/* Highlight animation for shared/linked reviews */
+
+@keyframes reviewHighlight {
+    0% {
+        outline: 3px solid #000080;
+        outline-offset: 0px;
+        background: #e0e0ff;
+    }
+    50% {
+        outline: 3px solid #000080;
+        outline-offset: 0px;
+        background: #e0e0ff;
+    }
+    100% {
+        outline: 3px solid transparent;
+        outline-offset: 0px;
+        background: transparent;
+    }
+}
+
+.highlighted {
+    animation: reviewHighlight 3s ease-out forwards;
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+    .replyContainer {
+        margin-left: 16px;
+    }
+
+    .header {
+        padding: 6px 8px 4px;
+    }
+
+    .avatar,
+    .avatarPlaceholder {
+        width: 26px;
+        height: 26px;
+        font-size: 12px;
+    }
+
+    .content {
+        padding: 6px 8px;
+    }
+
+    .toolbar {
+        padding: 4px 8px 4px;
+    }
+
+    .toolbarLabel {
+        display: none;
+    }
+
+    .editContainer {
+        padding: 6px 8px;
+    }
+}
+
+@media (max-width: 400px) {
+    .replyContainer {
+        margin-left: 10px;
+    }
+}
