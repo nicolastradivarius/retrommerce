@@ -94,12 +94,28 @@ export default function UserReviewItem({
   };
 
   const productImage = review.product.images?.[0] || null;
+  const reviewUrl = `/${lang}/products/${review.product.slug}?reviewId=${review.id}`;
+
+  const handleReviewClick = () => {
+    router.push(reviewUrl);
+  };
 
   return (
     <div className={styles.container}>
       <Frame className={styles.reviewFrame}>
         <div className={styles.layout}>
-          <div className={styles.reviewContent}>
+          <div
+            className={`${styles.reviewContent} ${styles.reviewContentClickable} ${Cursor.Pointer}`}
+            onClick={handleReviewClick}
+            role="link"
+            tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                handleReviewClick();
+              }
+            }}
+          >
             <div className={styles.header}>
               <div className={styles.meta}>
                 <span className={styles.date}>
@@ -113,7 +129,10 @@ export default function UserReviewItem({
 
             <p className={styles.content}>{review.content}</p>
 
-            <div className={styles.toolbar}>
+            <div
+              className={styles.toolbar}
+              onClick={(e) => e.stopPropagation()}
+            >
               <button
                 type="button"
                 onClick={() => setShowDeleteModal(true)}

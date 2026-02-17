@@ -23,6 +23,14 @@
     min-width: 0;
 }
 
+.reviewContentClickable {
+    transition: background 0.1s ease;
+}
+
+.reviewContentClickable:hover {
+    background: #d4d4d4;
+}
+
 .header {
     display: flex;
     align-items: center;
@@ -217,10 +225,6 @@
 
     .toolbar {
         padding: 4px 8px 4px;
-    }
-
-    .toolbarLabel {
-        display: none;
     }
 }
 
