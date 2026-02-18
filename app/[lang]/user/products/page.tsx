@@ -49,7 +49,10 @@ export default async function UserProductsPage({
 
           <Frame className={styles.windowContent}>
             <div className={styles.actions}>
-              <Link href={`/${lang}/user/products/new`}>
+              <Link
+                href={`/${lang}/user/products/new`}
+                className={Cursor.Pointer}
+              >
                 <Button className={`${styles.addButton} ${Cursor.Pointer}`}>
                   {dict.myProducts.addProduct}
                 </Button>

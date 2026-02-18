@@ -116,7 +116,10 @@ export default function CartItem({ item, lang, dict }: CartItemProps) {
       <div className={styles.itemContent}>
         {/* Imagen del producto */}
         <div className={styles.imageContainer}>
-          <Link href={`/${lang}/products/${item.product.slug}`}>
+          <Link
+            href={`/${lang}/products/${item.product.slug}`}
+            className={Cursor.Pointer}
+          >
             <Image
               src={imageUrl}
               alt={item.product.name}
@@ -153,7 +156,7 @@ export default function CartItem({ item, lang, dict }: CartItemProps) {
             <Button
               onClick={() => handleQuantityChange(quantity - 1)}
               disabled={quantity <= 1 || isUpdating || isRemoving}
-              className={styles.quantityButton}
+              className={`${styles.quantityButton} ${Cursor.Pointer}`}
             >
               -
             </Button>
@@ -163,7 +166,7 @@ export default function CartItem({ item, lang, dict }: CartItemProps) {
               disabled={
                 quantity >= item.product.stock || isUpdating || isRemoving
               }
-              className={styles.quantityButton}
+              className={`${styles.quantityButton} ${Cursor.Pointer}`}
             >
               +
             </Button>

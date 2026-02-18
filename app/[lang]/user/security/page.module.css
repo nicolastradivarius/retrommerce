@@ -80,7 +80,6 @@
 .input.disabled {
     background: #c0c0c0;
     color: #808080;
-    cursor: not-allowed;
 }
 
 .hint {
@@ -106,7 +105,6 @@
     font-size: 11px;
     font-weight: bold;
     color: #000;
-    cursor: pointer;
     min-width: 80px;
 }
 
@@ -177,7 +175,6 @@
     font-family: "MS Sans Serif", Tahoma, sans-serif;
     font-size: 11px;
     color: #000;
-    cursor: pointer;
 }
 
 .addButton:hover {

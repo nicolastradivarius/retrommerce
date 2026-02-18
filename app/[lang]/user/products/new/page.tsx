@@ -222,7 +222,7 @@ export default function NewProductPage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder={dict.myProducts.namePlaceholder}
-                  className={styles.input}
+                  className={`${styles.input} ${Cursor.Text}`}
                   required
                 />
               </div>
@@ -237,7 +237,7 @@ export default function NewProductPage() {
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder={dict.myProducts.descriptionPlaceholder}
-                  className={styles.textarea}
+                  className={`${styles.textarea} ${Cursor.Text}`}
                   rows={4}
                 />
               </div>
@@ -256,7 +256,7 @@ export default function NewProductPage() {
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                     placeholder={dict.myProducts.pricePlaceholder}
-                    className={styles.input}
+                    className={`${styles.input} ${Cursor.Text}`}
                     required
                   />
                 </div>
@@ -273,7 +273,7 @@ export default function NewProductPage() {
                     value={originalPrice}
                     onChange={(e) => setOriginalPrice(e.target.value)}
                     placeholder={dict.myProducts.originalPricePlaceholder}
-                    className={styles.input}
+                    className={`${styles.input} ${Cursor.Text}`}
                   />
                 </div>
               </div>
@@ -292,7 +292,7 @@ export default function NewProductPage() {
                     value={year}
                     onChange={(e) => setYear(e.target.value)}
                     placeholder={dict.myProducts.yearPlaceholder}
-                    className={styles.input}
+                    className={`${styles.input} ${Cursor.Text}`}
                   />
                 </div>
 
@@ -306,7 +306,7 @@ export default function NewProductPage() {
                     value={manufacturer}
                     onChange={(e) => setManufacturer(e.target.value)}
                     placeholder={dict.myProducts.manufacturerPlaceholder}
-                    className={styles.input}
+                    className={`${styles.input} ${Cursor.Text}`}
                   />
                 </div>
               </div>
@@ -324,7 +324,7 @@ export default function NewProductPage() {
                     value={stock}
                     onChange={(e) => setStock(e.target.value)}
                     placeholder={dict.myProducts.stockPlaceholder}
-                    className={styles.input}
+                    className={`${styles.input} ${Cursor.Text}`}
                   />
                 </div>
 
@@ -336,7 +336,7 @@ export default function NewProductPage() {
                     id="category"
                     value={categoryId}
                     onChange={(e) => setCategoryId(e.target.value)}
-                    className={styles.select}
+                    className={`${styles.select} ${Cursor.Pointer}`}
                     required
                   >
                     <option value="">{dict.myProducts.selectCategory}</option>
@@ -359,7 +359,7 @@ export default function NewProductPage() {
                   value={images}
                   onChange={(e) => setImages(e.target.value)}
                   placeholder={dict.myProducts.imagesPlaceholder}
-                  className={styles.textarea}
+                  className={`${styles.textarea} ${Cursor.Text}`}
                   rows={3}
                 />
               </div>

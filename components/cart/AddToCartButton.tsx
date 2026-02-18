@@ -106,7 +106,7 @@ export default function AddToCartButton({
           <Button
             onClick={() => handleQuantityChange(quantity - 1)}
             disabled={quantity <= 1 || isDisabled}
-            className={styles.quantityButton}
+            className={`${styles.quantityButton} ${Cursor.Pointer}`}
           >
             -
           </Button>
@@ -119,12 +119,12 @@ export default function AddToCartButton({
               handleQuantityChange(parseInt(e.target.value) || 1)
             }
             disabled={isDisabled}
-            className={styles.quantityInput}
+            className={`${styles.quantityInput} ${Cursor.Text}`}
           />
           <Button
             onClick={() => handleQuantityChange(quantity + 1)}
             disabled={quantity >= stock || isDisabled}
-            className={styles.quantityButton}
+            className={`${styles.quantityButton} ${Cursor.Pointer}`}
           >
             +
           </Button>

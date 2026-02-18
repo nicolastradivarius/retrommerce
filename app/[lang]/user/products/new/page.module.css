@@ -84,7 +84,6 @@
 
 .select {
     appearance: auto;
-    cursor: pointer;
 }
 
 .textarea {
@@ -137,7 +136,6 @@
 
 .submitButton:disabled {
     opacity: 0.6;
-    cursor: not-allowed;
 }
 
 .backLink {

@@ -150,7 +150,7 @@ export default async function CartPage({
 
                     <Button
                       disabled
-                      className={styles.checkoutButton}
+                      className={`${styles.checkoutButton} ${Cursor.NotAllowed}`}
                       title={dict.cart.checkoutDisabled}
                     >
                       {dict.cart.proceedToCheckout}

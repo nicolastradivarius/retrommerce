@@ -67,7 +67,6 @@
     background: #c0c0c0;
     border: 2px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
-    cursor: pointer;
     color: #000;
 }
 
@@ -85,7 +84,6 @@
     font-size: 11px;
     font-family: "MS Sans Serif", Tahoma, sans-serif;
     opacity: 0.5;
-    cursor: not-allowed;
 }
 
 .pageInfo {

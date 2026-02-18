@@ -33,7 +33,6 @@
     background: #c0c0c0;
     border: 2px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
-    cursor: pointer;
 }
 
 .quantityButton:hover:not(:disabled) {
@@ -47,7 +46,6 @@
 
 .quantityButton:disabled {
     opacity: 0.5;
-    cursor: not-allowed;
 }
 
 .quantityInput {
@@ -92,7 +90,6 @@
     background: #c0c0c0;
     border: 2px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
-    cursor: pointer;
     transition: none;
 }
 
@@ -107,7 +104,6 @@
 
 .addButton:disabled {
     opacity: 0.6;
-    cursor: not-allowed;
 }
 
 .addButton.success {

@@ -68,13 +68,13 @@ export default function ReviewForm({
 
   return (
     <div
-      className={`${styles.container} ${isReply ? styles.replyContainer : ""}`}
+      className={`${styles.container} ${isReply ? styles.replyContainer : ""} ${Cursor.Auto}`}
     >
       <label className={styles.label}>
         {isReply ? dict.writeReply : dict.writeReview}
       </label>
       <textarea
-        className={styles.textarea}
+        className={`${styles.textarea} ${Cursor.Text}`}
         value={content}
         onChange={(e) => setContent(e.target.value)}
         placeholder={isReply ? dict.replyPlaceholder : dict.placeholder}

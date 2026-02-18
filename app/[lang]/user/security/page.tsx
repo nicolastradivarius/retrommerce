@@ -59,7 +59,7 @@ export default async function SecurityPage({
                     id="currentPassword"
                     name="currentPassword"
                     placeholder={dict.user.currentPasswordPlaceholder}
-                    className={styles.input}
+                    className={`${styles.input} ${Cursor.Text}`}
                   />
                 </div>
 
@@ -72,7 +72,7 @@ export default async function SecurityPage({
                     id="newPassword"
                     name="newPassword"
                     placeholder={dict.user.newPasswordPlaceholder}
-                    className={styles.input}
+                    className={`${styles.input} ${Cursor.Text}`}
                   />
                 </div>
 
@@ -85,12 +85,15 @@ export default async function SecurityPage({
                     id="confirmPassword"
                     name="confirmPassword"
                     placeholder={dict.user.confirmPasswordPlaceholder}
-                    className={styles.input}
+                    className={`${styles.input} ${Cursor.Text}`}
                   />
                 </div>
 
                 <div className={styles.buttonGroup}>
-                  <button type="submit" className={styles.saveButton}>
+                  <button
+                    type="submit"
+                    className={`${styles.saveButton} ${Cursor.Pointer}`}
+                  >
                     {dict.user.updatePassword}
                   </button>
                   <Link

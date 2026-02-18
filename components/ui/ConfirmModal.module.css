@@ -57,7 +57,6 @@
     background: #c0c0c0;
     border: 2px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
-    cursor: pointer;
     font-weight: bold;
 }
 
@@ -72,7 +71,6 @@
 
 .confirmButton:disabled {
     opacity: 0.6;
-    cursor: not-allowed;
 }
 
 .confirmButton.dangerous {
@@ -97,7 +95,6 @@
     background: #c0c0c0;
     border: 2px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
-    cursor: pointer;
     font-weight: bold;
 }
 
@@ -112,7 +109,6 @@
 
 .cancelButton:disabled {
     opacity: 0.6;
-    cursor: not-allowed;
 }
 
 /* Responsive */

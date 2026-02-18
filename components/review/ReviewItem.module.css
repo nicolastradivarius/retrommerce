@@ -169,7 +169,6 @@
 
 .saveButton:disabled {
     opacity: 0.6;
-    cursor: not-allowed;
 }
 
 .cancelEditButton {
@@ -192,7 +191,6 @@
 
 .cancelEditButton:disabled {
     opacity: 0.6;
-    cursor: not-allowed;
 }
 
 /* Toolbar */
@@ -216,7 +214,6 @@
     background: #c0c0c0;
     border: 2px solid;
     border-color: #ffffff #808080 #808080 #ffffff;
-    cursor: pointer;
 }
 
 .toolbarButton:hover {

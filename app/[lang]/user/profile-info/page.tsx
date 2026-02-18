@@ -60,7 +60,7 @@ export default async function ProfileInfoPage({
                     name="name"
                     defaultValue={user.name || ""}
                     placeholder={dict.user.namePlaceholder}
-                    className={styles.input}
+                    className={`${styles.input} ${Cursor.Text}`}
                   />
                 </div>
 
@@ -74,7 +74,7 @@ export default async function ProfileInfoPage({
                     name="email"
                     defaultValue={user.email}
                     disabled
-                    className={`${styles.input} ${styles.disabled}`}
+                    className={`${styles.input} ${styles.disabled} ${Cursor.NotAllowed}`}
                   />
                   <p className={styles.hint}>{dict.user.emailCannotChange}</p>
                 </div>
@@ -89,12 +89,15 @@ export default async function ProfileInfoPage({
                     name="phone"
                     defaultValue=""
                     placeholder={dict.user.phonePlaceholder}
-                    className={styles.input}
+                    className={`${styles.input} ${Cursor.Text}`}
                   />
                 </div>
 
                 <div className={styles.buttonGroup}>
-                  <button type="submit" className={styles.saveButton}>
+                  <button
+                    type="submit"
+                    className={`${styles.saveButton} ${Cursor.Pointer}`}
+                  >
                     {dict.common.save}
                   </button>
                   <Link
@@ -118,7 +121,7 @@ export default async function ProfileInfoPage({
                 <p className={styles.emptyMessage}>{dict.user.noAddresses}</p>
               </div>
 
-              <button className={styles.addButton}>
+              <button className={`${styles.addButton} ${Cursor.Pointer}`}>
                 {dict.user.addAddress}
               </button>
             </div>

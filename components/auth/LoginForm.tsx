@@ -72,7 +72,7 @@ export default function LoginForm({ lang, dict }: LoginFormProps) {
         <label className={styles.label}>{dict.auth.email}:</label>
         <input
           type="email"
-          className={styles.input}
+          className={`${styles.input} ${Cursor.Text}`}
           placeholder={dict.auth.emailPlaceholder}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -85,7 +85,7 @@ export default function LoginForm({ lang, dict }: LoginFormProps) {
         <label className={styles.label}>{dict.auth.password}:</label>
         <input
           type="password"
-          className={styles.input}
+          className={`${styles.input} ${Cursor.Text}`}
           placeholder={dict.auth.passwordPlaceholder}
           value={password}
           onChange={(e) => setPassword(e.target.value)}

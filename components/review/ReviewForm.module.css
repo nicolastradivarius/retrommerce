@@ -84,7 +84,6 @@
 
 .submitButton:disabled {
     opacity: 0.6;
-    cursor: not-allowed;
 }
 
 .cancelButton {
@@ -107,7 +106,6 @@
 
 .cancelButton:disabled {
     opacity: 0.6;
-    cursor: not-allowed;
 }
 
 @media (max-width: 768px) {

@@ -82,7 +82,7 @@ export default async function HomePage({
                 <p className={styles.heroDescription}>
                   {dict.landing.description}
                 </p>
-                <Link href={`/${lang}/products`}>
+                <Link href={`/${lang}/products`} className={Cursor.Pointer}>
                   <Button className={`${styles.ctaButton} ${Cursor.Pointer}`}>
                     <Msnstart1 variant="32x32_8" />
                     {dict.landing.viewCatalog}
@@ -130,7 +130,10 @@ export default async function HomePage({
                           ${dealOfTheDay.price.toString()}
                         </span>
                       </div>
-                      <Link href={`/${lang}/products/${dealOfTheDay.slug}`}>
+                      <Link
+                        href={`/${lang}/products/${dealOfTheDay.slug}`}
+                        className={Cursor.Pointer}
+                      >
                         <Button
                           className={`${styles.dealButton} ${Cursor.Pointer}`}
                         >
@@ -157,7 +160,7 @@ export default async function HomePage({
                     <Link
                       key={category.id}
                       href={`/${lang}/products?categories=${category.slug}&page=1`}
-                      className={styles.categoryLink}
+                      className={`${styles.categoryLink} ${Cursor.Pointer}`}
                     >
                       <Frame className={styles.categoryItem}>
                         <FolderExe variant="16x16_4" />

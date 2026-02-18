@@ -231,7 +231,7 @@ export default function ReviewItem({
         {isEditing ? (
           <div className={styles.editContainer}>
             <textarea
-              className={styles.editTextarea}
+              className={`${styles.editTextarea} ${Cursor.Text}`}
               value={editContent}
               onChange={(e) => setEditContent(e.target.value)}
               rows={3}
