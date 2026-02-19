@@ -1,0 +1,126 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.avatarSection {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    padding: 16px;
+    background: #ffffff;
+    border: 2px inset #808080;
+}
+
+.avatarDisplay {
+    flex-shrink: 0;
+}
+
+.avatarPlaceholder {
+    width: 96px;
+    height: 96px;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #c0c0c0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.uploadSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.title {
+    margin: 0;
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-weight: bold;
+    color: #000;
+}
+
+.disabledMessage {
+    margin: 0;
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    color: #808080;
+    font-style: italic;
+}
+
+.disabledMessage strong {
+    color: #000080;
+    font-style: normal;
+}
+
+.errorMessage {
+    margin: 0;
+    padding: 6px 8px;
+    background: #ffcccc;
+    border: 1px solid #cc0000;
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    color: #cc0000;
+}
+
+.successMessage {
+    margin: 0;
+    padding: 6px 8px;
+    background: #ccffcc;
+    border: 1px solid #00cc00;
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    color: #008000;
+}
+
+.fileInput {
+    display: none;
+}
+
+.uploadButton {
+    padding: 6px 16px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    color: #000;
+    cursor: pointer;
+    width: fit-content;
+    transition: background-color 0.2s;
+}
+
+.uploadButton:hover:not(:disabled) {
+    background: #d4d4d4;
+}
+
+.uploadButton:active:not(:disabled) {
+    border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.uploadButton:disabled {
+    color: #808080;
+    cursor: not-allowed;
+    background: #c0c0c0;
+}
+
+@media (max-width: 768px) {
+    .avatarSection {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .uploadSection {
+        width: 100%;
+        align-items: center;
+    }
+
+    .uploadButton {
+        width: 100%;
+    }
+}

@@ -149,7 +149,19 @@
     "confirmPasswordPlaceholder": "Confirm new password",
     "updatePassword": "Update password",
     "passwordUpdated": "Password updated successfully",
-    "passwordUpdateError": "Error updating password"
+    "passwordUpdateError": "Error updating password",
+    "changeProfilePhoto": "Change profile photo",
+    "selectImage": "Select image",
+    "uploading": "Uploading...",
+    "uploadSuccess": "Profile photo updated successfully",
+    "uploadError": "Error uploading image",
+    "canChangeIn": "You can change your profile photo in",
+    "days": "days",
+    "day": "day"
+  },
+  "profile": {
+    "unsavedChanges": "You have unsaved changes. Click \"Save changes\" to apply them.",
+    "emailChangeNotice": "Changing your email will require confirmation in the future."
   },
   "myReviews": {
     "title": "My Reviews",

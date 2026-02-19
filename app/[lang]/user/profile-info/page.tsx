@@ -1,4 +1,4 @@
-import { Frame, TitleBar, Cursor } from "@react95/core";
+import { Frame, TitleBar } from "@react95/core";
 import { Notepad } from "@react95/icons";
 import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
@@ -6,6 +6,7 @@ import { getCurrentUserWithAvatar } from "@/lib/auth";
 import BottomNav from "@/components/layout/BottomNav";
 import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
+import ProfileForm from "@/components/profile/ProfileForm";
 import styles from "./page.module.css";
 
 export default async function ProfileInfoPage({
@@ -26,6 +27,18 @@ export default async function ProfileInfoPage({
     redirect(`/${lang}/login`);
   }
 
+  // Calculate days until next avatar change
+  const daysUntilNextChange = user.avatarUpdatedAt
+    ? Math.max(
+        0,
+        30 -
+          Math.floor(
+            (new Date().getTime() - new Date(user.avatarUpdatedAt).getTime()) /
+              (1000 * 60 * 60 * 24),
+          ),
+      )
+    : undefined;
+
   return (
     <div className={styles.container}>
       <BottomNav lang={lang} dict={dict.navigation} user={user} />
@@ -41,71 +54,45 @@ export default async function ProfileInfoPage({
           </TitleBar>
 
           <Frame className={styles.windowContent}>
-            <div className={styles.formSection}>
-              <h3 className={styles.sectionTitle}>
-                {dict.user.editPersonalInfo}
-              </h3>
-
-              <form className={styles.form}>
-                <div className={styles.formGroup}>
-                  <label htmlFor="name" className={styles.label}>
-                    {dict.user.name}
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    defaultValue={user.name || ""}
-                    placeholder={dict.user.namePlaceholder}
-                    className={`${styles.input} ${Cursor.Text}`}
-                  />
-                </div>
-
-                <div className={styles.formGroup}>
-                  <label htmlFor="email" className={styles.label}>
-                    {dict.user.email}
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    defaultValue={user.email}
-                    disabled
-                    className={`${styles.input} ${styles.disabled} ${Cursor.NotAllowed}`}
-                  />
-                  <p className={styles.hint}>{dict.user.emailCannotChange}</p>
-                </div>
-
-                <div className={styles.formGroup}>
-                  <label htmlFor="phone" className={styles.label}>
-                    {dict.user.phone}
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    defaultValue=""
-                    placeholder={dict.user.phonePlaceholder}
-                    className={`${styles.input} ${Cursor.Text}`}
-                  />
-                </div>
-
-                <div className={styles.buttonGroup}>
-                  <button
-                    type="submit"
-                    className={`${styles.saveButton} ${Cursor.Pointer}`}
-                  >
-                    {dict.common.save}
-                  </button>
-                  <Link
-                    href={`/${lang}/user`}
-                    className={`${styles.cancelButton} ${Cursor.Pointer}`}
-                  >
-                    {dict.common.cancel}
-                  </Link>
-                </div>
-              </form>
-            </div>
+            <ProfileForm
+              lang={lang}
+              initialValues={{
+                name: user.name || "",
+                email: user.email,
+                phone: user.phone || "",
+                avatar: user.avatar,
+              }}
+              daysUntilNextChange={daysUntilNextChange}
+              dict={{
+                user: {
+                  changeProfilePhoto: dict.user.changeProfilePhoto,
+                  selectImage: dict.user.selectImage,
+                  uploading: dict.user.uploading,
+                  uploadSuccess: dict.user.uploadSuccess,
+                  uploadError: dict.user.uploadError,
+                  canChangeIn: dict.user.canChangeIn,
+                  days: dict.user.days,
+                  day: dict.user.day,
+                  editPersonalInfo: dict.user.editPersonalInfo,
+                  name: dict.user.name,
+                  namePlaceholder: dict.user.namePlaceholder,
+                  email: dict.user.email,
+                  phone: dict.user.phone,
+                  phonePlaceholder: dict.user.phonePlaceholder,
+                  profileUpdated: dict.user.profileUpdated,
+                  profileUpdateError: dict.user.profileUpdateError,
+                },
+                common: {
+                  save: dict.common.save,
+                  saving: dict.common.saving,
+                  cancel: dict.common.cancel,
+                },
+                profile: {
+                  unsavedChanges: dict.profile.unsavedChanges,
+                  emailChangeNotice: dict.profile.emailChangeNotice,
+                },
+              }}
+            />
 
             <div className={styles.separator} />
 
@@ -118,16 +105,13 @@ export default async function ProfileInfoPage({
                 <p className={styles.emptyMessage}>{dict.user.noAddresses}</p>
               </div>
 
-              <button className={`${styles.addButton} ${Cursor.Pointer}`}>
+              <button className={`${styles.addButton}`}>
                 {dict.user.addAddress}
               </button>
             </div>
 
             <div className={styles.backLink}>
-              <Link
-                href={`/${lang}/user`}
-                className={`${styles.link} ${Cursor.Pointer}`}
-              >
+              <Link href={`/${lang}/user`} className={styles.link}>
                 ← {dict.common.backToUserPanel}
               </Link>
             </div>

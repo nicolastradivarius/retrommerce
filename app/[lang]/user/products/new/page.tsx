@@ -62,7 +62,9 @@ interface UserWithAvatar {
   email: string;
   role: string;
   name: string;
+  phone: string | null;
   avatar: string | null;
+  avatarUpdatedAt: Date | null;
 }
 
 export default function NewProductPage() {
@@ -108,7 +110,9 @@ export default function NewProductPage() {
             email: userData.email,
             role: userData.role || "USER",
             name: userData.name || "",
+            phone: userData.phone || null,
             avatar: userData.avatar || null,
+            avatarUpdatedAt: userData.avatarUpdatedAt || null,
           });
         } else {
           router.push(`/${lang}/login`);

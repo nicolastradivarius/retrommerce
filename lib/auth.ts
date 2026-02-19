@@ -1,6 +1,6 @@
-import { cookies } from 'next/headers';
-import jwt from 'jsonwebtoken';
-import { prisma } from '@/lib/prisma';
+import { cookies } from "next/headers";
+import jwt from "jsonwebtoken";
+import { prisma } from "@/lib/prisma";
 
 export interface UserPayload {
   sub: string;
@@ -14,12 +14,14 @@ export interface UserWithAvatar {
   email: string;
   role: string;
   name: string;
+  phone: string | null;
   avatar: string | null;
+  avatarUpdatedAt: Date | null;
 }
 
 export async function getCurrentUser(): Promise<UserPayload | null> {
   const cookieStore = await cookies();
-  const token = cookieStore.get('auth_token')?.value;
+  const token = cookieStore.get("auth_token")?.value;
 
   if (!token) {
     return null;
@@ -40,7 +42,7 @@ export async function getCurrentUser(): Promise<UserPayload | null> {
 
 export async function getCurrentUserWithAvatar(): Promise<UserWithAvatar | null> {
   const userPayload = await getCurrentUser();
-  
+
   if (!userPayload) {
     return null;
   }
@@ -52,7 +54,9 @@ export async function getCurrentUserWithAvatar(): Promise<UserWithAvatar | null>
         id: true,
         email: true,
         name: true,
+        phone: true,
         avatar: true,
+        avatarUpdatedAt: true,
         role: true,
       },
     });
@@ -65,8 +69,10 @@ export async function getCurrentUserWithAvatar(): Promise<UserWithAvatar | null>
       sub: user.id,
       email: user.email,
       role: user.role,
-      name: user.name || '',
+      name: user.name || "",
+      phone: user.phone,
       avatar: user.avatar,
+      avatarUpdatedAt: user.avatarUpdatedAt,
     };
   } catch {
     return null;

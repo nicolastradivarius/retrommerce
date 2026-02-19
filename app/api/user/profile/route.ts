@@ -19,6 +19,7 @@ export async function GET() {
         email: true,
         name: true,
         avatar: true,
+        avatarUpdatedAt: true,
         role: true,
         createdAt: true,
       },
@@ -52,6 +53,8 @@ export async function PUT(request: NextRequest) {
     const contentType = request.headers.get("content-type") || "";
 
     let name: string | null | undefined;
+    let email: string | undefined;
+    let phone: string | null | undefined;
     let avatar: string | null | undefined;
 
     if (contentType.includes("multipart/form-data")) {
@@ -63,8 +66,47 @@ export async function PUT(request: NextRequest) {
         name = trimmed.length > 0 ? trimmed : null;
       }
 
+      const rawEmail = formData.get("email");
+      if (typeof rawEmail === "string") {
+        const trimmed = rawEmail.trim();
+        if (trimmed.length > 0) {
+          email = trimmed;
+        }
+      }
+
+      const rawPhone = formData.get("phone");
+      if (typeof rawPhone === "string") {
+        const trimmed = rawPhone.trim();
+        phone = trimmed.length > 0 ? trimmed : null;
+      }
+
       const avatarFile = formData.get("avatar");
       if (avatarFile instanceof File) {
+        // Check 30-day avatar change limit
+        const currentUser = await prisma.user.findUnique({
+          where: { id: userPayload.sub },
+          select: { avatarUpdatedAt: true },
+        });
+
+        if (currentUser?.avatarUpdatedAt) {
+          const lastChangeDate = new Date(currentUser.avatarUpdatedAt);
+          const now = new Date();
+          const daysSinceLastChange = Math.floor(
+            (now.getTime() - lastChangeDate.getTime()) / (1000 * 60 * 60 * 24),
+          );
+
+          if (daysSinceLastChange < 30) {
+            const daysRemaining = 30 - daysSinceLastChange;
+            return NextResponse.json(
+              {
+                error: `Puedes cambiar tu foto de perfil en ${daysRemaining} día(s)`,
+                daysRemaining,
+              },
+              { status: 429 },
+            );
+          }
+        }
+
         if (!avatarFile.type.startsWith("image/")) {
           return NextResponse.json(
             { error: "El archivo debe ser una imagen" },
@@ -100,18 +142,40 @@ export async function PUT(request: NextRequest) {
     } else {
       const body = await request.json();
       name = body?.name;
+      email = body?.email;
+      phone = body?.phone;
       avatar = body?.avatar;
+    }
+
+    // If email is being changed, check it's not already taken by another user
+    if (email !== undefined) {
+      const existingUser = await prisma.user.findUnique({
+        where: { email },
+        select: { id: true },
+      });
+
+      if (existingUser && existingUser.id !== userPayload.sub) {
+        return NextResponse.json(
+          { error: "Este email ya está en uso por otro usuario" },
+          { status: 409 },
+        );
+      }
     }
 
     const updatedUser = await prisma.user.update({
       where: { id: userPayload.sub },
       data: {
         ...(name !== undefined && { name }),
-        ...(avatar !== undefined && { avatar }),
+        ...(email !== undefined && { email }),
+        ...(phone !== undefined && { phone }),
+        ...(avatar !== undefined && { avatar, avatarUpdatedAt: new Date() }),
       },
       select: {
         name: true,
+        email: true,
+        phone: true,
         avatar: true,
+        avatarUpdatedAt: true,
       },
     });
 

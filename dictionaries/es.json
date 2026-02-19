@@ -149,7 +149,19 @@
     "confirmPasswordPlaceholder": "Confirma la nueva contraseña",
     "updatePassword": "Actualizar contraseña",
     "passwordUpdated": "Contraseña actualizada correctamente",
-    "passwordUpdateError": "Error al actualizar contraseña"
+    "passwordUpdateError": "Error al actualizar contraseña",
+    "changeProfilePhoto": "Cambiar foto de perfil",
+    "selectImage": "Seleccionar imagen",
+    "uploading": "Cargando...",
+    "uploadSuccess": "Foto de perfil actualizada correctamente",
+    "uploadError": "Error al cargar la imagen",
+    "canChangeIn": "Puedes cambiar tu foto de perfil en",
+    "days": "días",
+    "day": "día"
+  },
+  "profile": {
+    "unsavedChanges": "Tienes cambios sin guardar. Haz clic en \"Guardar cambios\" para aplicarlos.",
+    "emailChangeNotice": "Cambiar tu email requerirá confirmación en el futuro."
   },
   "topBar": {
     "hello": "Hola"
