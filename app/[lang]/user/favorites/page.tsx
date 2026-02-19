@@ -1,5 +1,6 @@
 import { Frame, TitleBar, Cursor } from "@react95/core";
 import { FolderOpen } from "@react95/icons";
+import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
 import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
@@ -40,11 +41,7 @@ export default async function FavoritesPage({
             icon={<FolderOpen variant="16x16_4" />}
             title={dict.favorites.title}
           >
-            <TitleBar.OptionsBox>
-              <TitleBar.Minimize />
-              <TitleBar.Restore />
-              <TitleBar.Close />
-            </TitleBar.OptionsBox>
+            <TitleBarClassicOptions />
           </TitleBar>
 
           <Frame className={styles.windowContent}>

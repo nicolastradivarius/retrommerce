@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import BottomNav from "@/components/layout/BottomNav";
+import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
 import type { Locale } from "@/app/[lang]/dictionaries";
 import styles from "./page.module.css";
 
@@ -202,11 +203,7 @@ export default function NewProductPage() {
             icon={<FileText variant="16x16_4" />}
             title={dict.myProducts.newProductTitle}
           >
-            <TitleBar.OptionsBox>
-              <TitleBar.Minimize />
-              <TitleBar.Restore />
-              <TitleBar.Close />
-            </TitleBar.OptionsBox>
+            <TitleBarClassicOptions />
           </TitleBar>
 
           <Frame className={styles.windowContent}>

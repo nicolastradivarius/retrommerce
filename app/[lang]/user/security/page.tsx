@@ -5,6 +5,7 @@ import { redirect, notFound } from "next/navigation";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
 import BottomNav from "@/components/layout/BottomNav";
 import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
+import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
 import styles from "./page.module.css";
 
 export default async function SecurityPage({
@@ -36,11 +37,7 @@ export default async function SecurityPage({
             icon={<FolderSettings variant="16x16_4" />}
             title={dict.user.security}
           >
-            <TitleBar.OptionsBox>
-              <TitleBar.Minimize />
-              <TitleBar.Restore />
-              <TitleBar.Close />
-            </TitleBar.OptionsBox>
+            <TitleBarClassicOptions />
           </TitleBar>
 
           <Frame className={styles.windowContent}>

@@ -1,6 +1,7 @@
 import { Frame, TitleBar, Button, Cursor } from "@react95/core";
 import { Computer3, Warning } from "@react95/icons";
 import Link from "next/link";
+import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
 import styles from "./not-found.module.css";
 
 export default async function NotFound() {
@@ -12,11 +13,7 @@ export default async function NotFound() {
           icon={<Computer3 variant="16x16_4" />}
           title="Error 404 - Page not found"
         >
-          <TitleBar.OptionsBox>
-            <TitleBar.Minimize />
-            <TitleBar.Restore />
-            <TitleBar.Close />
-          </TitleBar.OptionsBox>
+          <TitleBarClassicOptions />
         </TitleBar>
         <Frame className={styles.windowContent}>
           <div className={styles.errorContent}>

@@ -1,6 +1,7 @@
 import { Frame, TitleBar } from "@react95/core";
 import { Computer } from "@react95/icons";
 import BackToButton from "@/components/layout/BackToButton";
+import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
 import { notFound } from "next/navigation";
 import { formatPrice, hasDiscount } from "@/lib/utils";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
@@ -78,11 +79,7 @@ export default async function ProductDetailPage({
             title={product.name}
             className={styles.titleBar}
           >
-            <TitleBar.OptionsBox>
-              <TitleBar.Minimize />
-              <TitleBar.Restore />
-              <TitleBar.Close />
-            </TitleBar.OptionsBox>
+            <TitleBarClassicOptions />
           </TitleBar>
           <div className={styles.frameBody}>
             <div className={styles.productHeader}>

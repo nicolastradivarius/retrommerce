@@ -11,6 +11,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import FeaturedProducts from "@/components/product/FeaturedProducts";
 import BottomNav from "@/components/layout/BottomNav";
+import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
 import styles from "./page.module.css";
 import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
@@ -48,11 +49,7 @@ export default async function HomePage({
             icon={<Computer variant="16x16_4" />}
             title="Retrommerce.exe"
           >
-            <TitleBar.OptionsBox>
-              <TitleBar.Minimize />
-              <TitleBar.Restore />
-              <TitleBar.Close />
-            </TitleBar.OptionsBox>
+            <TitleBarClassicOptions />
           </TitleBar>
           <Frame className={styles.heroContent}>
             <div className={styles.heroInner}>
@@ -188,11 +185,7 @@ export default async function HomePage({
             icon={<Wmsui322225 variant="16x16_4" />}
             title={dict.landing.features.title}
           >
-            <TitleBar.OptionsBox>
-              <TitleBar.Minimize />
-              <TitleBar.Restore />
-              <TitleBar.Close />
-            </TitleBar.OptionsBox>
+            <TitleBarClassicOptions />
           </TitleBar>
           <Frame className={styles.featuresContent}>
             <div className={styles.featuresGrid}>

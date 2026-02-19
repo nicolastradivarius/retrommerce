@@ -7,6 +7,7 @@ import { getProductsByUser } from "@/lib/products";
 import BottomNav from "@/components/layout/BottomNav";
 import ProductCard from "@/components/product/ProductCard";
 import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
+import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
 import styles from "./page.module.css";
 
 export default async function UserProductsPage({
@@ -40,11 +41,7 @@ export default async function UserProductsPage({
             icon={<FolderOpen variant="16x16_4" />}
             title={dict.myProducts.title}
           >
-            <TitleBar.OptionsBox>
-              <TitleBar.Minimize />
-              <TitleBar.Restore />
-              <TitleBar.Close />
-            </TitleBar.OptionsBox>
+            <TitleBarClassicOptions />
           </TitleBar>
 
           <Frame className={styles.windowContent}>

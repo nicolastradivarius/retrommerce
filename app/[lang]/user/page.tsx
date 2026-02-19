@@ -15,6 +15,7 @@ import { getCurrentUserWithAvatar } from "@/lib/auth";
 import LogoutButton from "@/components/auth/LogoutButton";
 import BottomNav from "@/components/layout/BottomNav";
 import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
+import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
 import styles from "./page.module.css";
 
 export default async function UserPage({
@@ -42,17 +43,13 @@ export default async function UserPage({
       <div className={styles.main}>
         <div className={styles.layout}>
           {/* Ventana de Perfil */}
-          <div className={styles.window}>
+          <div className={`${styles.window} ${Cursor.Auto}`}>
             <TitleBar
               active
               icon={<User variant="16x16_4" />}
               title={dict.user.myProfile}
             >
-              <TitleBar.OptionsBox>
-                <TitleBar.Minimize />
-                <TitleBar.Restore />
-                <TitleBar.Close />
-              </TitleBar.OptionsBox>
+              <TitleBarClassicOptions />
             </TitleBar>
             <Frame className={styles.windowContent}>
               <div className={styles.profileHeader}>
@@ -94,11 +91,7 @@ export default async function UserPage({
               icon={<FolderSettings variant="16x16_4" />}
               title={dict.user.profileSettings}
             >
-              <TitleBar.OptionsBox>
-                <TitleBar.Minimize />
-                <TitleBar.Restore />
-                <TitleBar.Close />
-              </TitleBar.OptionsBox>
+              <TitleBarClassicOptions />
             </TitleBar>
             <Frame className={styles.windowContent}>
               <div className={styles.settingsGrid}>
@@ -132,11 +125,7 @@ export default async function UserPage({
               icon={<Computer variant="16x16_4" />}
               title={dict.user.controlPanel}
             >
-              <TitleBar.OptionsBox>
-                <TitleBar.Minimize />
-                <TitleBar.Restore />
-                <TitleBar.Close />
-              </TitleBar.OptionsBox>
+              <TitleBarClassicOptions />
             </TitleBar>
             <Frame className={styles.windowContent}>
               <div className={styles.settingsGrid}>

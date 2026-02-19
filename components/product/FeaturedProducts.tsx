@@ -2,6 +2,7 @@ import "server-only";
 
 import { Frame, TitleBar } from "@react95/core";
 import { Star } from "@react95/icons";
+import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
 import FeaturedProductCard from "./FeaturedProductCard";
 import { getDictionary, type Locale } from "@/app/[lang]/dictionaries";
 import { getFeaturedProducts, type ProductListItem } from "@/lib/products";
@@ -53,11 +54,7 @@ export default async function FeaturedProducts({
   return (
     <div className={styles.window}>
       <TitleBar active icon={<Star variant="16x16_4" />} title={defaultTitle}>
-        <TitleBar.OptionsBox>
-          <TitleBar.Minimize />
-          <TitleBar.Restore />
-          <TitleBar.Close />
-        </TitleBar.OptionsBox>
+        <TitleBarClassicOptions />
       </TitleBar>
 
       <Frame className={styles.windowContent}>

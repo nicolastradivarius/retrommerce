@@ -10,6 +10,7 @@ import ClearCartButton from "@/components/cart/ClearCartButton";
 import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 import { formatPrice } from "@/lib/utils";
 import styles from "./page.module.css";
+import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
 
 export default async function CartPage({
   params,
@@ -44,11 +45,7 @@ export default async function CartPage({
             icon={<Folder variant="16x16_4" />}
             title={dict.cart.title}
           >
-            <TitleBar.OptionsBox>
-              <TitleBar.Minimize />
-              <TitleBar.Restore />
-              <TitleBar.Close />
-            </TitleBar.OptionsBox>
+            <TitleBarClassicOptions />
           </TitleBar>
 
           <div className={styles.frameBody}>

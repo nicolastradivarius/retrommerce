@@ -26,6 +26,7 @@ import {
 } from "@react95/core";
 import { FolderSettings } from "@react95/icons";
 import type { Locale } from "@/app/[lang]/dictionaries";
+import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
 import styles from "./ProductFilters.module.css";
 
 // ============================================================================
@@ -458,7 +459,10 @@ export default function ProductFilters({
             FILTRO: Búsqueda por nombre
             ============================ */}
         <div className={styles.filterSection}>
-          <label htmlFor="search-input" className={styles.filterLabel}>
+          <label
+            htmlFor="search-input"
+            className={`${styles.filterLabel} ${Cursor.Pointer}`}
+          >
             {dict.search}:
           </label>
           <Input
@@ -493,6 +497,8 @@ export default function ProductFilters({
                   key={category.id}
                   value={category.slug}
                   label={category.name}
+                  style={{ cursor: "none" }}
+                  className={Cursor.Pointer}
                   checked={selectedCategories.has(category.slug)}
                   onChange={() => handleCategoryToggle(category.slug)}
                 />
@@ -658,11 +664,7 @@ export default function ProductFilters({
         icon={<FolderSettings variant="16x16_4" />}
         title={dict.title}
       >
-        <TitleBar.OptionsBox>
-          <TitleBar.Minimize />
-          <TitleBar.Restore />
-          <TitleBar.Close />
-        </TitleBar.OptionsBox>
+        <TitleBarClassicOptions />
       </TitleBar>
 
       {/* Contenido del panel de filtros */}

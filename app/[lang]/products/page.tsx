@@ -2,6 +2,7 @@ import { Frame, TitleBar, Cursor } from "@react95/core";
 import { Computer, Warning } from "@react95/icons";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
 import { ITEMS_PER_PAGE } from "@/lib/constants";
 import {
   getProducts,
@@ -305,11 +306,7 @@ export default async function ProductsPage({
                 icon={<Computer variant="16x16_4" />}
                 title={dict.home.allProducts}
               >
-                <TitleBar.OptionsBox>
-                  <TitleBar.Minimize />
-                  <TitleBar.Restore />
-                  <TitleBar.Close />
-                </TitleBar.OptionsBox>
+                <TitleBarClassicOptions />
               </TitleBar>
               <Frame className={styles.windowContent}>
                 {filterDescription && (

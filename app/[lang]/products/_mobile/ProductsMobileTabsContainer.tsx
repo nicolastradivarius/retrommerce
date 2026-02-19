@@ -19,6 +19,7 @@
 import { Frame, TitleBar, Tabs, Tab, Cursor } from "@react95/core";
 import { Computer } from "@react95/icons";
 import Link from "next/link";
+import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
 import type { Locale } from "@/app/[lang]/dictionaries";
 import type { ProductListItem } from "@/lib/products";
 import ProductCard from "@/components/product/ProductCard";
@@ -198,11 +199,7 @@ export default function ProductsMobileTabsContainer({
         icon={<Computer variant="16x16_4" />}
         title={dict.allProducts}
       >
-        <TitleBar.OptionsBox>
-          <TitleBar.Minimize />
-          <TitleBar.Restore />
-          <TitleBar.Close />
-        </TitleBar.OptionsBox>
+        <TitleBarClassicOptions />
       </TitleBar>
 
       <Frame className={styles.windowContent}>

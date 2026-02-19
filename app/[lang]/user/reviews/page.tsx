@@ -7,6 +7,7 @@ import { getReviewsByUserId } from "@/lib/reviews";
 import BottomNav from "@/components/layout/BottomNav";
 import UserReviewItem from "@/components/review/UserReviewItem";
 import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
+import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
 import styles from "./page.module.css";
 
 const PAGE_SIZE = 10;
@@ -63,11 +64,7 @@ export default async function UserReviewsPage({
             icon={<Textchat variant="16x16_4" />}
             title={myReviewsDict.title}
           >
-            <TitleBar.OptionsBox>
-              <TitleBar.Minimize />
-              <TitleBar.Restore />
-              <TitleBar.Close />
-            </TitleBar.OptionsBox>
+            <TitleBarClassicOptions />
           </TitleBar>
 
           <Frame className={styles.windowContent}>
