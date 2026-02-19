@@ -1,10 +1,11 @@
-import { Frame, Cursor } from "@react95/core";
-import { Computer } from "@react95/icons";
+import { Frame, TitleBar, Cursor } from "@react95/core";
+import { Lock } from "@react95/icons";
 import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
 import BottomNav from "@/components/layout/BottomNav";
 import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
+import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
 import styles from "./page.module.css";
 import LoginForm from "@/components/auth/LoginForm";
 
@@ -29,24 +30,32 @@ export default async function LoginPage({
   return (
     <div className={styles.container}>
       <BottomNav lang={lang} dict={dict.navigation} user={user} />
+
       <div className={styles.main}>
-        <Frame width="400px" height="auto" padding={25} boxShadow="in">
-          <div className={styles.header}>
-            <Computer variant="32x32_4" />
-            <h1 className={styles.title}>{dict.auth.login}</h1>
-          </div>
-
-          <LoginForm lang={lang} dict={dict} />
-
-          <hr className={styles.divider} />
-
-          <Link
-            href={`/${lang}/home`}
-            className={`${styles.backLink} ${Cursor.Pointer}`}
+        <div className={styles.window}>
+          <TitleBar
+            active
+            icon={<Lock variant="16x16_4" />}
+            title={dict.auth.login}
           >
-            ← {dict.common.backToHome}
-          </Link>
-        </Frame>
+            <TitleBarClassicOptions />
+          </TitleBar>
+
+          <Frame className={styles.windowContent}>
+            <LoginForm lang={lang} dict={dict} />
+
+            <div className={styles.separator} />
+
+            <div className={styles.backLink}>
+              <Link
+                href={`/${lang}/home`}
+                className={`${styles.link} ${Cursor.Pointer}`}
+              >
+                ← {dict.common.backToHome}
+              </Link>
+            </div>
+          </Frame>
+        </div>
       </div>
     </div>
   );

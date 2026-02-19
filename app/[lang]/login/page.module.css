@@ -1,77 +1,116 @@
 .container {
-    height: 100vh;
-    background: #004d4d;
+    min-height: 100vh;
+    background: #008080;
     display: flex;
     flex-direction: column;
 }
 
 .main {
     flex: 1;
-    padding: 20px;
-    overflow: auto;
+    padding: 24px;
     display: flex;
-    align-items: center;
     justify-content: center;
-}
-
-.header {
-    display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 20px;
 }
 
-.title {
-    margin: 0;
-    font-size: 11px;
-    color: #000080;
+.window {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    box-shadow: 2px 2px 0px #000;
+    width: 100%;
+    max-width: 420px;
+}
+
+.windowContent {
+    padding: 24px;
+    background: #c0c0c0;
 }
 
 .form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 16px;
 }
 
 .error {
-    padding: 10px;
-    background: #ff0000;
-    color: #fff;
-    border: 2px solid #cc0000;
-    font-weight: bold;
+    padding: 8px 10px;
+    background: #ffcccc;
+    border: 1px solid #cc0000;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
     font-size: 11px;
-    margin-bottom: 10px;
+    color: #cc0000;
 }
 
 .fieldGroup {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
 }
 
 .label {
-    font-weight: bold;
     font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-weight: bold;
+    color: #000;
 }
 
 .input {
-    padding: 8px;
-    border: 2px inset #808080;
+    padding: 4px 6px;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
     background: #fff;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
     font-size: 11px;
+    color: #000;
+}
+
+.input:focus {
+    outline: 1px dotted #000;
+    outline-offset: -4px;
 }
 
 .buttonGroup {
     display: flex;
-    gap: 10px;
-    margin-top: 10px;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.buttonPrimary {
+    padding: 6px 16px;
+    background: #000080;
+    border: 2px solid;
+    border-color: #0000b0 #000060 #000060 #0000b0;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #fff;
+    min-width: 80px;
+}
+
+.buttonPrimary:hover:not(:disabled) {
+    background: #0000a0;
+}
+
+.buttonPrimary:active:not(:disabled) {
+    border-color: #000060 #0000b0 #0000b0 #000060;
+}
+
+.buttonPrimary:disabled {
+    background: #808080;
+    border-color: #a0a0a0 #606060 #606060 #a0a0a0;
+    color: #c0c0c0;
 }
 
 .button {
-    padding: 8px 20px;
+    padding: 6px 16px;
     background: #c0c0c0;
-    border: 2px outset #dfdfdf;
-    font-weight: bold;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    color: #000;
+    min-width: 80px;
 }
 
 .button:hover {
@@ -79,84 +118,51 @@
 }
 
 .button:active {
-    border-style: inset;
+    border-color: #808080 #ffffff #ffffff #808080;
 }
 
-.buttonPrimary {
-    padding: 8px 20px;
-    background: #000080;
-    border: 2px outset #0000b0;
-    font-weight: bold;
-    color: #fff;
-}
-
-.buttonPrimary:hover {
-    background: #0000a0;
-}
-
-.buttonPrimary:active {
-    border-style: inset;
-}
-
-.divider {
-    border: none;
+.separator {
+    height: 2px;
+    margin: 20px 0;
     border-top: 1px solid #808080;
-    margin: 10px 0;
-}
-
-.infoBox {
-    padding: 10px;
-    background: #ffffcc;
-    border: 2px solid #e6e600;
-    margin: 10px 0;
-}
-
-.infoTitle {
-    font-size: 11px;
-    font-weight: bold;
-    margin: 0 0 5px 0;
-    color: #666;
-}
-
-.infoText {
-    margin: 0;
-    font-size: 11px;
-    line-height: 1.5;
-    color: #333;
-}
-
-.roleSection {
-    margin-top: 10px;
-}
-
-.roleTitle {
-    font-size: 11px;
-    color: #666;
-    margin-bottom: 10px;
-}
-
-.roleButtons {
-    display: flex;
-    gap: 10px;
-}
-
-.roleButton {
-    padding: 6px 12px;
-    background: #c0c0c0;
-    border: 2px outset #dfdfdf;
-    font-size: 11px;
-    text-decoration: none;
-    color: #000;
-}
-
-.roleButton:hover {
-    background: #d4d4d4;
+    border-bottom: 1px solid #ffffff;
 }
 
 .backLink {
-    display: inline-block;
-    margin-top: 15px;
+    padding-top: 0;
+}
+
+.link {
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
     color: #000080;
     text-decoration: underline;
-    font-size: 11px;
+}
+
+.link:hover {
+    color: #0000ff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main {
+        padding: 12px;
+    }
+
+    .window {
+        max-width: 100%;
+    }
+
+    .windowContent {
+        padding: 16px;
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+    }
+
+    .buttonPrimary,
+    .button {
+        width: 100%;
+    }
 }
