@@ -19,12 +19,6 @@ interface FeaturedProductsProps {
    * Límite de productos a mostrar (si el componente hace la consulta).
    */
   limit?: number;
-  /**
-   * Página de origen que se pasará a cada FeaturedProductCard
-   * (por ejemplo 'featured' o 'products'). Si no se pasa, los
-   * FeaturedProductCard usarán su valor por defecto.
-   */
-  fromPage?: string;
 }
 
 /**
@@ -35,7 +29,6 @@ export default async function FeaturedProducts({
   lang,
   products: initialProducts,
   limit,
-  fromPage,
 }: FeaturedProductsProps) {
   const dict = await getDictionary(lang);
 
@@ -62,11 +55,7 @@ export default async function FeaturedProducts({
           <div className={styles.featuredGrid}>
             {products.map((product) => (
               <div key={product.id} role="listitem">
-                <FeaturedProductCard
-                  product={product}
-                  lang={lang}
-                  fromPage={fromPage}
-                />
+                <FeaturedProductCard product={product} lang={lang} />
               </div>
             ))}
           </div>

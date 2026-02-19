@@ -176,7 +176,7 @@ export default async function HomePage({
           </Frame>
         </div>
 
-        <FeaturedProducts lang={lang} fromPage="home" />
+        <FeaturedProducts lang={lang} />
 
         {/* Features Section */}
         <div className={styles.featuresWindow}>

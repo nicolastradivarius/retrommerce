@@ -227,7 +227,6 @@ export default function ProductsMobileTabsContainer({
                         dict={dict.productCard}
                         isFavorite={favoriteIds.has(product.id)}
                         canFavorite={canFavorite}
-                        fromPage="products"
                       />
                     ))}
                   </div>

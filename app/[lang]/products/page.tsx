@@ -330,7 +330,6 @@ export default async function ProductsPage({
                           dict={dict.productCard}
                           isFavorite={favoriteIds.has(product.id)}
                           canFavorite={Boolean(user)}
-                          fromPage="products"
                         />
                       ))}
                     </div>

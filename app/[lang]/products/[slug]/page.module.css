@@ -12,12 +12,6 @@
     width: 100%;
 }
 
-.backLink {
-    display: inline-block;
-    margin-bottom: 16px;
-    text-decoration: none;
-}
-
 .productFrame {
     padding: 0;
     background: #c0c0c0;
@@ -243,11 +237,6 @@
     .main {
         padding: 12px;
         max-width: 100%;
-    }
-
-    .backLink button {
-        font-size: 11px;
-        padding: 6px 10px;
     }
 
     .frameBody {

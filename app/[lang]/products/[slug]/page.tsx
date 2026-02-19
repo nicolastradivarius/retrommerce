@@ -1,6 +1,5 @@
 import { Frame, TitleBar } from "@react95/core";
 import { Computer } from "@react95/icons";
-import BackToButton from "@/components/layout/BackToButton";
 import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
 import { notFound } from "next/navigation";
 import { formatPrice, hasDiscount } from "@/lib/utils";
@@ -21,10 +20,10 @@ export default async function ProductDetailPage({
   searchParams,
 }: {
   params: Promise<{ lang: string; slug: string }>;
-  searchParams: Promise<{ from?: string; reviewId?: string }>;
+  searchParams: Promise<{ reviewId?: string }>;
 }) {
   const { lang, slug } = await params;
-  const { from = "products", reviewId } = await searchParams;
+  const { reviewId } = await searchParams;
 
   if (!hasLocale(lang)) {
     notFound();
@@ -56,22 +55,11 @@ export default async function ProductDetailPage({
     })),
   }));
 
-  const backUrl =
-    from === "home"
-      ? `/${lang}/home`
-      : from === "favorites"
-        ? `/${lang}/user/favorites`
-        : `/${lang}/products`;
-
   return (
     <div className={styles.container}>
       <BottomNav lang={lang} dict={dict.navigation} user={user} />
 
       <div className={styles.main}>
-        <div className={styles.backLink}>
-          <BackToButton href={backUrl} lang={lang} />
-        </div>
-
         <Frame className={styles.productFrame}>
           <TitleBar
             active

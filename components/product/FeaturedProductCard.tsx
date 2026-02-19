@@ -14,17 +14,15 @@ export interface FeaturedProductCardProps {
     manufacturer?: string | null;
   };
   lang: Locale;
-  fromPage?: string;
 }
 
 export default function FeaturedProductCard({
   product,
   lang,
-  fromPage = "featured",
 }: FeaturedProductCardProps) {
   return (
     <Link
-      href={`/${lang}/products/${product.slug}?from=${fromPage}`}
+      href={`/${lang}/products/${product.slug}`}
       className={`${styles.featuredLink} ${Cursor.Pointer}`}
     >
       <Frame className={styles.featuredCard}>

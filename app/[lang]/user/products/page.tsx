@@ -67,7 +67,6 @@ export default async function UserProductsPage({
                     lang={lang}
                     dict={dict.productCard}
                     canFavorite={false}
-                    fromPage="user-products"
                   />
                 ))}
               </div>

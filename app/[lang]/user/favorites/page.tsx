@@ -57,7 +57,6 @@ export default async function FavoritesPage({
                     dict={dict.productCard}
                     isFavorite
                     canFavorite
-                    fromPage="favorites"
                   />
                 ))}
               </div>

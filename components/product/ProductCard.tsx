@@ -63,9 +63,6 @@ export interface ProductCardProps {
   // Estado de favoritos
   isFavorite?: boolean; // Si el usuario ya lo marcó como favorito
   canFavorite?: boolean; // Si el usuario puede agregar a favoritos (debe estar logueado)
-
-  // Contexto de navegación
-  fromPage?: string; // De dónde viene (ej: "products", "favorites")
 }
 
 /**
@@ -90,11 +87,10 @@ export default function ProductCard({
   dict,
   isFavorite = false,
   canFavorite = false,
-  fromPage = "products",
 }: ProductCardProps) {
   return (
     <Link
-      href={`/${lang}/products/${product.slug}?from=${fromPage}`}
+      href={`/${lang}/products/${product.slug}`}
       className={`${styles.productLink} ${Cursor.Pointer}`}
     >
       <Frame className={styles.productCard}>
