@@ -145,13 +145,13 @@ export default async function CartPage({
                       </span>
                     </div>
 
-                    <Button
-                      disabled
-                      className={`${styles.checkoutButton} ${Cursor.NotAllowed}`}
-                      title={dict.cart.checkoutDisabled}
-                    >
-                      {dict.cart.proceedToCheckout}
-                    </Button>
+                    <Link href={`/${lang}/cart/checkout`}>
+                      <Button
+                        className={`${styles.checkoutButton} ${Cursor.Pointer}`}
+                      >
+                        {dict.cart.proceedToCheckout}
+                      </Button>
+                    </Link>
                   </Frame>
                 </div>
               </div>
