@@ -7,6 +7,7 @@ import BottomNav from "@/components/layout/BottomNav";
 import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
 import ProfileForm from "@/components/profile/ProfileForm";
+import AddressManager from "@/components/profile/AddressManager";
 import styles from "./page.module.css";
 
 export default async function ProfileInfoPage({
@@ -101,13 +102,15 @@ export default async function ProfileInfoPage({
                 {dict.user.shippingAddresses}
               </h3>
 
-              <div className={styles.addressList}>
-                <p className={styles.emptyMessage}>{dict.user.noAddresses}</p>
-              </div>
-
-              <button className={`${styles.addButton}`}>
-                {dict.user.addAddress}
-              </button>
+              <AddressManager
+                dict={{
+                  ...dict.addresses,
+                  noAddresses: dict.user.noAddresses,
+                  confirm: dict.common.confirm,
+                  cancel: dict.common.cancel,
+                  loading: dict.common.loading,
+                }}
+              />
             </div>
 
             <div className={styles.backLink}>
