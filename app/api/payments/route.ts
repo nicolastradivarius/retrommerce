@@ -141,7 +141,7 @@ export async function POST(request: NextRequest) {
         payment_method_id: paymentMethodId,
         issuer_id: issuerId ? Number(issuerId) : undefined,
         payer: {
-          email: user.email,
+          email: process.env.MP_TEST_PAYER_EMAIL || user.email,
           identification:
             identificationType && identificationNumber
               ? { type: identificationType, number: identificationNumber }
