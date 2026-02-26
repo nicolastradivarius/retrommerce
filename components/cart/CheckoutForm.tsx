@@ -24,10 +24,11 @@ interface Address {
 interface CardFormData {
   token: string;
   installments: number;
-  selectedPaymentMethodType: string;
-  selectedPaymentMethodId: string;
+  paymentMethodId: string;
   issuerId: string;
+  amount: string;
   payerEmail: string;
+  cardholderEmail: string;
   identificationNumber: string;
   identificationType: string;
 }
@@ -219,7 +220,7 @@ export default function CheckoutForm({
               const {
                 token,
                 installments,
-                selectedPaymentMethodId,
+                paymentMethodId,
                 issuerId,
                 identificationType,
                 identificationNumber,
@@ -232,7 +233,7 @@ export default function CheckoutForm({
                   body: JSON.stringify({
                     token,
                     installments,
-                    paymentMethodId: selectedPaymentMethodId,
+                    paymentMethodId,
                     issuerId,
                     addressId,
                     identificationType,
