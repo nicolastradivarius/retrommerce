@@ -1,0 +1,378 @@
+/* ── Layout ──────────────────────────────────────────────────────────────────*/
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.leftColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.rightColumn {
+    position: sticky;
+    top: 20px;
+}
+
+/* ── Section titles ───────────────────────────────────────────────────────── */
+
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stepTitle {
+    margin: 0 0 4px 0;
+    font-size: 12px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-weight: bold;
+    color: #000;
+    padding-bottom: 6px;
+    border-bottom: 2px solid;
+    border-color: #808080 #ffffff;
+}
+
+/* ── Address picker ───────────────────────────────────────────────────────── */
+
+.selectedAddressBox {
+    padding: 10px 12px;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #fff;
+}
+
+.selectedAddressRow {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.addressText {
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    color: #000;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.changeBtn {
+    flex-shrink: 0;
+    padding: 2px 10px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    color: #000;
+    white-space: nowrap;
+}
+
+.changeBtn:hover {
+    background: #d4d4d4;
+}
+
+.changeBtn:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.addressPicker {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #fff;
+}
+
+.addressOption {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 10px;
+    border: 2px solid transparent;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    color: #000;
+    user-select: none;
+}
+
+.addressOption:hover {
+    background: #d4d4d4;
+}
+
+.addressOptionSelected {
+    border-color: #000080;
+    background: #e8e8ff;
+}
+
+.radioInput {
+    margin-top: 1px;
+    flex-shrink: 0;
+    accent-color: #000080;
+}
+
+.addressOptionText {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    line-height: 1.5;
+}
+
+.defaultBadge {
+    font-size: 10px;
+    color: #000080;
+    font-weight: bold;
+}
+
+/* ── Loading / error states ───────────────────────────────────────────────── */
+
+.loadingMP {
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    color: #808080;
+    font-style: italic;
+    margin: 0;
+    padding: 12px;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #fff;
+    text-align: center;
+}
+
+.errorBanner {
+    padding: 8px 12px;
+    background: #ffcccc;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    color: #cc0000;
+}
+
+/* ── Card form ────────────────────────────────────────────────────────────── */
+
+.cardForm {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.cardFormHidden {
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    gap: 0;
+}
+
+.formGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.colFull {
+    grid-column: 1 / -1;
+}
+
+.label {
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #000;
+}
+
+.input {
+    padding: 4px 6px;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #fff;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    color: #000;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input:focus {
+    outline: 1px dotted #000;
+    outline-offset: -4px;
+}
+
+.select {
+    padding: 3px 6px;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #fff;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    color: #000;
+    width: 100%;
+    box-sizing: border-box;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23000'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 6px center;
+    padding-right: 22px;
+}
+
+.select:focus {
+    outline: 1px dotted #000;
+    outline-offset: -4px;
+}
+
+/* ── Pay button ───────────────────────────────────────────────────────────── */
+
+.payBtn {
+    margin-top: 4px;
+    padding: 8px 24px;
+    background: #000080;
+    color: #fff;
+    border: 2px solid;
+    border-color: #4040c0 #000040 #000040 #4040c0;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    width: 100%;
+    letter-spacing: 0.5px;
+}
+
+.payBtn:hover:not(:disabled) {
+    background: #0000aa;
+}
+
+.payBtn:active:not(:disabled) {
+    border-color: #000040 #4040c0 #4040c0 #000040;
+    background: #000060;
+}
+
+.payBtn:disabled {
+    background: #808080;
+    border-color: #a0a0a0 #606060 #606060 #a0a0a0;
+    color: #c0c0c0;
+}
+
+/* ── Order summary ────────────────────────────────────────────────────────── */
+
+.summaryFrame {
+    padding: 14px;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #c0c0c0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.summaryTitle {
+    margin: 0 0 4px 0;
+    font-size: 12px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-weight: bold;
+    color: #000;
+    padding-bottom: 6px;
+    border-bottom: 2px solid;
+    border-color: #808080 #ffffff;
+}
+
+.itemCount {
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    color: #808080;
+    margin: 0;
+}
+
+.itemList {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 260px;
+    overflow-y: auto;
+    padding: 8px;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #fff;
+}
+
+.summaryItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    color: #000;
+}
+
+.itemName {
+    flex: 1;
+    line-height: 1.4;
+}
+
+.itemQty {
+    color: #808080;
+    font-weight: normal;
+}
+
+.itemPrice {
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.divider {
+    height: 0;
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #ffffff;
+    margin: 2px 0;
+}
+
+.summaryRow {
+    display: flex;
+    justify-content: space-between;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    color: #000;
+}
+
+.freeShipping {
+    color: #006600;
+    font-weight: bold;
+}
+
+.totalRow {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .rightColumn {
+        position: static;
+        order: -1;
+    }
+
+    .formGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .colFull {
+        grid-column: 1;
+    }
+}

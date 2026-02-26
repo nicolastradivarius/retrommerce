@@ -1,0 +1,245 @@
+/* ── Container & window ──────────────────────────────────────────────────────*/
+
+.container {
+    min-height: 100vh;
+    background: #008080;
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    flex: 1;
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.window {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    box-shadow: 2px 2px 0px #000;
+    width: 100%;
+    max-width: 600px;
+}
+
+.windowContent {
+    padding: 20px;
+    background: #c0c0c0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* ── Status banner ───────────────────────────────────────────────────────────*/
+
+.statusBanner {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    border: 2px solid;
+}
+
+.statusApproved {
+    background: #ccffcc;
+    border-color: #ffffff #808080 #808080 #ffffff;
+}
+
+.statusPending {
+    background: #ffffcc;
+    border-color: #ffffff #808080 #808080 #ffffff;
+}
+
+.statusFailed {
+    background: #ffcccc;
+    border-color: #ffffff #808080 #808080 #ffffff;
+}
+
+.statusIcon {
+    font-size: 22px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.statusText {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.statusTitle {
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    color: #000;
+}
+
+.statusMessage {
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    color: #000;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ── Order details ───────────────────────────────────────────────────────────*/
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #fff;
+}
+
+.metaRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.metaLabel {
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    color: #808080;
+}
+
+.metaValue {
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #000;
+}
+
+.separator {
+    height: 0;
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #ffffff;
+    margin: 2px 0;
+}
+
+/* ── Item list ───────────────────────────────────────────────────────────────*/
+
+.itemList {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.itemName {
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    color: #000;
+    flex: 1;
+}
+
+.itemQty {
+    color: #808080;
+    font-weight: normal;
+}
+
+.itemPrice {
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #000;
+    white-space: nowrap;
+}
+
+/* ── Shipping address ────────────────────────────────────────────────────────*/
+
+.addressBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.addressLine {
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    color: #000;
+    margin: 0;
+}
+
+/* ── Actions ─────────────────────────────────────────────────────────────────*/
+
+.actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.actionButton {
+    padding: 6px 16px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    color: #000;
+    text-decoration: none;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.actionButton:hover {
+    background: #d4d4d4;
+}
+
+.actionButton:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+}
+
+.actionButtonSecondary {
+    font-weight: normal;
+}
+
+/* ── Not-found / error state ─────────────────────────────────────────────────*/
+
+.statusBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 32px 16px;
+    text-align: center;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────────*/
+
+@media (max-width: 640px) {
+    .main {
+        padding: 12px;
+    }
+
+    .window {
+        max-width: 100%;
+    }
+
+    .windowContent {
+        padding: 14px;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .actionButton {
+        width: 100%;
+        text-align: center;
+    }
+}
