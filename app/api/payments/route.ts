@@ -65,15 +65,7 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const {
-    token,
-    installments,
-    paymentMethodId,
-    issuerId,
-    addressId,
-    identificationType,
-    identificationNumber,
-  } = body;
+  const { token, installments, paymentMethodId, issuerId, addressId } = body;
 
   if (!token || !paymentMethodId || !addressId) {
     return NextResponse.json(
@@ -141,11 +133,7 @@ export async function POST(request: NextRequest) {
         payment_method_id: paymentMethodId,
         issuer_id: issuerId ? Number(issuerId) : undefined,
         payer: {
-          email: process.env.MP_TEST_PAYER_EMAIL || user.email,
-          identification:
-            identificationType && identificationNumber
-              ? { type: identificationType, number: identificationNumber }
-              : undefined,
+          email: process.env.MP_TEST_PAYER_EMAIL,
         },
       },
     });
