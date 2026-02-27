@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Payment } from "mercadopago";
 import { getCurrentUser } from "@/lib/auth";
 import { mp } from "@/lib/mercadopago";
+import { mapMPStatus } from "@/lib/mercadopago-utils";
 import { prisma } from "@/lib/prisma";
 import { getCartWithItems } from "@/lib/cart";
 import type { CartItemWithProduct } from "@/lib/cart";
@@ -15,25 +16,6 @@ function generateOrderNumber(): string {
   const day = String(now.getDate()).padStart(2, "0");
   const random = Math.random().toString(36).substring(2, 7).toUpperCase();
   return `RMM-${year}${month}${day}-${random}`;
-}
-
-/**
- * Maps a MercadoPago payment status to our DB enums.
- * MP statuses: approved | pending | in_process | rejected | cancelled | refunded | charged_back
- */
-function mapMPStatus(mpStatus: string | undefined): {
-  orderStatus: "CONFIRMED" | "PENDING" | "CANCELLED";
-  paymentStatus: "PAID" | "PENDING" | "FAILED";
-} {
-  switch (mpStatus) {
-    case "approved":
-      return { orderStatus: "CONFIRMED", paymentStatus: "PAID" };
-    case "pending":
-    case "in_process":
-      return { orderStatus: "PENDING", paymentStatus: "PENDING" };
-    default:
-      return { orderStatus: "CANCELLED", paymentStatus: "FAILED" };
-  }
 }
 
 // ── Route handler ─────────────────────────────────────────────────────────────
@@ -65,7 +47,15 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const { token, installments, paymentMethodId, issuerId, addressId } = body;
+  const {
+    token,
+    installments,
+    paymentMethodId,
+    issuerId,
+    addressId,
+    identificationType,
+    identificationNumber,
+  } = body;
 
   if (!token || !paymentMethodId || !addressId) {
     return NextResponse.json(
@@ -133,9 +123,13 @@ export async function POST(request: NextRequest) {
         payment_method_id: paymentMethodId,
         issuer_id: issuerId ? Number(issuerId) : undefined,
         payer: {
-          email: process.env.MP_TEST_PAYER_EMAIL,
+          email: user.email,
+          identification: identificationType && identificationNumber
+            ? { type: identificationType, number: identificationNumber }
+            : undefined,
         },
       },
+      requestOptions: { idempotencyKey: orderNumber },
     });
   } catch (err) {
     console.error("[payments] MercadoPago API error:", err);
