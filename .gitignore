@@ -3,6 +3,8 @@
 README.md
 AGENTS.md
 
+.vscode
+
 # dependencies
 /node_modules
 /.pnp
