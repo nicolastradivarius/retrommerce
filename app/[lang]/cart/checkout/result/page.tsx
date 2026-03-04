@@ -3,7 +3,7 @@ import { Frame, TitleBar } from "@react95/core";
 import { FaxWarning, HelpBook, Msrating106 } from "@react95/icons";
 import Link from "next/link";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
+import { getOrderById } from "@/lib/orders";
 import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 import BottomNav from "@/components/layout/BottomNav";
 import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
@@ -36,19 +36,7 @@ export default async function CheckoutResultPage({
   }
 
   // Fetch the order, verifying it belongs to the authenticated user
-  const order = await prisma.order.findFirst({
-    where: { id: orderId, userId: user.sub },
-    include: {
-      items: {
-        include: {
-          product: {
-            select: { id: true, name: true, images: true },
-          },
-        },
-      },
-      address: true,
-    },
-  });
+  const order = await getOrderById(orderId, user.sub);
 
   if (!order) {
     return (
