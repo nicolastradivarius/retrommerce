@@ -124,12 +124,13 @@ export async function POST(request: NextRequest) {
         issuer_id: issuerId ? Number(issuerId) : undefined,
         payer: {
           email: user.email,
-          identification: identificationType && identificationNumber
-            ? { type: identificationType, number: identificationNumber }
-            : undefined,
+          identification: {
+            type: identificationType,
+            number: identificationNumber,
+          },
         },
       },
-      requestOptions: { idempotencyKey: orderNumber },
+      requestOptions: { idempotencyKey: crypto.randomUUID() },
     });
   } catch (err) {
     console.error("[payments] MercadoPago API error:", err);

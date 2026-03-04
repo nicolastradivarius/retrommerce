@@ -1,4 +1,27 @@
 {
+  "myOrders": {
+    "title": "Mis Pedidos",
+    "empty": "Todavía no realizaste ningún pedido.",
+    "continueShopping": "Ir a comprar",
+    "orderNumber": "Pedido",
+    "total": "Total",
+    "paid": "Pagado",
+    "pending": "Pendiente",
+    "failed": "Fallido",
+    "page": "Página",
+    "of": "de",
+    "previous": "← Anterior",
+    "next": "Siguiente →",
+    "statuses": {
+      "PENDING": "Pendiente",
+      "CONFIRMED": "Confirmado",
+      "PROCESSING": "En proceso",
+      "SHIPPED": "Enviado",
+      "DELIVERED": "Entregado",
+      "CANCELLED": "Cancelado",
+      "REFUNDED": "Reembolsado"
+    }
+  },
   "checkoutResult": {
     "approvedTitle": "¡Pago aprobado!",
     "approvedMessage": "Tu pedido fue confirmado y está siendo preparado.",

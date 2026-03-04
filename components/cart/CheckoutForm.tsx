@@ -166,10 +166,6 @@ export default function CheckoutForm({
 
         const cardForm = mp.cardForm({
           amount: cart.subtotal,
-          // iframe: false → regular HTML inputs (full styling control).
-          // For production PCI compliance, switch to iframe: true.
-          // Note: with iframe: true the card number / CVV / expiry inputs become
-          // iframes and cannot be styled via CSS Modules.
           iframe: false,
           form: {
             id: "checkout-card-form",
@@ -262,8 +258,6 @@ export default function CheckoutForm({
             },
 
             onFetching: (resource: string) => {
-              // MP.js fires this while loading installments / payment methods.
-              // You could show a per-field loading indicator here if needed.
               console.debug("[MP] Fetching resource:", resource);
             },
           },

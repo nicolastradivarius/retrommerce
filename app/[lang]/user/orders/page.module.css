@@ -1,0 +1,374 @@
+.container {
+    min-height: 100vh;
+    background: #008080;
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    flex: 1;
+    padding: 24px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.window {
+    width: 100%;
+    max-width: 1000px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    box-shadow: 2px 2px 0px #000;
+}
+
+.windowContent {
+    padding: 16px;
+    background: #c0c0c0;
+}
+
+/* ── Empty state ── */
+
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 40px 0 24px;
+    text-align: center;
+}
+
+.emptyText {
+    margin: 0;
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    color: #444;
+}
+
+.shopLink {
+    display: inline-block;
+    padding: 4px 16px;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    color: #000;
+    text-decoration: none;
+}
+
+.shopLink:hover {
+    background: #d4d4d4;
+}
+
+.shopLink:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+}
+
+/* ── Order list ── */
+
+.orderList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+/* ── Order card ── */
+
+.orderCard {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #808080 #ffffff #ffffff #808080;
+    padding: 0;
+}
+
+/* Header */
+
+.orderHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 10px;
+    background: #000080;
+    flex-wrap: wrap;
+}
+
+.orderMeta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.orderNumber {
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.orderDate {
+    font-size: 10px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    color: #c0c0c0;
+}
+
+/* Badges */
+
+.badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 10px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    font-weight: bold;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+}
+
+.badgePaid {
+    background: #008000;
+    color: #ffffff;
+}
+
+.badgePending {
+    background: #808000;
+    color: #ffffff;
+}
+
+.badgeFailed {
+    background: #800000;
+    color: #ffffff;
+}
+
+.badgeOrder {
+    background: #c0c0c0;
+    color: #000000;
+    border-color: #808080;
+}
+
+/* Items */
+
+.itemList {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 6px 10px;
+    border-bottom: 1px solid;
+    border-color: #808080;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    padding: 3px 0;
+    border-bottom: 1px dotted #808080;
+}
+
+.item:last-child {
+    border-bottom: none;
+}
+
+.itemName {
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    color: #000;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.itemLink {
+    color: #000080;
+    text-decoration: underline;
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+}
+
+.itemLink:hover {
+    color: #0000ff;
+}
+
+.itemQty {
+    color: #444;
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+}
+
+.itemPrice {
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    color: #000;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Footer */
+
+.orderFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    flex-wrap: wrap;
+}
+
+.addressSummary {
+    font-size: 10px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    color: #444;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.orderTotal {
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    color: #000;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.orderTotal strong {
+    font-weight: bold;
+}
+
+/* ── Pagination ── */
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
+    padding: 8px 0;
+    border-top: 2px solid;
+    border-top-color: #808080;
+}
+
+.pageButton {
+    text-decoration: none;
+    color: inherit;
+}
+
+.pageButton button {
+    padding: 4px 12px;
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    color: #000;
+}
+
+.pageButton button:hover {
+    background: #d4d4d4;
+}
+
+.pageButton button:active {
+    border-color: #808080 #ffffff #ffffff #808080;
+    background: #a0a0a0;
+}
+
+.pageInfo {
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+    color: #000;
+    min-width: 100px;
+    text-align: center;
+}
+
+/* ── Back link ── */
+
+.backLink {
+    display: inline-block;
+    margin-top: 16px;
+    color: #000080;
+    text-decoration: underline;
+    font-size: 11px;
+    font-family: "MS Sans Serif", Tahoma, sans-serif;
+}
+
+.backLink:hover {
+    color: #0000ff;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 768px) {
+    .main {
+        padding: 12px;
+    }
+
+    .windowContent {
+        padding: 10px;
+    }
+
+    .orderHeader {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .orderFooter {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .addressSummary {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+    }
+
+    .pagination {
+        gap: 8px;
+    }
+
+    .pageInfo {
+        min-width: 80px;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main {
+        padding: 8px;
+    }
+
+    .orderHeader {
+        padding: 6px 8px;
+    }
+
+    .itemList {
+        padding: 4px 8px;
+    }
+
+    .orderFooter {
+        padding: 4px 8px;
+    }
+
+    .pagination {
+        gap: 6px;
+    }
+
+    .pageButton button {
+        padding: 3px 8px;
+        font-size: 10px;
+    }
+}

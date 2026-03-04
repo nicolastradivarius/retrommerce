@@ -1,4 +1,27 @@
 {
+  "myOrders": {
+    "title": "My Orders",
+    "empty": "You haven't placed any orders yet.",
+    "continueShopping": "Go shopping",
+    "orderNumber": "Order",
+    "total": "Total",
+    "paid": "Paid",
+    "pending": "Pending",
+    "failed": "Failed",
+    "page": "Page",
+    "of": "of",
+    "previous": "← Previous",
+    "next": "Next →",
+    "statuses": {
+      "PENDING": "Pending",
+      "CONFIRMED": "Confirmed",
+      "PROCESSING": "Processing",
+      "SHIPPED": "Shipped",
+      "DELIVERED": "Delivered",
+      "CANCELLED": "Cancelled",
+      "REFUNDED": "Refunded"
+    }
+  },
   "checkoutResult": {
     "approvedTitle": "Payment approved!",
     "approvedMessage": "Your order has been confirmed and is being prepared.",
