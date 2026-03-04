@@ -4,7 +4,7 @@ import { Mspaint } from "@react95/icons";
 import Link from "next/link";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
 import { getCartWithItems } from "@/lib/cart";
-import { prisma } from "@/lib/prisma";
+import { getAddressesByUserId } from "@/lib/addresses";
 import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 import BottomNav from "@/components/layout/BottomNav";
 import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
@@ -36,21 +36,7 @@ export default async function CheckoutPage({
     redirect(`/${lang}/cart`);
   }
 
-  const addresses = await prisma.address.findMany({
-    where: { userId: user.sub },
-    orderBy: [{ isDefault: "desc" }, { createdAt: "desc" }],
-    select: {
-      id: true,
-      fullName: true,
-      street: true,
-      city: true,
-      state: true,
-      zipCode: true,
-      country: true,
-      phone: true,
-      isDefault: true,
-    },
-  });
+  const addresses = await getAddressesByUserId(user.sub);
 
   const mpPublicKey = process.env.NEXT_PUBLIC_MP_PUBLIC_KEY ?? "";
 
