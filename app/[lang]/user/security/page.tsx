@@ -1,11 +1,13 @@
-import { Frame, TitleBar, Cursor } from "@react95/core";
+import { TitleBar } from "@react95/core";
 import { FolderSettings } from "@react95/icons";
+import { Frame } from "@react95/core";
 import Link from "next/link";
 import { redirect, notFound } from "next/navigation";
 import { getCurrentUserWithAvatar } from "@/lib/auth";
 import BottomNav from "@/components/layout/BottomNav";
 import { getDictionary, hasLocale } from "@/app/[lang]/dictionaries";
 import TitleBarClassicOptions from "@/components/ui/TitleBarClassicOptions";
+import ChangePasswordForm from "@/components/profile/ChangePasswordForm";
 import styles from "./page.module.css";
 
 export default async function SecurityPage({
@@ -41,73 +43,34 @@ export default async function SecurityPage({
           </TitleBar>
 
           <Frame className={styles.windowContent}>
-            <div className={styles.formSection}>
-              <h3 className={styles.sectionTitle}>
-                {dict.user.changePassword}
-              </h3>
-
-              <form className={styles.form}>
-                <div className={styles.formGroup}>
-                  <label htmlFor="currentPassword" className={styles.label}>
-                    {dict.user.currentPassword}
-                  </label>
-                  <input
-                    type="password"
-                    id="currentPassword"
-                    name="currentPassword"
-                    placeholder={dict.user.currentPasswordPlaceholder}
-                    className={`${styles.input} ${Cursor.Text}`}
-                  />
-                </div>
-
-                <div className={styles.formGroup}>
-                  <label htmlFor="newPassword" className={styles.label}>
-                    {dict.user.newPassword}
-                  </label>
-                  <input
-                    type="password"
-                    id="newPassword"
-                    name="newPassword"
-                    placeholder={dict.user.newPasswordPlaceholder}
-                    className={`${styles.input} ${Cursor.Text}`}
-                  />
-                </div>
-
-                <div className={styles.formGroup}>
-                  <label htmlFor="confirmPassword" className={styles.label}>
-                    {dict.user.confirmPassword}
-                  </label>
-                  <input
-                    type="password"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    placeholder={dict.user.confirmPasswordPlaceholder}
-                    className={`${styles.input} ${Cursor.Text}`}
-                  />
-                </div>
-
-                <div className={styles.buttonGroup}>
-                  <button
-                    type="submit"
-                    className={`${styles.saveButton} ${Cursor.Pointer}`}
-                  >
-                    {dict.user.updatePassword}
-                  </button>
-                  <Link
-                    href={`/${lang}/user`}
-                    className={`${styles.cancelButton} ${Cursor.Pointer}`}
-                  >
-                    {dict.common.cancel}
-                  </Link>
-                </div>
-              </form>
-            </div>
+            <ChangePasswordForm
+              dict={{
+                changePassword: dict.user.changePassword,
+                currentPassword: dict.user.currentPassword,
+                newPassword: dict.user.newPassword,
+                confirmPassword: dict.user.confirmPassword,
+                currentPasswordPlaceholder:
+                  dict.user.currentPasswordPlaceholder,
+                newPasswordPlaceholder: dict.user.newPasswordPlaceholder,
+                confirmPasswordPlaceholder:
+                  dict.user.confirmPasswordPlaceholder,
+                updatePassword: dict.user.updatePassword,
+                passwordUpdated: dict.user.passwordUpdated,
+                passwordUpdateError: dict.user.passwordUpdateError,
+                passwordRequired: dict.user.passwordRequired,
+                newPasswordRequired: dict.user.newPasswordRequired,
+                passwordTooShort: dict.user.passwordTooShort,
+                passwordSameAsCurrent: dict.user.passwordSameAsCurrent,
+                passwordMismatch: dict.user.passwordMismatch,
+              }}
+              commonDict={{
+                cancel: dict.common.cancel,
+                saving: dict.common.saving,
+              }}
+            />
 
             <div className={styles.backLink}>
-              <Link
-                href={`/${lang}/user`}
-                className={`${styles.link} ${Cursor.Pointer}`}
-              >
+              <Link href={`/${lang}/user`} className={styles.link}>
                 ← {dict.common.backToUserPanel}
               </Link>
             </div>
