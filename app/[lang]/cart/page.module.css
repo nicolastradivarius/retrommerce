@@ -8,14 +8,10 @@
 .main {
     flex: 1;
     padding: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
 }
 
 .cartFrame {
     width: 100%;
-    max-width: 1200px;
     background: #c0c0c0;
     border: 2px solid;
     border-color: #ffffff #808080 #808080 #ffffff;

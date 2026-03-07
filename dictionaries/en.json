@@ -369,7 +369,7 @@
   "favorites": {
     "title": "Favorites",
     "empty": "You don't have any favorites yet.",
-    "backToProducts": "Back to products"
+    "backToUserPanel": "Back to user panel"
   },
   "cart": {
     "title": "Shopping Cart",

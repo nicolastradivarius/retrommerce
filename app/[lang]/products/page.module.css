@@ -13,7 +13,6 @@
 /* Main se convierte en columna flexible para que su contenido pueda estirarse */
 .main {
     max-width: 100%;
-    margin: 0 auto;
     padding: 24px;
     padding-bottom: 56px; /* espacio base para BottomNav fijo */
     /* Añadimos también soporte para safe-area en móviles: */
@@ -30,7 +29,6 @@
     display: flex;
     gap: 24px;
     align-items: stretch; /* estira columnas para que tengan la misma altura */
-    margin-top: 24px;
     min-height: 0;
 }
 

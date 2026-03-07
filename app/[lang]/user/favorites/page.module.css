@@ -8,14 +8,10 @@
 .main {
     flex: 1;
     padding: 24px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
 }
 
 .window {
     width: 100%;
-    max-width: 1000px;
     background: #c0c0c0;
     border: 2px solid;
     border-color: #ffffff #808080 #808080 #ffffff;

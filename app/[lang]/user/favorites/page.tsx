@@ -63,10 +63,10 @@ export default async function FavoritesPage({
             )}
 
             <Link
-              href={`/${lang}/products`}
+              href={`/${lang}/user`}
               className={`${styles.backLink} ${Cursor.Pointer}`}
             >
-              {dict.favorites.backToProducts}
+              {dict.favorites.backToUserPanel}
             </Link>
           </Frame>
         </div>

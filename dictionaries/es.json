@@ -65,7 +65,7 @@
     "shippingFree": "Gratis",
     "total": "Total",
     "items": "{count} artículo(s)",
-    "backToCart": "← Volver al carrito",
+    "backToCart": "Volver al carrito",
     "emptyCart": "Tu carrito está vacío",
     "emptyCartDesc": "Agregá productos antes de continuar.",
     "loadingMP": "Cargando formulario de pago...",
@@ -369,7 +369,7 @@
   "favorites": {
     "title": "Favoritos",
     "empty": "Todavía no tienes productos favoritos.",
-    "backToProducts": "Volver a productos"
+    "backToUserPanel": "Volver al panel de usuario"
   },
   "cart": {
     "title": "Carrito de Compras",

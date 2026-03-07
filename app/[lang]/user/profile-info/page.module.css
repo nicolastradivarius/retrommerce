@@ -8,9 +8,6 @@
 .main {
     flex: 1;
     padding: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
 }
 
 .window {
@@ -19,7 +16,6 @@
     border-color: #ffffff #808080 #808080 #ffffff;
     box-shadow: 2px 2px 0px #000;
     width: 100%;
-    max-width: 800px;
 }
 
 .windowContent {
@@ -71,10 +67,6 @@
 @media (max-width: 768px) {
     .main {
         padding: 12px;
-    }
-
-    .window {
-        max-width: 100%;
     }
 
     .windowContent {

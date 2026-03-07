@@ -12,9 +12,7 @@ import { prisma } from "@/lib/prisma";
  * Docs: https://www.mercadopago.com/developers/es/docs/your-integrations/notifications/webhooks#validarsignaturanotificaciones
  */
 function isValidSignature(request: NextRequest, rawBody: string): boolean {
-  const secret = process.env.MP_WEBHOOK_SECRET;
-  if (!secret) return true; // Skip in local dev when secret is not configured
-
+  const secret = process.env.MP_WEBHOOK_SECRET!;
   const xSignature = request.headers.get("x-signature");
   const xRequestId = request.headers.get("x-request-id");
   const dataId = new URL(request.url).searchParams.get("data.id");
@@ -49,6 +47,10 @@ function isValidSignature(request: NextRequest, rawBody: string): boolean {
 // ── Route handler ─────────────────────────────────────────────────────────────
 
 export async function POST(request: NextRequest) {
+  console.log("[webhook] Received request", {
+    url: request.url,
+    headers: Object.fromEntries(request.headers.entries()),
+  });
   // 1. Read raw body (needed for signature validation)
   let rawBody: string;
   let payload: { type?: string; data?: { id?: string } };
@@ -67,7 +69,6 @@ export async function POST(request: NextRequest) {
   }
 
   // 3. Only handle payment notifications
-  // MP also sends "test", "merchant_order", etc. — we ignore those.
   if (payload.type !== "payment") {
     return NextResponse.json({ received: true });
   }
