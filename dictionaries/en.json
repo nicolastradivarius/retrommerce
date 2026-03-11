@@ -1,4 +1,8 @@
 {
+  "metadata": {
+    "title": "Retrommerce - Retro Tech Store",
+    "description": "Your vintage 90s and 2000s computer components and tech store"
+  },
   "myOrders": {
     "title": "My Orders",
     "empty": "You haven't placed any orders yet.",

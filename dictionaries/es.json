@@ -1,4 +1,8 @@
 {
+  "metadata": {
+    "title": "Retrommerce - Tienda Retro de Tecnología",
+    "description": "Tu tienda de componentes y computadoras vintage de los 90s y 2000s"
+  },
   "myOrders": {
     "title": "Mis Pedidos",
     "empty": "Todavía no realizaste ningún pedido.",
