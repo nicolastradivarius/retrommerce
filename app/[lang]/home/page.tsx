@@ -104,7 +104,7 @@ export default async function HomePage({
                             alt={dealOfTheDay.name}
                             width={200}
                             height={200}
-                            style={{ objectFit: "contain" }}
+                            style={{ objectFit: "cover" }}
                           />
                         </div>
                       )}
