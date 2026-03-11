@@ -164,6 +164,49 @@
     line-height: 0;
 }
 
+/* Locale selector */
+.localeSelector {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.localeMenu {
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    margin-bottom: 6px;
+    z-index: 1002;
+}
+
+.localeMenuFrame {
+    background: #c0c0c0;
+    border: 2px solid;
+    border-color: #ffffff #808080 #808080 #ffffff;
+    padding: 2px;
+    display: flex;
+    flex-direction: column;
+}
+
+.localeOption {
+    background: none;
+    border: none;
+    padding: 4px 12px;
+    font-family: "MS Sans Serif", sans-serif;
+    font-size: 11px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.localeOption:hover {
+    background: #000080;
+    color: #ffffff;
+}
+
+.localeOptionActive {
+    font-weight: bold;
+}
+
 /* Mobile Menu */
 .mobileMenuOverlay {
     display: none;

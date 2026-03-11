@@ -3,7 +3,7 @@
 import { Frame, List, Cursor } from "@react95/core";
 import {
   User1,
-  Lock,
+  Signup,
   Computer,
   Msnstart1,
   FolderSettings,
@@ -12,13 +12,16 @@ import {
   Sndvol32304,
   Sndvol32303,
   Network2,
+  Internat151,
   Msrating106,
   Folder,
+  Awschd32402,
 } from "@react95/icons";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState, useEffect, cloneElement } from "react";
-import type { Locale } from "@/app/[lang]/dictionaries";
+import { useState, useEffect, useRef, cloneElement } from "react";
+import { useRouter } from "next/navigation";
+import { type Locale, LOCALES, LOCALE_LABELS } from "@/lib/locales";
 import type { UserWithAvatar } from "@/lib/auth";
 import styles from "./BottomNav.module.css";
 
@@ -38,13 +41,16 @@ interface BottomNavProps {
 }
 
 export default function BottomNav({ lang, dict, user }: BottomNavProps) {
+  const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isSoundIconToggled, setIsSoundIconToggled] = useState(false);
   const [isPowerToggled, setIsPowerToggled] = useState(false);
+  const [localeMenuOpen, setLocaleMenuOpen] = useState(false);
+  const localeMenuRef = useRef<HTMLDivElement>(null);
   const [cartItemCount, setCartItemCount] = useState(0);
   const [currentTime, setCurrentTime] = useState(() => {
     return new Date()
-      .toLocaleTimeString("es-AR", {
+      .toLocaleTimeString(lang, {
         hour: "numeric",
         minute: "2-digit",
         hour12: true,
@@ -57,7 +63,7 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
   useEffect(() => {
     const formatTime = () => {
       return new Date()
-        .toLocaleTimeString("es-AR", {
+        .toLocaleTimeString(lang, {
           hour: "numeric",
           minute: "2-digit",
           hour12: true,
@@ -144,13 +150,33 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
         ]
       : [
           {
-            icon: <Lock variant="16x16_4" />,
+            icon: <Signup variant="16x16_4"/>,
             label: dict.login,
             href: `/${lang}/login`,
             basePath: "login",
           },
         ]),
   ];
+
+  // Close locale menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (localeMenuRef.current && !localeMenuRef.current.contains(e.target as Node)) {
+        setLocaleMenuOpen(false);
+      }
+    };
+    if (localeMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [localeMenuOpen]);
+
+  const switchLocale = (newLocale: string) => {
+    const newPath = pathname.replace(`/${lang}`, `/${newLocale}`);
+    document.cookie = `locale=${newLocale};path=/;max-age=31536000`;
+    setLocaleMenuOpen(false);
+    router.push(newPath);
+  };
 
   // Función para determinar si una ventana está activa
   const isActive = (basePath: string) => {
@@ -263,6 +289,30 @@ export default function BottomNav({ lang, dict, user }: BottomNavProps) {
                     <PowerOn variant="16x16_4" />
                   )}
                 </button>
+                <div className={styles.localeSelector} ref={localeMenuRef}>
+                  <button
+                    className={`${styles.trayIcon} ${Cursor.Pointer}`}
+                    onClick={() => setLocaleMenuOpen(!localeMenuOpen)}
+                    aria-label="Change language"
+                  >
+                    <Awschd32402 variant="16x16_4" />
+                  </button>
+                  {localeMenuOpen && (
+                    <div className={styles.localeMenu}>
+                      <Frame className={styles.localeMenuFrame}>
+                        {LOCALES.map((loc) => (
+                          <button
+                            key={loc}
+                            className={`${styles.localeOption} ${lang === loc ? styles.localeOptionActive : ""} ${Cursor.Pointer}`}
+                            onClick={() => switchLocale(loc)}
+                          >
+                            {LOCALE_LABELS[loc]}
+                          </button>
+                        ))}
+                      </Frame>
+                    </div>
+                  )}
+                </div>
                 <div className={styles.clock}>{currentTime}</div>
               </div>
             </div>
